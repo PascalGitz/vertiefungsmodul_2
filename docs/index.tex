@@ -100,8 +100,6 @@
 
 
 \makeatletter
-\makeatother
-\makeatletter
 \@ifpackageloaded{bookmark}{}{\usepackage{bookmark}}
 \makeatother
 \makeatletter
@@ -140,18 +138,10 @@
 \newcommand*\listoflistings{\listof{codelisting}{Listingverzeichnis}}
 \makeatother
 \makeatletter
+\makeatother
+\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
-\makeatother
-\makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
-\makeatother
-\makeatletter
-\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
-\makeatother
-\makeatletter
-\makeatother
-\makeatletter
 \makeatother
 \ifLuaTeX
 \usepackage[bidi=basic]{babel}
@@ -159,13 +149,18 @@
 \usepackage[bidi=default]{babel}
 \fi
 \babelprovide[main,import]{ngerman}
+\ifPDFTeX
+\else
+\babelfont{rm}[]{Palatino Linotype}
+\fi
 % get rid of language-specific shorthands (see #6817):
 \let\LanguageShortHands\languageshorthands
 \def\languageshorthands#1{}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
+
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
@@ -188,7 +183,7 @@
 \title{Tragverhalten von Stahlbetontragwerken}
 
 \subtitle
-{Erweiterung auf Plattentragwerke}
+{Verformungsberechnungen mittels Finiten Elementen}
 
 %\thanks{
 %Version 1.0
@@ -196,7 +191,7 @@
 %\hfill Hun}
 
 
-\date{\large Horw, Mittwoch, 19. Juni 2024}
+\date{\large Horw, Freitag, 14. Juni 2024}
 \author{Pascal Gitz}
 
 \publishers{
@@ -210,6 +205,7 @@
 }
 \begin{document}
 \maketitle
+
 
 Hiermit erkläre ich, dass ich die vorliegende Arbeit selbstständig angefertigt und keine anderen als die angegebenen Hilfsmittel verwendet habe. Sämtliche verwendeten Textausschnitte, Zitate oder Inhalte anderer Verfasser wurden ausdrücklich als solche gekennzeichnet.\\%
 %
@@ -233,8 +229,6 @@ Version 0.9 - Entwurf \hfill 08. Januar 2024 \quad \quad \quad \quad \quad PG\\
 
 -
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, frame hidden, breakable, sharp corners, enhanced]}{\end{tcolorbox}}\fi
-
 \renewcommand*\contentsname{Inhaltsverzeichnis}
 {
 \hypersetup{linkcolor=}
@@ -245,13 +239,232 @@ Version 0.9 - Entwurf \hfill 08. Januar 2024 \quad \quad \quad \quad \quad PG\\
 \listoftables
 \bookmarksetup{startatroot}
 
-\hypertarget{einleitung}{%
-\chapter{Einleitung}\label{einleitung}}
+\chapter{Einleitung}\label{einleitung}
 
 \begin{itemize}
 \tightlist
 \item
 \end{itemize}
+
+\bookmarksetup{startatroot}
+
+\chapter{Modelle mit Drehfedern}\label{modelle-mit-drehfedern}
+
+\section{Nachrechnung Kragarm}\label{nachrechnung-kragarm}
+
+Um das Verhalten der FE-Programme mit Drehfedern einzuschätzen, werden
+Verformungen an einem fiktivem Beispiel bestimmt. Dargestellt ist der
+Kragarm in Abbildung~\ref{fig-kragarm-feder}. Die Verformung an der
+Stelle \(w\) wird händisch mittels Arbeitsgleichung und mit dem
+FE-Programm bestimmt. Es sollen nicht-lineare Federsteifigikeiten
+berücksichtigt werden können.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/Kragarm_system_Feder.pdf}
+
+}
+
+\caption{\label{fig-kragarm-feder}Statisches System des Kragarms}
+
+\end{figure}%
+
+Die Parameter in der Tabelle~\ref{tbl-parameters-kragarm} dienen als
+Berechnungsgrundlagen. Beschrieben sind die Abmessungen und
+Materialeigenschaften, sowie die Beiden Laststufen \(F_1\) und \(F_2\)
+wie auch die Federsteifigkeiten \(k_1\) und \(k_2\). Die Laststufen sind
+so gewählt, dass das nicht-lineare Verhalten der Drehfeder zu tragen
+kommt.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+
+\caption{\label{tbl-parameters-kragarm}Berechnungsparameter des
+Kragarms}
+
+\tabularnewline
+
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Parameter
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\hspace{0pt}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\(E = \frac{10000 \text{N}}{\text{mm}^{2}}\) &
+\(F_{1} = - 10000 \text{N}\) \\
+\(F_{2} = - 21500 \text{N}\) & \(b = 200 \text{mm}\) \\
+\(h = 400 \text{mm}\) & \(k_{1} = \frac{100000 \text{N}}{\text{m}}\) \\
+\(k_{2} = \frac{10000 \text{N}}{\text{m}}\) &
+\(l_{Kragarm} = 5 \text{m}\) \\
+
+\end{longtable}
+
+Der Querschnitt ist in Abbildung~\ref{fig-qs-kragarm} aufgezeigt.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/Kragarm_querschnitt.pdf}
+
+}
+
+\caption{\label{fig-qs-kragarm}Fiktiver Querschnitt des Kragarms mit
+linear-elastischem Materialverhalten}
+
+\end{figure}%
+
+Die Entsprechende Federcharakteristik ist in
+Abbildung~\ref{fig-springcharacteristic} zu sehen.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/04_Kragarm_files/figure-pdf/fig-springcharacteristic-output-1.pdf}
+
+}
+
+\caption{\label{fig-springcharacteristic}Charakteristik der Drehfeder}
+
+\end{figure}%
+
+\subsection{Biegeverformung}\label{biegeverformung}
+
+Apriori werden die Biegeverformungen mittels der Differentialgleichung
+für reine Biegeträger ermittelt. Dabei wird die Drehfeder
+vernachlässigt. Das statische System, gezeigt in
+Abbildung~\ref{fig-kragarm-sys} führt zu den Zustandslinien der
+Schnittgrössen in der \textbf{?@fig-sk-kragarmF1}.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/Kragarm_System.pdf}
+
+}
+
+\caption{\label{fig-kragarm-sys}Statisches System des Kragarms}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/04_Kragarm_files/figure-pdf/fig-sk-kragarmf1-output-1.pdf}
+
+}
+
+\caption{\label{fig-sk-kragarmf1}Schnittkräfte des Systems aus
+Abbildung~\ref{fig-kragarm-sys} für die Last \(F_1\)}
+
+\end{figure}%
+
+\begin{equation}w_{Bending,F1} = 39.06 \text{mm}\end{equation}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/04_Kragarm_files/figure-pdf/fig-sk-kragarm-f2-output-1.pdf}
+
+}
+
+\caption{\label{fig-sk-kragarm-f2}Schnittkräfte des Systems aus
+Abbildung~\ref{fig-kragarm-sys} für die Last \(F2\)}
+
+\end{figure}%
+
+\begin{equation}w_{Bending,F 2} = 83.98 \text{mm}\end{equation}
+
+\subsection{Verformung der Drehfeder}\label{verformung-der-drehfeder}
+
+Die Verformung aus der Drehfeder bedingt das Biegemoment des realen und
+des fiktiven Systems an der Stelle der Drehfeder, sowie die
+Federkonstante \(k_\varphi\). Das System is in
+Abbildung~\ref{fig-kragarm-sys-virtuell} gezeigt.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/Kragarm_system_feder_virtuell.pdf}
+
+}
+
+\caption{\label{fig-kragarm-sys-virtuell}Statisches System des Kragarms
+im virtuellen Kräftezustand}
+
+\end{figure}%
+
+Die entsprechenden Verläufe der Querkraft und des Biegemoments in
+Abbildung~\ref{fig-sk-kragarm-virtuell}.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/04_Kragarm_files/figure-pdf/fig-sk-kragarm-virtuell-output-1.pdf}
+
+}
+
+\caption{\label{fig-sk-kragarm-virtuell}Schnittkräfte des virtuellen
+Systems aus Abbildung~\ref{fig-kragarm-sys-virtuell}}
+
+\end{figure}%
+
+Die Gleichung~\ref{eq-spring_rotation} berücksichtigt die zusätzliche
+Verformung durch die Drehfeder.
+
+\begin{equation}\phantomsection\label{eq-spring_rotation}{
+w_{Spring} = \bar{M} \frac{M}{k_\varphi} = \bar{M} \varphi
+}\end{equation}
+
+Angewendet auf das System der Abbildung~\ref{fig-kragarm-feder} folgen
+für die beiden Laststufen die Deformationen zu:
+
+\begin{equation}w_{spring,F1} = 625.0 \text{mm}\end{equation}
+
+\begin{equation}w_{spring,F2} = 2215.1 \text{mm}\end{equation}
+
+\subsection{Vergleich mit FE}\label{vergleich-mit-fe}
+
+\includegraphics{index_files/mediabag/04_Kragarm_files/figure-pdf/cell-14-output-1.pdf}
+
+\begin{equation}w_{tot,F1} = 664.06 \text{mm}\end{equation}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{../imgs/kragarm_fe_F1.png}
+
+}
+
+\caption{Verformungen in \(z\) Richtung mit FE für \(F_2\)}
+
+\end{figure}%
+
+\begin{equation}w_{tot,F2} = 2299.04 \text{mm}\end{equation}
+
+\begin{figure}[H]
+
+{\centering \includegraphics{../imgs/kragarm_fe_F2.png}
+
+}
+
+\caption{Verformungen in \(z\) Richtung mit FE für \(F_2\)}
+
+\end{figure}%
+
+\subsection{Mit Wegfeder}\label{mit-wegfeder}
 
 
 
