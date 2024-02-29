@@ -5,9 +5,14 @@ workspace_dir = "C:/Users/Pascal Gitz/OneDrive - Hochschule Luzern/Master/03_Tra
 os.chdir(workspace_dir)
 
 ## Einheiten
-import sympy.physics.units as u
-from sympycalcs import params_value, dict_to_table
+import sympy.physics.units as unit
+from sympycalcs import params_value, dict_to_table, display_eq
 import sympy as sp
+
+# Kräfte
+setattr(unit, "kilonewton", unit.Quantity("kilonewton", abbrev="kN", is_prefixed=True))
+setattr(unit, "kN", getattr(unit, "kilonewton"))
+getattr(unit, "kilonewton").set_global_relative_scale_factor(unit.kilo, unit.newton)
 sp.init_printing(use_latex="mathjax", latex_mode="equation", mat_symbol_style="bold")
 
 
@@ -15,6 +20,7 @@ sp.init_printing(use_latex="mathjax", latex_mode="equation", mat_symbol_style="b
 import numpy as np
 import scipy.integrate as integrate
 from scipy.optimize import fsolve
+from scipy.misc import derivative
 import astropy.units as un
 
 ## Plotting und display
@@ -34,17 +40,25 @@ import matplotlib.pyplot as plt
 # Parameter
 
 params_kragarm = {
-    'l_Kragarm':5*u.meter,
-    'F1':-10000*u.N,
-    'F2':-21500*u.N,
-    'E':10000*u.N/u.mm**2,
-    'h':400*u.mm,
-    'b':200*u.mm,
-    'k_1': 100000*u.N/u.meter,
-    'k_2':10000*u.N/u.meter
+    'l_Kragarm':5*unit.meter,
+    'F1':-10000*unit.N,
+    'F2':-21500*unit.N,
+    'E':10000*unit.N/unit.mm**2,
+    'h':400*unit.mm,
+    'b':200*unit.mm,
+    'k_1': 100000*unit.N/unit.meter,
+    'k_2':10000*unit.N/unit.meter,
+    'z': 320*unit.mm,
 }
 
 params_value_kragarm = params_value(params_kragarm)
 
+params_a3v2 = {
+    'l':2.62*unit.meter, 
+    'F_max':-320*unit.kN, 
+    'l_spring':2.*unit.mm,
+}
+
+params_value_a3v2 = params_value(params_a3v2)
 
 
