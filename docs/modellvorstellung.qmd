@@ -1,0 +1,12 @@
+# Modellvorstellung{#sec-modellvorstellung}
+
+In der Vorarbeit @gitz_ansatze_2024 zu dieser Arbeit wurde mittels der numerischen Integration der Krümmung das nicht-lineare Verformungsverhalten von unterschiedlichen Versuchen zufriedenstellend abgebildet. Um das Vorgehen auf statisch unbestimmte Systeme zu erweitern, sowie in der Geometrie der Systeme die nötige Flexiblität zu erhalten, wird versucht, basierend auf dem angewendeten Berechnungsansatz, ein Stabstatikmodell zu erstellen. Die @fig-modell_drehfeder zeigt eine Modellierung eines einfachen Balkens. Dabei sind biege- und schubsteife Stäbe mit Drehfedern gekoppelt. Dies führt dazu, dass sämtliche Deformationen des Systems aus den Federverbindungen erfolgen.
+
+![Modellierung als biegesteife Stäbe gekoppelt mit Drehfedern](../imgs/Modell_Drehfeder.svg){#fig-modell_drehfeder}
+
+Mit der Wahl der entsprechenden Federcharakteristiken stellen sich so die passenden Resultate ein. Die Anwendung des Modells an experimentellen Versuchen wird in den folgenden Kapiteln aufgegriffen.
+
+Alternativ zur Modellierung mittels Drehfedern lässt sich das Verhalten der Drehfeder mit einem Wegfederpaar abbilden. Dies erlaubt eine Modellierung mittels den nicht-linearen Fachwerksstäben der Software Statik-9 der Cubus AG. Dieser Ansatz wird jedoch nicht weiter verfolgt.
+
+![Modellierung als biegesteife Stäbe gekoppelt mit einem Wegfederpaar](../imgs/Modell_Wegfeder.svg){#fig-modell_wegfeder}
+

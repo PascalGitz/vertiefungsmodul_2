@@ -8,7 +8,7 @@ os.chdir(workspace_dir)
 
 ## Einheiten
 import sympy.physics.units as unit
-from sympycalcs import to_float, to_convert, dict_to_table, display_eq, to_dict, to_subs
+from sympycalcs import to_float, to_convert, dict_to_table, display_eq
 import sympy as sp
 
 
