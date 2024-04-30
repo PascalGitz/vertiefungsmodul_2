@@ -4,9 +4,9 @@ In der Vorarbeit @gitz_ansatze_2024 zu dieser Arbeit wurde mittels der numerisch
 
 ![Modellierung als biegesteife Stäbe gekoppelt mit Drehfedern](../imgs/Modell_Drehfeder.svg){#fig-modell_drehfeder}
 
-Mit der Wahl der entsprechenden Federcharakteristiken stellen sich so die passenden Resultate ein. Die Anwendung des Modells an experimentellen Versuchen wird in den folgenden Kapiteln aufgegriffen.
+Mit der Wahl der entsprechenden Federcharakteristiken stellen sich so die passenden Resultate ein. Die Anwendung des Modells an experimentellen Versuchen wird in den folgenden Kapiteln aufgegriffen. Es lässt sich vorweggreifen, dass die Wahl der Federcharakteristik die Krux des Systems darstellt.
 
-Alternativ zur Modellierung mittels Drehfedern lässt sich das Verhalten der Drehfeder mit einem Wegfederpaar abbilden. Dies erlaubt eine Modellierung mittels den nicht-linearen Fachwerksstäben der Software Statik-9 der Cubus AG. Dieser Ansatz wird jedoch nicht weiter verfolgt.
+Alternativ zur Modellierung mittels Drehfedern lässt sich das Verhalten der Drehfeder mit einem Wegfederpaar abbilden. Dies erlaubt eine Modellierung mittels den nicht-linearen Fachwerksstäben der Software Statik-9 der Cubus AG. Dieser Ansatz wird lediglich im Einführungsbeispiel berücksichtigt.
 
 ![Modellierung als biegesteife Stäbe gekoppelt mit einem Wegfederpaar](../imgs/Modell_Wegfeder.svg){#fig-modell_wegfeder}
 

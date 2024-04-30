@@ -7,21 +7,46 @@ workspace_dir = "C:/Users/Pascal Gitz/OneDrive - Hochschule Luzern/Master/03_Tra
 os.chdir(workspace_dir)
 
 ## Einheiten
-import sympy.physics.units as unit
 from sympycalcs import to_float, to_convert, dict_to_table, display_eq, to_dict, to_subs
 import sympy as sp
 
 
 
 # Kräfte
-setattr(unit, "kilonewton", unit.Quantity("kilonewton", abbrev="kN", is_prefixed=True))
-setattr(unit, "kN", getattr(unit, "kilonewton"))
-getattr(unit, "kilonewton").set_global_relative_scale_factor(unit.kilo, unit.newton)
-sp.init_printing(use_latex="mathjax", latex_mode="equation", mat_symbol_style="bold")
+# setattr(unit, "kilonewton", unit.Quantity("kilonewton", abbrev="kN", is_prefixed=True))
+# setattr(unit, "kN", getattr(unit, "kilonewton"))
+# getattr(unit, "kilonewton").set_global_relative_scale_factor(unit.kilo, unit.newton)
+sp.init_printing(use_latex="mathjax", latex_mode="equation*", mat_symbol_style="bold")
 
 
 ## Numerische Berechnungen
 import numpy as np
+
+# numeric operations
+from numpy import sqrt, pi
+
+# Unit handling
+from pint import UnitRegistry
+
+ureg = UnitRegistry()
+
+mm = ureg.mm
+cm = ureg.cm
+dm = ureg.dm
+m = ureg.m
+km = ureg.km
+
+N = ureg.N
+kN = ureg.kN
+MN = ureg.MN
+
+s = ureg.s
+
+MPa = ureg.MPa
+los = ureg.dimensionless
+
+
+
 import scipy.integrate as integrate
 from scipy.optimize import fsolve
 from scipy.misc import derivative
