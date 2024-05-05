@@ -4,6 +4,7 @@
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
+  11pt,
   letterpaper,
 ]{scrreprt}
 
@@ -728,6 +729,14 @@ AxisVM mit Wegfedermodell}
 
 \end{figure}%
 
+\section{Zusammenfassung}\label{zusammenfassung}
+
+Das Einführungsbeispiel zeigt die Präzision der Modellierung mittels dem
+Drehfedermodell. Sowie ermöglicht die simple Aufgabenstellung das
+Nachvollziehen der Resultate.
+
+±
+
 \bookmarksetup{startatroot}
 
 \chapter{Modellverifizierung}\label{modellverifizierung}
@@ -1256,31 +1265,223 @@ für das Federmodell und den Versuch}
 
 \bookmarksetup{startatroot}
 
-\chapter{Versuch mit Vorspannung}\label{versuch-mit-vorspannung}
+\chapter{Vorgespannter Träger}\label{vorgespannter-truxe4ger}
+
+Die folgende Versuchsnachrechnung zeigt die Möglichkeiten des Modells im
+Bezug mit einer Vorspannung.
+
+\section{Versuchsbeschrieb}\label{versuchsbeschrieb}
+
+In diesem Kapitel wird der vorgespannte Träger T6 nach dem
+Versuchsbericht {[}\citeproc{ref-sigrist_versuche_1993}{4}{]} mit dem
+Drehfedermodell nachgerechnet. Es handelt sich um einen einfachen Balken
+mit einer Auskragung. Die Geometrie des Versuchs in Längsrichtung ist in
+Abbildung~\ref{fig-geometrie_t6} gezeigt.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_geometrie_laengs.pdf}
+
+}
+
+\caption{\label{fig-geometrie_t6}Geometrie des Versuchsträgers T6,
+entnommen aus {[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+
+\end{figure}%
+
+Der dazugehörige Querschnitt ist in Abbildung~\ref{fig-geometrie_qs_t6}
+gezeigt.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_geometrie_qs.pdf}
+
+}
+
+\caption{\label{fig-geometrie_qs_t6}Geometrie des Querschnitts des
+Versuchsträgers T6, entnommen aus
+{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+
+\end{figure}%
+
+Die Lastsituation zeigt die Abbildung~\ref{fig-last_t6}. Am Ende des
+Kragarms greift eine Einzellast \(P\) an. Mit \(Q\) wird eine
+Streckenlast simuliert. Der Träger ist an den Punkten \(A\) und \(B\)
+einfach gelagert.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_last_laengs.pdf}
+
+}
+
+\caption{\label{fig-last_t6}Lagerung und Laststellung des
+Versuchsträgers T6, entnommen aus
+{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+
+\end{figure}%
+
+Die verlegte schlaffe Bewehrung in Längsrichtung ist in der
+Abbildung~\ref{fig-bewehrung_laengs_t6} gezeigt.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_bewehrung_laengs.pdf}
+
+}
+
+\caption{\label{fig-bewehrung_laengs_t6}Bewehrungslayout in
+Längsrichtung des Versuchsträgers T6, entnommen aus
+{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+
+\end{figure}%
+
+Das Bewehrungslayout im Querschnitt zeigt die
+Abbildung~\ref{fig-bewehrung_qs_t6}.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_bewehrung_qs.pdf}
+
+}
+
+\caption{\label{fig-bewehrung_qs_t6}Bewehrungslayout im Querschnitt des
+Versuchsträgers T6, entnommen aus
+{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+
+\end{figure}%
+
+Die Führung der Vorspannung ist in der
+Abbildung~\ref{fig-vorspannung_t6} gezeigt.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_vorspannung_laengs.pdf}
+
+}
+
+\caption{\label{fig-vorspannung_t6}Vorspannungslayout des
+Versuchsträgers T6. Horizontaler Abstand {[}m{]} und vertikale Position
+{[}mm{]}, gemessen von der Unterkante des Trägers, entnommen aus
+{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+
+\end{figure}%
 
 \section{Parameter}\label{parameter}
 
-$$
-\begin{aligned}
-A_{p} &= 140.0\ \mathrm{mm}^{2} \; \;\textrm{(pro Litze)}
- &n_{l} &= 3 \; \;\textrm{(Litzen in Spannglied)}
- &n_{x} &= 2 \; \;\textrm{(Spannglieder)}
-\\[12pt]
- f_{p01} &= 1729.0\ \mathrm{MPa} \; 
- &f_{p02} &= 1764.0\ \mathrm{MPa} \; 
- &E_{P} &= 190000.0\ \mathrm{MPa} \; 
-\\[12pt]
- P_{t0} &= 335.0\ \mathrm{kN} \; \;\textrm{(pro Spannglied)}
-\end{aligned}
-$$
+In diesem Abschnitt werden die allgemein verwendeten Parameter
+aufgelistet. Gegliedert nach den einzelnen Aspekten des Versuchs.
+
+\subsection{Vorspannung}\label{vorspannung}
+
+Die Parameter der Vorspannung sind die Folgenden. Es ist die Initiale
+Vorspannkraft, sowie die entsprechenden Querschnittseigenschaften
+aufgezeigt:
 
 $$
 \begin{aligned}
-\kappa &= \left( \frac{ P_{t0} }{ n_{l} \cdot A_{p} \cdot f_{p01} } \right)  = \left( \frac{ 335.0\ \mathrm{kN} }{ 3 \cdot 140.0\ \mathrm{mm}^{2} \cdot 1729.0\ \mathrm{MPa} } \right) &= 0.5\  
+f_{py} &= 1706.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+ &f_{pt} &= 1855.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+ &V_{om} &= 730.0\ \mathrm{kN} \; 
+\\[12pt]
+ A_{p} &= 596.0\ \mathrm{mm}^{2} \; 
+ &E_{p} &= 190000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
+
+\subsection{Beton}\label{beton}
+
+Die Parameter sind Mittelwerte aus Betonwürfel- und Betonzylinderproben.
+
+$$
+\begin{aligned}
+f_{c} &= 52.10\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+ &f_{cts} &= 4.30\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+ &E_{c} &= 50200.00\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+\\[12pt]
+ \rho_{c} &= 2409.00\ \frac{\mathrm{kg}}{\mathrm{m}^{3}} \; 
+ &\varepsilon_{cu} &= 0.16\ \mathrm{\%} \;
+\end{aligned}
+$$
+
+\subsection{Betonstahl}\label{betonstahl}
+
+Mittelwerte der Zugproben.
+
+$$
+\begin{aligned}
+\oslash_{1} &= 10.0\ \mathrm{mm} \; 
+ &\oslash_{2} &= 12.0\ \mathrm{mm} \; 
+ &\oslash_{3} &= 14.0\ \mathrm{mm} \; 
+\\[12pt]
+ f_{sy} &= 500.0\ \mathrm{MPa} \; 
+ &f_{st} &= 630.0\ \mathrm{MPa} \; 
+ &\varepsilon_{sv} &= 2.4\ \mathrm{\%} \; 
+\\[12pt]
+ \varepsilon_{sg} &= 13.0\ \mathrm{\%} \; 
+ &E_{s} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
+\end{aligned}
+$$
+
+Die entsprechende Spannungs-Dehnungs-Beziehung ist in
+Abbildung~\ref{fig-sigma_eps_t6} gezeigt.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-sigma_eps_t6-output-1.pdf}
+
+}
+
+\caption{\label{fig-sigma_eps_t6}Spannungs-Dehnungs-Verhalten der
+Längsbewehrung}
+
+\end{figure}%
 
 \section{Momenten-Krümmungs-Beziehung}\label{momenten-kruxfcmmungs-beziehung}
+
+\section{Schiebungs-Beziehung}\label{schiebungs-beziehung}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_durchbiegung_laengs.pdf}
+
+}
+
+\caption{\label{fig-durchbiegung_laengs_t6}Verformungsverlauf des
+Versuchsträgers T6, entnommen aus
+{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_durchbiegungen.pdf}
+
+}
+
+\caption{\label{fig-durchbiegung_t6}Last-Verformungs-Verhalten des
+Versuchsträgers T6, entnommen aus
+{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+
+\end{figure}%
 
 \bookmarksetup{startatroot}
 
@@ -1310,6 +1511,12 @@ geringer {Querkraftbewehrung} auf die {Querkrafttragfähigkeit} von
 {Stahlbetonbalken} unterschiedlicher {M}/{V}-{Kombinationen}. Beton- und
 Stahlbetonbau 114(4):217--230.
 https://doi.org/\url{https://doi.org/10.1002/best.201800075}}
+
+\bibitem[\citeproctext]{ref-sigrist_versuche_1993}
+\CSLLeftMargin{4. }%
+\CSLRightInline{Sigrist V, Marti P (1993) Versuche zum
+{Verformungsvermögen} von {Stahlbetonträgern}. Birkhäuser, Basel Boston
+Berlin}
 
 \end{CSLReferences}
 

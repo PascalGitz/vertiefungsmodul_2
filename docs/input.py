@@ -31,6 +31,8 @@ from pint import UnitRegistry
 ureg = UnitRegistry()
 ureg.default_format = "~P"
 
+kg = ureg.kg
+
 mm = ureg.mm
 cm = ureg.cm
 dm = ureg.dm
