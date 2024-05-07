@@ -3,8 +3,8 @@ import pandas as pd
 
 
 ## Pfad anpassen
-workspace_dir = "/Users/pascalgitz/Library/CloudStorage/OneDrive-HochschuleLuzern/Master/03_Tragverhalten_von_Stahlbetontragwerken/VM2"
-os.chdir(workspace_dir)
+
+os.chdir(os.path.join(os.getcwd(),".."))
 
 ## Einheiten
 # from sympycalcs import to_float, to_convert, dict_to_table, display_eq, to_dict, to_subs
@@ -23,7 +23,7 @@ sp.init_printing(use_latex="mathjax", latex_mode="equation*", mat_symbol_style="
 import numpy as np
 
 # numeric operations
-from numpy import sqrt, pi, tan
+from numpy import sqrt, pi, tan, arctan, cos, sin, arccos, arcsin
 
 # Unit handling
 from pint import UnitRegistry

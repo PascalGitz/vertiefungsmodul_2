@@ -735,8 +735,6 @@ Das Einführungsbeispiel zeigt die Präzision der Modellierung mittels dem
 Drehfedermodell. Sowie ermöglicht die simple Aufgabenstellung das
 Nachvollziehen der Resultate.
 
-±
-
 \bookmarksetup{startatroot}
 
 \chapter{Modellverifizierung}\label{modellverifizierung}
@@ -1115,19 +1113,36 @@ Vierpunktbiegeversuchs, übernommen aus
 
 \subsection{Versatzmass}\label{versatzmass-1}
 
-Das Versatzmass gilt es noch zu bestimmen:
+In diesem Kapitel wird das Versatzmass bestimmt. Bzw. im Vergleich mit
+der Vertiefungsarbeit {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}
+berichtigt. Es wird vom Versuch lediglich die starke Seite betrachtet,
+da durch Verstärkungsmassnahmen diese bis zum Versagen gebracht wird.
 
 $$
 \begin{aligned}
-V_{Rd_{SV14}} &= 105.0\ \mathrm{kN} \; 
+V_{exp_{sv14}} &= 105.0\ \mathrm{kN} \; 
+ &z_{SV14} &= 359.0\ \mathrm{mm} \; 
+ &\oslash_{sw_{SV14}} &= 4.3\ \mathrm{mm} \; 
 \\[12pt]
-z_{SV14} &= 359.0\ \mathrm{mm} \; 
+ b_{w_{SV14}} &= 170.0\ \mathrm{mm} \; 
+ &S_{sw_{SV14}} &= 150.0\ \mathrm{mm} \; 
+ &f_{su_{SV14}} &= 657.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
 \\[12pt]
-\theta_{c3_{SV14}} &= 12.3\ \mathrm{°} \; 
-\\[12pt]
-\Delta_{M_{SV14}} &= \frac{ V_{Rd_{SV14}} }{ \tan \left( \theta_{c3_{SV14}} \right) } \cdot \frac{1} { 2 } \cdot z_{SV14}  = \frac{ 105.0\ \mathrm{kN} }{ \tan \left( 12.3\ \mathrm{°} \right) } \cdot \frac{1} { 2 } \cdot 359.0\ \mathrm{mm} &= 86.4\ \mathrm{kN} \cdot \mathrm{m}  
+ \theta_{c3_{SV14}} &= 23.5\ \mathrm{°} \;
 \end{aligned}
 $$
+
+$$
+\begin{aligned}
+A_{sw_{SV14}} &= 2 \cdot \left( \frac{ \oslash_{sw_{SV14}} }{ 2 } \right) ^{ 2 } \cdot \pi  = 2 \cdot \left( \frac{ 4.3\ \mathrm{mm} }{ 2 } \right) ^{ 2 } \cdot 3.1 &= 29.0\ \mathrm{mm}^{2}  
+\\[12pt]
+a_{sw_{SV14}} &= \left( \frac{ A_{sw_{SV14}} }{ S_{sw_{SV14}} } \right)  = \left( \frac{ 29.0\ \mathrm{mm}^{2} }{ 150.0\ \mathrm{mm} } \right) &= 193.6\ \frac{\mathrm{mm}^{2}}{\mathrm{m}}  
+\\[12pt]
+V_{Rd_{SV14}} &= \left( a_{sw_{SV14}} \cdot z_{SV14} \cdot \frac{ f_{su_{SV14}} }{ \tan \left( \theta_{c3_{SV14}} \right) } \right)  = \left( 193.6\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} \cdot 359.0\ \mathrm{mm} \cdot \frac{ 657.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} }{ \tan \left( 23.5\ \mathrm{°} \right) } \right) &= 105.0\ \mathrm{kN}  
+\end{aligned}
+$$
+
+$750.3409670926505\ \mathrm{mm}$
 
 \begin{figure}[H]
 
@@ -1187,11 +1202,7 @@ vertikaler Richtung gezeigt.
 
 $$
 \begin{aligned}
-\oslash_{sw_{SV14}} &= 4.3\ \mathrm{mm} \; 
- &b_{w_{SV14}} &= 170.0\ \mathrm{mm} \; 
- &S_{sw_{SV14}} &= 300.0\ \mathrm{mm} \; 
-\\[12pt]
- E_{sw_{SV14}} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+E_{sw_{SV14}} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &E_{sh_{SV14}} &= 2261.3\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
@@ -1201,11 +1212,7 @@ bestimmt sich zu:
 
 $$
 \begin{aligned}
-A_{sw} &= 2 \cdot \left( \frac{ \oslash_{sw_{SV14}} }{ 2 } \right) ^{ 2 } \cdot \pi  = 2 \cdot \left( \frac{ 4.30\ \mathrm{mm} }{ 2 } \right) ^{ 2 } \cdot 3.14 &= 29.04\ \mathrm{mm}^{2}  
-\\[12pt]
-a_{sw_{SV14}} &= A_{sw} \cdot 1000 \cdot \frac{ \mathrm{mm} }{ S_{sw_{SV14}} } \cdot \frac{1} { m }  = 29.04\ \mathrm{mm}^{2} \cdot 1000 \cdot \frac{ \mathrm{mm} }{ 300.00\ \mathrm{mm} } \cdot \frac{1} { \mathrm{m} } &= 96.81\ \frac{\mathrm{mm}^{2}}{\mathrm{m}}  
-\\[12pt]
-\rho_{sw_{SV14}} &= \left( \frac{ a_{sw_{SV14}} }{ b_{w_{SV14}} } \right)  = \left( \frac{ 96.81\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} }{ 170.00\ \mathrm{mm} } \right) &= 0.06\ \mathrm{\%}  
+\rho_{sw_{SV14}} &= \left( \frac{ a_{sw_{SV14}} }{ b_{w_{SV14}} } \right)  = \left( \frac{ 193.63\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} }{ 170.00\ \mathrm{mm} } \right) &= 0.11\ \mathrm{\%}  
 \end{aligned}
 $$
 
@@ -1266,6 +1273,8 @@ für das Federmodell und den Versuch}
 \bookmarksetup{startatroot}
 
 \chapter{Vorgespannter Träger}\label{vorgespannter-truxe4ger}
+
+\begin{equation*}27.5\end{equation*}
 
 Die folgende Versuchsnachrechnung zeigt die Möglichkeiten des Modells im
 Bezug mit einer Vorspannung.
@@ -1379,6 +1388,8 @@ Versuchsträgers T6. Horizontaler Abstand {[}m{]} und vertikale Position
 
 \end{figure}%
 
+\section{Modellierung}\label{modellierung}
+
 \section{Parameter}\label{parameter}
 
 In diesem Abschnitt werden die allgemein verwendeten Parameter
@@ -1416,6 +1427,26 @@ f_{c} &= 52.10\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
 
+Das Spannungs-Dehnungs-Verhalten des Betons ist in der
+Abbildung~\ref{fig-sigma_epc_t6} dargestellt. Definiert ist das
+Verhalten im positiven Spannungsbereich bis zum Erreichen der
+Betonzugfestigkeit \(f_{cts}\). Das Verhalten im negativen
+Spannungsbereich wird mit einem linear-elastischem ideal-plastischem
+Verhalten approximiert.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-sigma_epc_t6-output-1.pdf}
+
+}
+
+\caption{\label{fig-sigma_epc_t6}Spannungs-Dehnungs-Verhalten des
+Betons}
+
+\end{figure}%
+
 \subsection{Betonstahl}\label{betonstahl}
 
 Mittelwerte der Zugproben.
@@ -1436,7 +1467,10 @@ $$
 $$
 
 Die entsprechende Spannungs-Dehnungs-Beziehung ist in
-Abbildung~\ref{fig-sigma_eps_t6} gezeigt.
+Abbildung~\ref{fig-sigma_eps_t6} gezeigt. Als Annahme gilt, dass die
+Stäbe lediglich unter Zug belastet werden. Die Druckbewehrung wird bei
+der Bestimmung der Momenten-Krümmungs-Beziehung vernachlässigt. Das
+Verhalten wird mit einem Bilinearem Verhalten approximiert.
 
 \begin{figure}[H]
 
@@ -1451,9 +1485,111 @@ Längsbewehrung}
 
 \end{figure}%
 
+\subsection{Geometrie}\label{geometrie}
+
+\subsubsection{Querschnitt}\label{querschnitt}
+
+Die Parameter der Geometrie des Querschnitts beziehen sich auf die
+Abbildung~\ref{fig-geometrie_qs_t6}.
+
+$$
+\begin{aligned}
+h_{1} &= 180.0\ \mathrm{mm} \; 
+ &h_{2} &= 50.0\ \mathrm{mm} \; 
+ &h_{3} &= 400.0\ \mathrm{mm} \; 
+\\[12pt]
+ h_{4} &= 30.0\ \mathrm{mm} \; 
+ &h_{5} &= 140.0\ \mathrm{mm} \; 
+ &h_{tot} &= 800.0\ \mathrm{mm} \; 
+\\[12pt]
+ b_{1_{inf}} &= 90.0\ \mathrm{mm} \; 
+ &b_{2_{inf}} &= 220.0\ \mathrm{mm} \; 
+ &b_{3_{inf}} &= 90.0\ \mathrm{mm} \; 
+\\[12pt]
+ b_{tot_{inf}} &= 400.0\ \mathrm{mm} \; 
+ &b_{tot_{sup}} &= 800.0\ \mathrm{mm} \;
+\end{aligned}
+$$
+
+\subsubsection{Längsrichtung}\label{luxe4ngsrichtung}
+
+Der Abschluss des Querschnitts wird nicht mehr weiter verfolgt.
+Vereinfacht wird der I-Querschnitt als konstant über die Länge
+betrachtet.
+
+Die beschriebenen Abmessungen \(L_n\) sind jeweils vom Stabanfang
+gemessen.
+
+$$
+\begin{aligned}
+L_{1} &= 3500.0\ \mathrm{mm} \; 
+ &L_{2} &= 9600.0\ \mathrm{mm} \; 
+ &L_{tot} &= 13100.0\ \mathrm{mm} \; 
+\\[12pt]
+\end{aligned}
+$$
+
+\subsection{Lasten}\label{lasten}
+
+$$
+\begin{aligned}
+L_{P} &= 500.0\ \mathrm{mm} \; 
+ &L_{q} &= 3.8\ \mathrm{m} \; 
+ &l_{q} &= 9.0\ \mathrm{m} \; \;\textrm{(Streckenlast)}
+\\[12pt]
+\end{aligned}
+$$
+
 \section{Momenten-Krümmungs-Beziehung}\label{momenten-kruxfcmmungs-beziehung}
 
+Die Momenten-Krümmungs-Beziehung zeigt bei diesem Versuch eine gewisse
+Komplexität. Grundsätzlich gilt es für jede Abstufung der Bewehrung eine
+separate Momenten-Krümmungs-Beziehung herzuleiten.
+
+Wird bei der Vorspannung Spannkraftverluste berücksichtigt, so wirkt der
+Restquerschnitt des Spannstahls als schlaffe Bewehrung bei Belastung
+mit. Dies hat Einfluss auf das Momenten-Krümmungs-Verhalten. Durch die
+parabolische Geometrie des Spannkabels, gilt es die
+Momenten-Krümmungs-Beziehung unter Variation der Spannkabellage zu
+definieren, was die Komplexität der Momenten-Krümmungs-Beziehung erhöht.
+
+Um den Rechenaufwand gering zu halten wird lediglich ein qualitatives
+Verhalten der Momenten-Krümmungs-Beziehung angestrebt. Dabei wird der
+Querschnitt beim Fliessen der Zugbewehrung betrachtet, sowie wird der
+Biegewiderstand bestimmt. Diese Punkte werden linear mit einander
+verbunden. Des Weiteren wird die Druckbewehrung stehts vernachlässigt.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/QS_14_analyse_4.pdf}
+
+}
+
+\caption{\label{fig-qs_fliessen_qualitativ}Querschnittsanalyse mit
+Fliessen der Zugbewehrung und elastischer Betondruckzone, qualitativer
+Verlauf}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/QS_14_analyse_5.pdf}
+
+}
+
+\caption{\label{fig-qs_widerstand_qualitativ}Querschnittsanalyse mit
+erreichter Zugfestigkeit in der Bewehrung und vollständig
+plastifizierter Betondruckzone, qualitativer Verlauf}
+
+\end{figure}%
+
 \section{Schiebungs-Beziehung}\label{schiebungs-beziehung}
+
+\section{Versuchsresultate}\label{versuchsresultate}
 
 \begin{figure}[H]
 
@@ -1482,6 +1618,18 @@ Versuchsträgers T6, entnommen aus
 {[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
 
 \end{figure}%
+
+\bookmarksetup{startatroot}
+
+\chapter{IdeaStatica}\label{ideastatica}
+
+In diesem Kapitel wird darauf abgezielt, das Verformungsverhalten der
+behandelten Versuche mit einer kommerziellen Software zu bestimmen. Das
+Ziel ist es die Resultate der Software auf Präzision zu prüfen, sowie
+die Eingabe des Modells zu verstehen.
+
+Dabei wird die Modellaufbereitung beschrieben, sowie einzelne
+Eingabeparameter diskutiert.
 
 \bookmarksetup{startatroot}
 
