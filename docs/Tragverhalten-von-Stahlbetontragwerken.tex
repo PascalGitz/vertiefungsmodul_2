@@ -374,8 +374,8 @@ E &= 10000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
  &F_{2} &= -21500.0\ \mathrm{N} \; 
 \\[12pt]
  h &= 400.0\ \mathrm{mm} \; 
- &k_{\phi_{1}} &= 100000.0\ \frac{\mathrm{N} \cdot \mathrm{m}}{\mathrm{rad}} \; 
- &k_{\phi_{2}} &= 10000.0\ \frac{\mathrm{N} \cdot \mathrm{m}}{\mathrm{rad}} \; 
+ &k_{\varphi_{1}} &= 100000.0\ \frac{\mathrm{N} \cdot \mathrm{m}}{\mathrm{rad}} \; 
+ &k_{\varphi_{2}} &= 10000.0\ \frac{\mathrm{N} \cdot \mathrm{m}}{\mathrm{rad}} \; 
 \\[12pt]
  l_{Kragarm} &= 5.0\ \mathrm{m} \; 
  &z &= 400.0\ \mathrm{mm} \; 
@@ -828,37 +828,11 @@ Dreipunktbiegeversuchs, übernommen aus
 
 \end{figure}%
 
-\subsubsection{Versatzmass}\label{versatzmass}
-
-Ein Ansatz zur Berücksichtigung des Versatzmass ist es ein Versatzmoment
-mit dem maximalen Querkraftwiderstand zu bestimmen. Die
-Momenten-Krümmungs-Beziehung kann durch diesen Wert vermindert werden
-und folglich weicher gestaltet werden.
-
 $$
 \begin{aligned}
-\theta_{c3_{A3V2}} &= 34.3\ \mathrm{°} \; 
-\\[12pt]
-V_{Rd_{A3V2}} &= 320.0\ \mathrm{kN} \; 
-\\[12pt]
-z_{A3V2} &= 140.0\ \mathrm{mm} \; 
-\\[12pt]
-\Delta_{M_{A3V2}} &= \frac{ V_{Rd_{A3V2}} }{ \tan \left( \theta_{c3_{A3V2}} \right) } \cdot \frac{1} { 2 } \cdot z_{A3V2}  = \frac{ 320.0\ \mathrm{kN} }{ \tan \left( 34.3\ \mathrm{°} \right) } \cdot \frac{1} { 2 } \cdot 140.0\ \mathrm{mm} &= 32.8\ \mathrm{kN} \cdot \mathrm{m}  
+l_{E} &= 10.0\ \mathrm{mm} \; \;\textrm{(Elementlänge des Biegesteifen Stabs)}
 \end{aligned}
 $$
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/05_Versuchsnachrechnung_VM1_files/figure-pdf/fig-mchi_a3v2_versatz-output-1.pdf}
-
-}
-
-\caption{\label{fig-mchi_a3v2_versatz}Momenten-Krümmungs-Beziehung des
-Dreipunktbiegeversuchs mit Versatzmass}
-
-\end{figure}%
 
 \subsection{Wegfedercharakteristik}\label{wegfedercharakteristik}
 
@@ -917,7 +891,7 @@ Schubbewehrung, übernommen aus
 
 Folgend sind die Parameter zur Bestimmung der Wegfedercharakteristik in
 vertikaler Richtung gezeigt. Der gewählte Neigungswinkel der
-Spannungsfelder \(/theta_{c3}\) gilt grundsätzlich nur im Bruchzustand.
+Spannungsfelder \(\theta_{c3}\) gilt grundsätzlich nur im Bruchzustand.
 Als Approximation wird die daraus bestimmte Wegfedercharakteristik für
 sämtliche Laststufen angesetzt. Dies führt zu Abweichungen im Lastniveau
 unterhalb der Traglast, sofern die Schubverformung einen signifikanten
@@ -928,22 +902,55 @@ $$
 \oslash_{sw_{A3V2}} &= 6.0\ \mathrm{mm} \; 
  &S_{sw_{A3V2}} &= 80.0\ \mathrm{mm} \; 
  &b_{w_{A3V2}} &= 800.0\ \mathrm{mm} \; 
-\\[12pt]
+\\[11pt]
  E_{sw_{A3V2}} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
- &E_{sh_{A3V2}} &= 1774.5\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
+ &E_{sh_{A3V2}} &= 1774.5\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+ &z_{A3V2} &= 140.0\ \mathrm{mm} \; 
+\\[11pt]
+ \theta_{c3_{A3V2}} &= 34.3\ \mathrm{°} \; 
+ &f_{su_{A3V2}} &= 630.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
 
-Die Querschnittsfläche der Schubbewehrung und der Bewehrungsgehalt
-bestimmt sich zu:
+Die Querschnittsfläche der Schubbewehrung bestimmt sich zu:
 
 $$
 \begin{aligned}
-A_{sw_{A3V2}} &= 7 \cdot \left( \frac{ \oslash_{sw_{A3V2}} }{ 2 } \right) ^{ 2 } \cdot \pi  = 7 \cdot \left( \frac{ 6.00\ \mathrm{mm} }{ 2 } \right) ^{ 2 } \cdot 3.14 &= 197.92\ \mathrm{mm}^{2}  
-\\[12pt]
-a_{sw_{A3V2}} &= A_{sw_{A3V2}} \cdot \frac{ 1000 \cdot \mathrm{mm} }{ S_{sw_{A3V2}} } \cdot \frac{1} { m }  = 197.92\ \mathrm{mm}^{2} \cdot \frac{ 1000 \cdot \mathrm{mm} }{ 80.00\ \mathrm{mm} } \cdot \frac{1} { \mathrm{m} } &= 2474.00\ \frac{\mathrm{mm}^{2}}{\mathrm{m}}  
-\\[12pt]
-\rho_{sw_{A3V2}} &= \left( \frac{ a_{sw_{A3V2}} }{ b_{w_{A3V2}} } \right)  = \left( \frac{ 2474.00\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} }{ 800.00\ \mathrm{mm} } \right) &= 0.31\ \mathrm{\%}  
+A_{sw_{A3V2}} &= 7 \cdot \left( \frac{ \oslash_{sw_{A3V2}} }{ 2 } \right) ^{ 2 } \cdot \pi \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+A_{sw_{A3V2}} &= 197.9\ \mathrm{mm}^{2} \;
+\end{aligned}
+$$
+
+Verschmiert über einen Meterstreifen:
+
+$$
+\begin{aligned}
+a_{sw_{A3V2}} &= \frac{ A_{sw_{A3V2}} }{ S_{sw_{A3V2}} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+a_{sw_{A3V2}} &= 2474.0\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} \;
+\end{aligned}
+$$
+
+Der Querkraftwiderstand mit gewählter Neigung:
+
+$$
+\begin{aligned}
+V_{Rd_{A3V2}} &= a_{sw_{A3V2}} \cdot z_{A3V2} \cdot \frac{ f_{su_{A3V2}} }{ \tan \left( \theta_{c3_{A3V2}} \right) } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V_{Rd_{A3V2}} &= 319.9\ \mathrm{kN} \;
 \end{aligned}
 $$
 
@@ -951,13 +958,7 @@ Der Reduktionsfaktor bestimmt sich zu:
 
 $$
 \begin{aligned}
-\gamma_{E_{A3V2}} &= z_{A3V2} \cdot \frac{ 1 }{ \tan \left( \theta_{c3_{A3V2}} \right) } \cdot \frac{1} { l_{element} } \; 
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-\gamma_{E_{A3V2}} &= 21\ \;
+\gamma_{E_{A3V2}} &= z_{A3V2} \cdot \frac{ 1 }{ \tan \left( \theta_{c3_{A3V2}} \right) } \cdot \frac{1} { l_{E} }  = 140\ \mathrm{mm} \cdot \frac{ 1 }{ \tan \left( 34\ \mathrm{°} \right) } \cdot \frac{1} { 10\ \mathrm{mm} } &= 21\  
 \end{aligned}
 $$
 
@@ -1089,6 +1090,8 @@ Zeichnung entnommen aus {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}}
 
 \end{figure}%
 
+\subsection{Schnittgrössen}\label{schnittgruxf6ssen}
+
 \subsection{Drehfedercharakteristik}\label{drehfedercharakteristik-1}
 
 Als Grundlage für die Drehfedercharakteristik gilt die
@@ -1111,49 +1114,267 @@ Vierpunktbiegeversuchs, übernommen aus
 
 \end{figure}%
 
-\subsection{Versatzmass}\label{versatzmass-1}
+\subsection{Versatzmass}\label{versatzmass}
 
 In diesem Kapitel wird das Versatzmass bestimmt. Bzw. im Vergleich mit
 der Vertiefungsarbeit {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}
 berichtigt. Es wird vom Versuch lediglich die starke Seite betrachtet,
 da durch Verstärkungsmassnahmen diese bis zum Versagen gebracht wird.
 
+Die Materialeigenschaften sind in
+{[}\citeproc{ref-marienhutte_produktdatenblatt_b550bpdf_nodate}{4}{]}
+ersichtlich.
+
 $$
 \begin{aligned}
 V_{exp_{sv14}} &= 105.0\ \mathrm{kN} \; 
  &z_{SV14} &= 359.0\ \mathrm{mm} \; 
  &\oslash_{sw_{SV14}} &= 4.3\ \mathrm{mm} \; 
-\\[12pt]
+\\[11pt]
  b_{w_{SV14}} &= 170.0\ \mathrm{mm} \; 
  &S_{sw_{SV14}} &= 150.0\ \mathrm{mm} \; 
- &f_{su_{SV14}} &= 657.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
-\\[12pt]
- \theta_{c3_{SV14}} &= 23.5\ \mathrm{°} \;
+ &f_{su_{SV14}} &= 715.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+\\[11pt]
+ \theta_{c3_{SV14}} &= 25.6\ \mathrm{°} \; 
+ &F_{B} &= 105.0\ \mathrm{kN} \; 
+ &F_{A} &= 105.0\ \mathrm{kN} \; 
+\\[11pt]
+\end{aligned}
+$$
+
+Mit den Parametern, bzw. der Neigung der Betondruckdiagonale resultiert
+der nötige Querkraftwiderstand.
+
+$$
+\begin{aligned}
+A_{sw_{SV14}} &= 2 \cdot \left( \frac{ \oslash_{sw_{SV14}} }{ 2 } \right) ^{ 2 } \cdot \pi \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-A_{sw_{SV14}} &= 2 \cdot \left( \frac{ \oslash_{sw_{SV14}} }{ 2 } \right) ^{ 2 } \cdot \pi  = 2 \cdot \left( \frac{ 4.3\ \mathrm{mm} }{ 2 } \right) ^{ 2 } \cdot 3.1 &= 29.0\ \mathrm{mm}^{2}  
-\\[12pt]
-a_{sw_{SV14}} &= \left( \frac{ A_{sw_{SV14}} }{ S_{sw_{SV14}} } \right)  = \left( \frac{ 29.0\ \mathrm{mm}^{2} }{ 150.0\ \mathrm{mm} } \right) &= 193.6\ \frac{\mathrm{mm}^{2}}{\mathrm{m}}  
-\\[12pt]
-V_{Rd_{SV14}} &= \left( a_{sw_{SV14}} \cdot z_{SV14} \cdot \frac{ f_{su_{SV14}} }{ \tan \left( \theta_{c3_{SV14}} \right) } \right)  = \left( 193.6\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} \cdot 359.0\ \mathrm{mm} \cdot \frac{ 657.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} }{ \tan \left( 23.5\ \mathrm{°} \right) } \right) &= 105.0\ \mathrm{kN}  
+A_{sw_{SV14}} &= 29.0\ \mathrm{mm}^{2} \;
 \end{aligned}
 $$
 
-$750.3409670926505\ \mathrm{mm}$
+$$
+\begin{aligned}
+a_{sw_{SV14}} &= \frac{ A_{sw_{SV14}} }{ S_{sw_{SV14}} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+a_{sw_{SV14}} &= 193.6\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} \;
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V_{Rd_{SV14}} &= a_{sw_{SV14}} \cdot z_{SV14} \cdot \frac{ f_{su_{SV14}} }{ \tan \left( \theta_{c3_{SV14}} \right) } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V_{Rd_{SV14}} &= 103.8\ \mathrm{kN} \;
+\end{aligned}
+$$
+
+Die Spannungsfeldeinteilung ist in der
+Abbildung~\ref{fig-spannungsfelder_sv14} gezeigt. Die Feldneigung ist
+näherungsweise an die berechnete Neigung angepasst.
 
 \begin{figure}[H]
 
 \centering{
 
-\includegraphics{index_files/mediabag/05_Versuchsnachrechnung_VM1_files/figure-pdf/fig-mchi_sv14_versatz-output-1.pdf}
+\includegraphics{index_files/mediabag/../imgs/SV14_spannungsfelder.pdf}
 
 }
 
-\caption{\label{fig-mchi_sv14_versatz}Momenten-Krümmungs-Beziehung des
-Vierpunktbiegeversuchs mit Versatzmass}
+\caption{\label{fig-spannungsfelder_sv14}Einteilung in Spannungsfelder}
+
+\end{figure}%
+
+Wird nun Gleichgewicht an den entsprechenden Spannungsfeldern ausgeübt,
+so lässt sich der Zug- und Druckkraftverlauf bestimmen.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/SV14_skd_1.pdf}
+
+}
+
+\caption{\label{fig-skd_1_spannungsfelder_sv14}Schnittkörperdiagramm des
+zentrierten Fächers}
+
+\end{figure}%
+
+Die Kraft im Untergurt:
+
+$$
+\begin{aligned}
+F_{inf_{1}} &= F_{B} \cdot \frac{ z_{SV14} }{ \tan \left( \theta_{c3_{SV14}} \right) } \cdot \frac{1} { 2 } \cdot \frac{1} { z_{SV14} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+F_{inf_{1}} &= 109.7\ \mathrm{kN} \; 
+\end{aligned}
+$$
+
+Die Kraft im Obergurt:
+
+$$
+\begin{aligned}
+F_{sup_{1}} &= F_{inf_{1}} \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+F_{sup_{1}} &= 109.7\ \mathrm{kN} \; 
+\end{aligned}
+$$
+
+Der Anteil an der Schubbewehrung:
+
+$$
+\begin{aligned}
+f_{sw_{1}} &= \frac{ F_{B} }{ z_{SV14} } \cdot \frac{1} { \tan \left( \theta_{c3_{SV14}} \right) } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+f_{sw_{1}} &= 611.0\ \frac{\mathrm{kN}}{\mathrm{m}} \;
+\end{aligned}
+$$
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/SV14_skd_2.pdf}
+
+}
+
+\caption{\label{fig-skd_2_spannungsfelder_sv14}Schnittkörperdiagramm des
+Parallelfelds}
+
+\end{figure}%
+
+$$
+\begin{aligned}
+F_{inf_{2}} &= F_{B} \cdot \frac{ 3 }{ 2 } \cdot \frac{ z_{SV14} }{ \tan \left( \theta_{c3_{SV14}} \right) } \cdot \frac{1} { z_{SV14} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+F_{inf_{2}} &= 329.0\ \mathrm{kN} \;
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+F_{sup_{2}} &= F_{inf_{2}} \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+F_{sup_{2}} &= 329.0\ \mathrm{kN} \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+f_{sw_{2}} &= \frac{ F_{B} }{ z_{SV14} } \cdot \frac{1} { \tan \left( \theta_{c3_{SV14}} \right) } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+f_{sw_{2}} &= 611.0\ \frac{\mathrm{kN}}{\mathrm{m}} \;
+\end{aligned}
+$$
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/SV14_skd_3.pdf}
+
+}
+
+\caption{\label{fig-skd_3_spannungsfelder_sv14}Schnittkörperdiagramm des
+zentrierten Fächers 2}
+
+\end{figure}%
+
+$$
+\begin{aligned}
+F_{inf_{3}} &= F_{B} \cdot 2 \cdot \frac{ z_{SV14} }{ \tan \left( \theta_{c3_{SV14}} \right) } \cdot \frac{1} { z_{SV14} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+F_{inf_{3}} &= 438.7\ \mathrm{kN} \;
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+F_{sup_{3}} &= F_{inf_{3}} \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+F_{sup_{3}} &= 438.7\ \mathrm{kN} \;
+\end{aligned}
+$$
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/05_Versuchsnachrechnung_VM1_files/figure-pdf/fig-gurtkraft_sv14-output-1.pdf}
+
+}
+
+\caption{\label{fig-gurtkraft_sv14}Gurtkraftverläufe bestimmt anhand der
+Spannungsfelder in Abbildung~\ref{fig-spannungsfelder_sv14}. Dargestellt
+ist der gesamte Gurtkraftverlauf, sowie der Anteil aus dem Biegemoment}
+
+\end{figure}%
+
+Wird der Anteil des Biegemoments am Gurtkraftverlauf subtrahiert und mit
+dem Hebelarm der inneren Kräfte multipliziert, so resultiert das
+Versatzmoment.
+
+\[
+\Delta_F = F_{inf} - F_M
+\] \[
+\Delta_M = \Delta_F \cdot z
+\]
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/05_Versuchsnachrechnung_VM1_files/figure-pdf/fig-versatzmoment_sv14-output-1.pdf}
+
+}
+
+\caption{\label{fig-versatzmoment_sv14}Versatzmoment dargestellt entlang
+der Stabachse}
 
 \end{figure}%
 
@@ -1162,26 +1383,11 @@ Vierpunktbiegeversuchs mit Versatzmass}
 \subsubsection{Schiebung}\label{schiebung-1}
 
 Die Wegfedercharakteristik basiert auf der Spannungsfeldmodellierung
-gemäss der Abbildung~\ref{fig-spannungsfelder_sv14}
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/../imgs/spannungsfelder_sv14.pdf}
-
-}
-
-\caption{\label{fig-spannungsfelder_sv14}Einteilung in Spannungsfelder
-des Versuchs SV14, Zeichnung entnommen aus
-{[}\citeproc{ref-gitz_ansatze_2024}{1}{]}}
-
-\end{figure}%
-
-Die Einteilung in Spannungsfelder ermöglicht die Bestimmung der
-mitwirkenden Schubbewehrung beim Versagen des Querschnitts. Die Neigung
-des Feldes ist so gewählt damit der Querkraftwiderstand der
-Schubbewehrung der Traglast des Systems entspricht.
+gemäss der Abbildung~\ref{fig-spannungsfelder_sv14}. Die Einteilung in
+Spannungsfelder ermöglicht die Bestimmung der mitwirkenden
+Schubbewehrung beim Versagen des Querschnitts. Die Neigung des Feldes
+ist so gewählt damit der Querkraftwiderstand der Schubbewehrung der
+Traglast des Systems entspricht.
 
 \begin{figure}[H]
 
@@ -1203,7 +1409,7 @@ vertikaler Richtung gezeigt.
 $$
 \begin{aligned}
 E_{sw_{SV14}} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
- &E_{sh_{SV14}} &= 2261.3\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
+ &E_{sh_{SV14}} &= 3487.1\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
 
@@ -1212,23 +1418,29 @@ bestimmt sich zu:
 
 $$
 \begin{aligned}
-\rho_{sw_{SV14}} &= \left( \frac{ a_{sw_{SV14}} }{ b_{w_{SV14}} } \right)  = \left( \frac{ 193.63\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} }{ 170.00\ \mathrm{mm} } \right) &= 0.11\ \mathrm{\%}  
+\rho_{sw_{SV14}} &= \frac{ a_{sw_{SV14}} }{ b_{w_{SV14}} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\rho_{sw_{SV14}} &= 0.11\ \mathrm{\%} \;
 \end{aligned}
 $$
 
 Der Reduktionsfaktor bestimmt sich zu:
 
-$$
-\begin{aligned}
-\gamma_{E_{SV14}} &= \left( z_{SV14} \cdot \frac{ 1 }{ \tan \left( \theta_{c3_{SV14}} \right) } \cdot \frac{1} { l_{element} } \right) \; 
-\end{aligned}
-$$
+\begin{verbatim}
+NameError: name 'l_element' is not defined
+\end{verbatim}
 
-$$
-\begin{aligned}
-\gamma_{E_{SV14}} &= 165\ \;
-\end{aligned}
-$$
+\begin{verbatim}
+NameError: name 'gamma_E_SV14' is not defined
+\end{verbatim}
+
+\begin{verbatim}
+NameError: name 'gamma_E_SV14' is not defined
+\end{verbatim}
 
 Die Abbildung~\ref{fig-wegfeder-schub-sv14} zeigt das
 Kraft-Verformungs-Verhalten für die Gelenke des Stabmodells in
@@ -1282,7 +1494,7 @@ Bezug mit einer Vorspannung.
 \section{Versuchsbeschrieb}\label{versuchsbeschrieb}
 
 In diesem Kapitel wird der vorgespannte Träger T6 nach dem
-Versuchsbericht {[}\citeproc{ref-sigrist_versuche_1993}{4}{]} mit dem
+Versuchsbericht {[}\citeproc{ref-sigrist_versuche_1993}{5}{]} mit dem
 Drehfedermodell nachgerechnet. Es handelt sich um einen einfachen Balken
 mit einer Auskragung. Die Geometrie des Versuchs in Längsrichtung ist in
 Abbildung~\ref{fig-geometrie_t6} gezeigt.
@@ -1296,7 +1508,7 @@ Abbildung~\ref{fig-geometrie_t6} gezeigt.
 }
 
 \caption{\label{fig-geometrie_t6}Geometrie des Versuchsträgers T6,
-entnommen aus {[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+entnommen aus {[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
 
 \end{figure}%
 
@@ -1313,7 +1525,7 @@ gezeigt.
 
 \caption{\label{fig-geometrie_qs_t6}Geometrie des Querschnitts des
 Versuchsträgers T6, entnommen aus
-{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
 
 \end{figure}%
 
@@ -1332,7 +1544,7 @@ einfach gelagert.
 
 \caption{\label{fig-last_t6}Lagerung und Laststellung des
 Versuchsträgers T6, entnommen aus
-{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
 
 \end{figure}%
 
@@ -1349,7 +1561,7 @@ Abbildung~\ref{fig-bewehrung_laengs_t6} gezeigt.
 
 \caption{\label{fig-bewehrung_laengs_t6}Bewehrungslayout in
 Längsrichtung des Versuchsträgers T6, entnommen aus
-{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
 
 \end{figure}%
 
@@ -1366,7 +1578,7 @@ Abbildung~\ref{fig-bewehrung_qs_t6}.
 
 \caption{\label{fig-bewehrung_qs_t6}Bewehrungslayout im Querschnitt des
 Versuchsträgers T6, entnommen aus
-{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
 
 \end{figure}%
 
@@ -1384,7 +1596,7 @@ Abbildung~\ref{fig-vorspannung_t6} gezeigt.
 \caption{\label{fig-vorspannung_t6}Vorspannungslayout des
 Versuchsträgers T6. Horizontaler Abstand {[}m{]} und vertikale Position
 {[}mm{]}, gemessen von der Unterkante des Trägers, entnommen aus
-{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
 
 \end{figure}%
 
@@ -1601,7 +1813,7 @@ plastifizierter Betondruckzone, qualitativer Verlauf}
 
 \caption{\label{fig-durchbiegung_laengs_t6}Verformungsverlauf des
 Versuchsträgers T6, entnommen aus
-{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
 
 \end{figure}%
 
@@ -1615,7 +1827,7 @@ Versuchsträgers T6, entnommen aus
 
 \caption{\label{fig-durchbiegung_t6}Last-Verformungs-Verhalten des
 Versuchsträgers T6, entnommen aus
-{[}\citeproc{ref-sigrist_versuche_1993}{4}{]}}
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
 
 \end{figure}%
 
@@ -1660,8 +1872,13 @@ geringer {Querkraftbewehrung} auf die {Querkrafttragfähigkeit} von
 Stahlbetonbau 114(4):217--230.
 https://doi.org/\url{https://doi.org/10.1002/best.201800075}}
 
-\bibitem[\citeproctext]{ref-sigrist_versuche_1993}
+\bibitem[\citeproctext]{ref-marienhutte_produktdatenblatt_b550bpdf_nodate}
 \CSLLeftMargin{4. }%
+\CSLRightInline{Marienhütte
+\href{https://www.marienhuette.at/wp-content/uploads/Produktdatenblatt-B550B.pdf}{Produktdatenblatt\_B550B.pdf}}
+
+\bibitem[\citeproctext]{ref-sigrist_versuche_1993}
+\CSLLeftMargin{5. }%
 \CSLRightInline{Sigrist V, Marti P (1993) Versuche zum
 {Verformungsvermögen} von {Stahlbetonträgern}. Birkhäuser, Basel Boston
 Berlin}
