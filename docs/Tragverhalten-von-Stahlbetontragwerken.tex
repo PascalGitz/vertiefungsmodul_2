@@ -912,11 +912,11 @@ $$
 \oslash_{sw_{A3V2}} &= 6.0\ \mathrm{mm} \; 
  &S_{sw_{A3V2}} &= 80.0\ \mathrm{mm} \; 
  &b_{w_{A3V2}} &= 800.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[12pt]
  E_{sw_{A3V2}} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &E_{sh_{A3V2}} &= 1774.5\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &z_{A3V2} &= 140.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[12pt]
  \theta_{c3_{A3V2}} &= 34.3\ \mathrm{°} \; 
  &f_{su_{A3V2}} &= 630.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
@@ -1140,15 +1140,15 @@ $$
 V_{exp_{sv14}} &= 105.0\ \mathrm{kN} \; 
  &z_{SV14} &= 359.0\ \mathrm{mm} \; 
  &\oslash_{sw_{SV14}} &= 4.3\ \mathrm{mm} \; 
-\\[11pt]
+\\[12pt]
  b_{w_{SV14}} &= 170.0\ \mathrm{mm} \; 
  &S_{sw_{SV14}} &= 150.0\ \mathrm{mm} \; 
  &f_{su_{SV14}} &= 715.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
-\\[11pt]
+\\[12pt]
  \theta_{c3_{SV14}} &= 25.6\ \mathrm{°} \; 
  &F_{B} &= 105.0\ \mathrm{kN} \; 
  &F_{A} &= 105.0\ \mathrm{kN} \; 
-\\[11pt]
+\\[12pt]
 \end{aligned}
 $$
 
@@ -1440,17 +1440,17 @@ $$
 
 Der Reduktionsfaktor bestimmt sich zu:
 
-\begin{verbatim}
-NameError: name 'l_element' is not defined
-\end{verbatim}
+$$
+\begin{aligned}
+\gamma_{E_{SV14}} &= z_{SV14} \cdot \frac{ 1 }{ \tan \left( \theta_{c3_{SV14}} \right) } \cdot \frac{1} { l_{E} } \; 
+\end{aligned}
+$$
 
-\begin{verbatim}
-NameError: name 'gamma_E_SV14' is not defined
-\end{verbatim}
-
-\begin{verbatim}
-NameError: name 'gamma_E_SV14' is not defined
-\end{verbatim}
+$$
+\begin{aligned}
+\gamma_{E_{SV14}} &= 75\ \;
+\end{aligned}
+$$
 
 Die Abbildung~\ref{fig-wegfeder-schub-sv14} zeigt das
 Kraft-Verformungs-Verhalten für die Gelenke des Stabmodells in
@@ -1608,8 +1608,6 @@ Versuchsträgers T6. Horizontaler Abstand {[}m{]} und vertikale Position
 
 \end{figure}%
 
-\section{Modellierung}\label{modellierung}
-
 \section{Parameter}\label{parameter}
 
 In diesem Abschnitt werden die allgemein verwendeten Parameter
@@ -1626,11 +1624,45 @@ $$
 f_{py} &= 1706.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &f_{pt} &= 1855.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &V_{om} &= 730.0\ \mathrm{kN} \; 
-\\[11pt]
+\\[10pt]
  A_{p} &= 596.0\ \mathrm{mm}^{2} \; 
- &E_{p} &= 190000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
+ &E_{p} &= 190000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+ &\varepsilon_{pu} &= 1.5\ \mathrm{\%} \; 
+\\[10pt]
+ \eta &= 0.9 \; \;\textrm{(Verlustfaktor)}
 \end{aligned}
 $$
+
+Der Verlustfaktor wird ohne Berücksichtigung von Langzeiteffekten auf
+90\% geschätzt. Daras resultiert die Vorspannkraft zu:
+
+$$
+\begin{aligned}
+P_{\infty} &= \eta \cdot V_{om} \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+P_{\infty} &= 657.0\ \mathrm{kN} \;
+\end{aligned}
+$$
+
+Die Spannung im Spannstahl:
+
+$$
+\begin{aligned}
+\sigma_{P_{\infty}} &= \frac{ P_{\infty} }{ A_{p} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\sigma_{P_{\infty}} &= 1102.3\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
+\end{aligned}
+$$
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-8-output-1.pdf}
 
 \subsection{Beton}\label{beton}
 
@@ -1641,7 +1673,7 @@ $$
 f_{c} &= 52.10\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &f_{cts} &= 4.30\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &E_{c} &= 50200.00\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
-\\[11pt]
+\\[10pt]
  \rho_{c} &= 2409.00\ \frac{\mathrm{kg}}{\mathrm{m}^{3}} \; 
  &\varepsilon_{cu} &= 0.16\ \mathrm{\%} \;
 \end{aligned}
@@ -1654,19 +1686,6 @@ Betonzugfestigkeit \(f_{cts}\). Das Verhalten im negativen
 Spannungsbereich wird mit einem linear-elastischem ideal-plastischem
 Verhalten approximiert.
 
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-sigma_epc_t6-output-1.pdf}
-
-}
-
-\caption{\label{fig-sigma_epc_t6}Spannungs-Dehnungs-Verhalten des
-Betons}
-
-\end{figure}%
-
 \subsection{Betonstahl}\label{betonstahl}
 
 Mittelwerte der Zugproben.
@@ -1676,13 +1695,12 @@ $$
 \oslash_{1} &= 10.0\ \mathrm{mm} \; 
  &\oslash_{2} &= 12.0\ \mathrm{mm} \; 
  &\oslash_{3} &= 14.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  f_{sy} &= 500.0\ \mathrm{MPa} \; 
  &f_{st} &= 630.0\ \mathrm{MPa} \; 
  &\varepsilon_{sv} &= 2.4\ \mathrm{\%} \; 
-\\[11pt]
- \varepsilon_{sg} &= 13.0\ \mathrm{\%} \; 
- &E_{s} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
+\\[10pt]
+ E_{s} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
 
@@ -1691,19 +1709,6 @@ Abbildung~\ref{fig-sigma_eps_t6} gezeigt. Als Annahme gilt, dass die
 Stäbe lediglich unter Zug belastet werden. Die Druckbewehrung wird bei
 der Bestimmung der Momenten-Krümmungs-Beziehung vernachlässigt. Das
 Verhalten wird mit einem Bilinearem Verhalten approximiert.
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-sigma_eps_t6-output-1.pdf}
-
-}
-
-\caption{\label{fig-sigma_eps_t6}Spannungs-Dehnungs-Verhalten der
-Längsbewehrung}
-
-\end{figure}%
 
 \subsection{Geometrie}\label{geometrie}
 
@@ -1717,15 +1722,15 @@ $$
 h_{1} &= 180.0\ \mathrm{mm} \; 
  &h_{2} &= 50.0\ \mathrm{mm} \; 
  &h_{3} &= 400.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  h_{4} &= 30.0\ \mathrm{mm} \; 
  &h_{5} &= 140.0\ \mathrm{mm} \; 
  &h_{tot} &= 800.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  b_{1_{inf}} &= 90.0\ \mathrm{mm} \; 
  &b_{2_{inf}} &= 220.0\ \mathrm{mm} \; 
  &b_{3_{inf}} &= 90.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  b_{tot_{inf}} &= 400.0\ \mathrm{mm} \; 
  &b_{tot_{sup}} &= 800.0\ \mathrm{mm} \;
 \end{aligned}
@@ -1745,7 +1750,7 @@ $$
 L_{1} &= 3500.0\ \mathrm{mm} \; 
  &L_{2} &= 9600.0\ \mathrm{mm} \; 
  &L_{tot} &= 13100.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
 \end{aligned}
 $$
 
@@ -1756,9 +1761,50 @@ $$
 L_{P} &= 0.5\ \mathrm{m} \; 
  &L_{q} &= 3.8\ \mathrm{m} \; 
  &l_{q} &= 9.0\ \mathrm{m} \; \;\textrm{(Streckenlast)}
-\\[11pt]
+\\[10pt]
 \end{aligned}
 $$
+
+\section{Modellierung}\label{modellierung}
+
+\subsection{Lastfälle}\label{lastfuxe4lle}
+
+\subsubsection{Versuch}\label{versuch}
+
+Der Versuch wird in den folgenden Laststufen belastet.
+
+\subsubsection{Vorspannung}\label{vorspannung-1}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-z_p_von_x-output-1.pdf}
+
+}
+
+\caption{\label{fig-z_p_von_x}Geometrie des Spannkabels als Funktion
+\(z_p(x)\)}
+
+\end{figure}%
+
+\[
+u_p(x) \simeq z_p(x)'' \cdot P
+\]
+
+Dies führt zu den Umlenkkräften:
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-u_p_von_x-output-1.pdf}
+
+}
+
+\caption{\label{fig-u_p_von_x}Umlenkkräfte ermittelt mit \(z_p(x)''\)}
+
+\end{figure}%
 
 \section{Momenten-Krümmungs-Beziehung}\label{momenten-kruxfcmmungs-beziehung}
 
@@ -1807,15 +1853,2801 @@ plastifizierter Betondruckzone, qualitativer Verlauf}
 
 \end{figure}%
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-16-output-1.pdf}
+\begin{figure}[H]
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-17-output-1.pdf}
+\centering{
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-18-output-1.pdf}
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-sigma_epc_t6-output-1.pdf}
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-19-output-1.pdf}
+}
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-20-output-1.pdf}
+\caption{\label{fig-sigma_epc_t6}Spannungs-Dehnungs-Verhalten des
+Betons}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-sigma_eps_t6-output-1.pdf}
+
+}
+
+\caption{\label{fig-sigma_eps_t6}Spannungs-Dehnungs-Verhalten des
+Betonstahls}
+
+\end{figure}%
+
+Die Spannungs-Dehnungs-Beziehung des Spannstahls wird mit der
+Vorspannspannung \(\sigma_{P\infty}\) reduziert.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-sigma_eps_vorspannung_t6-output-1.pdf}
+
+}
+
+\caption{\label{fig-sigma_eps_vorspannung_t6}Spannungs-Dehnungs-Verhalten
+der Vorspannung}
+
+\end{figure}%
+
+\begin{verbatim}
+Parameter für Querschnitt 0 
+
+                 x = 0.0 mm
+                 z_p = 404.0 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 1 
+
+                 x = 100.0 mm
+                 z_p = 415.2 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 2 
+
+                 x = 200.0 mm
+                 z_p = 426.4 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 3 
+
+                 x = 300.0 mm
+                 z_p = 437.6 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 4 
+
+                 x = 400.0 mm
+                 z_p = 448.8 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 5 
+
+                 x = 500.0 mm
+                 z_p = 460.0 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 6 
+
+                 x = 600.0 mm
+                 z_p = 471.2 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 7 
+
+                 x = 700.0 mm
+                 z_p = 482.4 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 8 
+
+                 x = 800.0 mm
+                 z_p = 493.6 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 9 
+
+                 x = 900.0 mm
+                 z_p = 504.8 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 10 
+
+                 x = 1000.0 mm
+                 z_p = 516.0 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 11 
+
+                 x = 1100.0 mm
+                 z_p = 527.2 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 12 
+
+                 x = 1200.0 mm
+                 z_p = 538.4 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 13 
+
+                 x = 1300.0 mm
+                 z_p = 549.6 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 14 
+
+                 x = 1400.0 mm
+                 z_p = 560.8 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 15 
+
+                 x = 1500.0 mm
+                 z_p = 572.0 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 16 
+
+                 x = 1600.0 mm
+                 z_p = 583.2 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 17 
+
+                 x = 1700.0 mm
+                 z_p = 594.4 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 18 
+
+                 x = 1800.0 mm
+                 z_p = 605.6 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 19 
+
+                 x = 1900.0 mm
+                 z_p = 616.8 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 20 
+
+                 x = 2000.0 mm
+                 z_p = 628.0 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 21 
+
+                 x = 2100.0 mm
+                 z_p = 639.2 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 22 
+
+                 x = 2200.0 mm
+                 z_p = 650.4 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 23 
+
+                 x = 2300.0 mm
+                 z_p = 661.6 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 24 
+
+                 x = 2400.0 mm
+                 z_p = 672.8 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 25 
+
+                 x = 2500.0 mm
+                 z_p = 683.9999999999998 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 26 
+
+                 x = 2600.0 mm
+                 z_p = 697.5199832465097 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 27 
+
+                 x = 2700.0 mm
+                 z_p = 709.2799682565447 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 28 
+
+                 x = 2800.0 mm
+                 z_p = 719.2799550301052 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 29 
+
+                 x = 2900.0 mm
+                 z_p = 727.5199435671908 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 30 
+
+                 x = 3000.0 mm
+                 z_p = 733.9999338678017 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 31 
+
+                 x = 3100.0 mm
+                 z_p = 738.719925931938 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 32 
+
+                 x = 3200.0 mm
+                 z_p = 741.6799197595994 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 33 
+
+                 x = 3300.0 mm
+                 z_p = 742.8799153507861 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 34 
+
+                 x = 3400.0 mm
+                 z_p = 742.3199127054984 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 35 
+
+                 x = 3500.0 mm
+                 z_p = 739.9999118237356 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 36 
+
+                 x = 3600.0 mm
+                 z_p = 735.9199127054982 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 37 
+
+                 x = 3700.0 mm
+                 z_p = 730.0799153507862 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 38 
+
+                 x = 3800.0 mm
+                 z_p = 722.4799197595995 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 39 
+
+                 x = 3900.0 mm
+                 z_p = 713.1199259319378 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 40 
+
+                 x = 4000.0 mm
+                 z_p = 701.9999338678017 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 41 
+
+                 x = 4100.0 mm
+                 z_p = 689.119943567191 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 42 
+
+                 x = 4200.0 mm
+                 z_p = 674.4799550301053 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 43 
+
+                 x = 4300.0 mm
+                 z_p = 658.0799682565447 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 44 
+
+                 x = 4400.0 mm
+                 z_p = 639.9199832465099 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 45 
+
+                 x = 4500.0 mm
+                 z_p = 619.9999999999995 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 46 
+
+                 x = 4600.0 mm
+                 z_p = 596.0909725700624 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 47 
+
+                 x = 4700.0 mm
+                 z_p = 572.7030648459008 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 48 
+
+                 x = 4800.0 mm
+                 z_p = 549.8362768275156 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 14.0 mm
+                 I = 14.0 mm
+            
+Parameter für Querschnitt 49 
+
+                 x = 4900.0 mm
+                 z_p = 527.4917513212789 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 50 
+
+                 x = 5000.0 mm
+                 z_p = 505.6683455208188 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 51 
+
+                 x = 5100.0 mm
+                 z_p = 484.3660594261346 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 52 
+
+                 x = 5200.0 mm
+                 z_p = 463.5860358435986 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 53 
+
+                 x = 5300.0 mm
+                 z_p = 443.3271319668392 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 54 
+
+                 x = 5400.0 mm
+                 z_p = 423.5893477958557 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 55 
+
+                 x = 5500.0 mm
+                 z_p = 404.373826137021 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 56 
+
+                 x = 5600.0 mm
+                 z_p = 385.67942418396234 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 57 
+
+                 x = 5700.0 mm
+                 z_p = 367.50614193668 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 58 
+
+                 x = 5800.0 mm
+                 z_p = 349.8551222015463 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 59 
+
+                 x = 5900.0 mm
+                 z_p = 332.72522217218847 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 60 
+
+                 x = 6000.0 mm
+                 z_p = 316.1164418486069 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 61 
+
+                 x = 6100.0 mm
+                 z_p = 300.0299240371742 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 62 
+
+                 x = 6200.0 mm
+                 z_p = 284.46452593151724 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 63 
+
+                 x = 6300.0 mm
+                 z_p = 269.42024753163673 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 64 
+
+                 x = 6400.0 mm
+                 z_p = 254.89823164390472 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 65 
+
+                 x = 6500.0 mm
+                 z_p = 240.89733546194893 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 66 
+
+                 x = 6600.0 mm
+                 z_p = 227.41755898576957 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 12.0 mm
+                 E = 12.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 67 
+
+                 x = 6700.0 mm
+                 z_p = 214.4600450217382 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 68 
+
+                 x = 6800.0 mm
+                 z_p = 202.02365076348323 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 69 
+
+                 x = 6900.0 mm
+                 z_p = 190.10837621100472 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 70 
+
+                 x = 7000.0 mm
+                 z_p = 178.7153641706741 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 71 
+
+                 x = 7100.0 mm
+                 z_p = 167.84347183612036 mm 
+
+                 A = 14.0 mm
+                 B = 14.0 mm
+                 C = 12.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 72 
+
+                 x = 7200.0 mm
+                 z_p = 157.4926992073424 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 73 
+
+                 x = 7300.0 mm
+                 z_p = 147.66418909071356 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 74 
+
+                 x = 7400.0 mm
+                 z_p = 138.3567986798601 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 75 
+
+                 x = 7500.0 mm
+                 z_p = 129.57052797478354 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 76 
+
+                 x = 7600.0 mm
+                 z_p = 121.30651978185509 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 77 
+
+                 x = 7700.0 mm
+                 z_p = 113.56363129470267 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 78 
+
+                 x = 7800.0 mm
+                 z_p = 106.34186251332727 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 79 
+
+                 x = 7900.0 mm
+                 z_p = 99.64235624409957 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 80 
+
+                 x = 8000.0 mm
+                 z_p = 93.4639696806483 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 81 
+
+                 x = 8100.0 mm
+                 z_p = 87.80670282297342 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 82 
+
+                 x = 8200.0 mm
+                 z_p = 82.67169847744692 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 83 
+
+                 x = 8300.0 mm
+                 z_p = 78.05781383769639 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 84 
+
+                 x = 8400.0 mm
+                 z_p = 73.96504890372216 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 85 
+
+                 x = 8500.0 mm
+                 z_p = 70.39454648189714 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 86 
+
+                 x = 8600.0 mm
+                 z_p = 67.34516376584726 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 87 
+
+                 x = 8700.0 mm
+                 z_p = 64.81690075557435 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 88 
+
+                 x = 8800.0 mm
+                 z_p = 62.810900257449866 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 89 
+
+                 x = 8900.0 mm
+                 z_p = 61.32601946510098 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 90 
+
+                 x = 9000.0 mm
+                 z_p = 60.36225837852862 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 91 
+
+                 x = 9100.0 mm
+                 z_p = 59.92075980410497 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 92 
+
+                 x = 9200.0 mm
+                 z_p = 60.00038093545785 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 93 
+
+                 x = 9300.0 mm
+                 z_p = 60.60112177258634 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 94 
+
+                 x = 9400.0 mm
+                 z_p = 61.72412512186383 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 95 
+
+                 x = 9500.0 mm
+                 z_p = 63.36824817691711 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 96 
+
+                 x = 9600.0 mm
+                 z_p = 65.5334909377461 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 97 
+
+                 x = 9700.0 mm
+                 z_p = 68.22099621072432 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 98 
+
+                 x = 9800.0 mm
+                 z_p = 71.42962118947872 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 99 
+
+                 x = 9900.0 mm
+                 z_p = 75.15936587400938 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 100 
+
+                 x = 10000.0 mm
+                 z_p = 79.41137307068838 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 101 
+
+                 x = 10100.0 mm
+                 z_p = 84.1844999731438 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 102 
+
+                 x = 10200.0 mm
+                 z_p = 89.47874658137562 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 103 
+
+                 x = 10300.0 mm
+                 z_p = 95.2952557017547 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 104 
+
+                 x = 10400.0 mm
+                 z_p = 101.63288452791085 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 105 
+
+                 x = 10500.0 mm
+                 z_p = 108.49163305984348 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 106 
+
+                 x = 10600.0 mm
+                 z_p = 115.87264410392436 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 107 
+
+                 x = 10700.0 mm
+                 z_p = 123.77477485378151 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 108 
+
+                 x = 10800.0 mm
+                 z_p = 132.1980253094148 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 109 
+
+                 x = 10900.0 mm
+                 z_p = 141.1435382771967 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 110 
+
+                 x = 11000.0 mm
+                 z_p = 150.61017095075468 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 111 
+
+                 x = 11100.0 mm
+                 z_p = 160.59792333008843 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 112 
+
+                 x = 11200.0 mm
+                 z_p = 171.10793822157106 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 113 
+
+                 x = 11300.0 mm
+                 z_p = 182.13907281883024 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 114 
+
+                 x = 11400.0 mm
+                 z_p = 193.69132712186547 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 115 
+
+                 x = 11500.0 mm
+                 z_p = 205.76584393704925 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 116 
+
+                 x = 11600.0 mm
+                 z_p = 218.3614804580089 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 117 
+
+                 x = 11700.0 mm
+                 z_p = 231.4782366847453 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 118 
+
+                 x = 11800.0 mm
+                 z_p = 245.11725542362916 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 119 
+
+                 x = 11900.0 mm
+                 z_p = 259.2773938682898 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 120 
+
+                 x = 12000.0 mm
+                 z_p = 273.95865201872675 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 121 
+
+                 x = 12100.0 mm
+                 z_p = 289.1621726813124 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 122 
+
+                 x = 12200.0 mm
+                 z_p = 304.88681304967446 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 123 
+
+                 x = 12300.0 mm
+                 z_p = 321.13257312381256 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 124 
+
+                 x = 12400.0 mm
+                 z_p = 337.9005957100989 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 125 
+
+                 x = 12500.0 mm
+                 z_p = 355.18973800216173 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 126 
+
+                 x = 12600.0 mm
+                 z_p = 373.0 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 127 
+
+                 x = 12700.0 mm
+                 z_p = 388.2 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 128 
+
+                 x = 12800.0 mm
+                 z_p = 403.4 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 129 
+
+                 x = 12900.0 mm
+                 z_p = 418.6 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+Parameter für Querschnitt 130 
+
+                 x = 13000.0 mm
+                 z_p = 433.8 mm 
+
+                 A = 10.0 mm
+                 B = 10.0 mm
+                 C = 10.0 mm
+                 D = 10.0 mm
+                 E = 10.0 mm
+                 F = 10.0 mm
+                 G = 14.0 mm
+                 H = 16.0 mm
+                 I = 16.0 mm
+            
+\end{verbatim}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-2.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-3.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-5.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-6.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-8.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-9.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-11.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-12.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-14.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-15.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-17.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-18.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-20.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-21.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-23.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-24.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-26.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-27.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-29.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-30.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-32.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-33.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-35.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-36.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-38.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-39.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-41.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-42.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-44.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-45.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-47.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-48.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-50.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-51.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-53.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-54.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-56.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-57.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-59.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-60.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-62.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-63.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-65.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-66.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-68.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-69.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-71.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-72.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-74.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-75.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-77.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-78.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-80.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-81.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-83.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-84.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-86.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-87.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-89.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-90.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-92.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-93.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-95.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-96.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-98.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-99.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-101.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-102.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-104.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-105.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-107.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-108.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-110.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-111.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-113.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-114.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-116.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-117.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-119.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-120.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-122.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-123.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-125.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-126.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-128.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-129.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-131.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-132.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-134.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-135.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-137.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-138.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-140.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-141.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-143.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-144.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-146.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-147.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-149.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-150.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-152.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-153.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-155.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-156.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-158.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-159.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-161.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-162.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-164.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-165.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-167.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-168.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-170.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-171.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-173.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-174.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-176.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-177.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-179.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-180.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-182.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-183.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-185.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-186.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-188.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-189.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-191.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-192.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-194.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-195.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-197.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-198.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-200.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-201.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-203.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-204.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-206.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-207.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-209.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-210.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-212.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-213.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-215.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-216.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-218.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-219.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-221.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-222.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-224.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-225.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-227.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-228.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-230.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-231.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-233.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-234.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-236.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-237.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-239.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-240.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-242.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-243.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-245.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-246.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-248.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-249.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-251.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-252.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-254.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-255.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-257.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-258.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-260.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-261.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-263.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-264.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-266.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-267.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-269.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-270.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-272.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-273.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-275.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-276.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-278.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-279.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-281.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-282.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-284.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-285.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-287.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-288.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-290.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-291.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-293.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-294.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-296.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-297.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-299.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-300.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-302.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-303.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-305.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-306.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-308.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-309.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-311.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-312.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-314.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-315.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-317.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-318.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-320.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-321.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-323.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-324.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-326.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-327.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-329.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-330.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-332.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-333.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-335.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-336.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-338.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-339.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-341.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-342.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-344.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-345.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-347.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-348.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-350.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-351.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-353.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-354.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-356.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-357.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-359.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-360.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-362.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-363.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-365.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-366.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-368.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-369.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-371.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-372.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-374.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-375.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-377.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-378.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-380.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-381.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-383.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-384.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-386.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-387.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-389.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-390.pdf}
+
+\newpage{}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-392.pdf}
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-24-output-393.pdf}
+
+\newpage{}
 
 \section{Schiebungs-Beziehung}\label{schiebungs-beziehung}
 
