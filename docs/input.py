@@ -56,7 +56,7 @@ los = ureg.dimensionless
 
 import scipy.integrate as integrate
 from scipy.optimize import fsolve
-from scipy.misc import derivative
+from scipy.ndimage import gaussian_filter
 from scipy.optimize import curve_fit
 
 import handcalcs.render
