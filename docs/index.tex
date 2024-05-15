@@ -407,16 +407,6 @@ Verhalten gilt für positive und negative Biegemomente um die
 
 \begin{figure}[H]
 
-{\centering \includegraphics{04_Kragarm_files/figure-pdf/cell-5-1-image.png}
-
-}
-
-\caption{image.png}
-
-\end{figure}%
-
-\begin{figure}[H]
-
 \centering{
 
 \includegraphics{index_files/mediabag/04_Kragarm_files/figure-pdf/fig-springcharacteristic-output-1.pdf}
@@ -1823,8 +1813,6 @@ Zusätzlich zu den Umlenkkräften ist bei der Spannstelle eine Druckkraft
 in Richtung des Spannkabels einzuführen, sowie ein Versatz Moment, durch
 die Exzentrizität des Spannkabels zum Trägerschwerpunkt.
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-22-output-1.pdf}
-
 $$
 \begin{aligned}
 e_{P_{0}} &= 60.0\ \mathrm{mm} \; \;\textrm{($x=0$)}
@@ -1840,7 +1828,7 @@ $$
 
 $$
 \begin{aligned}
-M_{P_{0}} &= 39.4\ \mathrm{kN} \cdot \mathrm{m} \;
+M_{P_{0}} &= 39.4\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(unten Zug)}
 \end{aligned}
 $$
 
@@ -1852,7 +1840,57 @@ $$
 
 $$
 \begin{aligned}
-M_{P_{1}} &= -40.0\ \mathrm{kN} \cdot \mathrm{m} \;
+M_{P_{1}} &= -40.0\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(oben Zug)}
+\end{aligned}
+$$
+
+Die Momente sind so einzugeben, dass unterhalb des
+
+$$
+\begin{aligned}
+\alpha_{1} &= \operatorname{arctan} { \left( \frac{ 525 - 373 }{ 1000 } \right) } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\alpha_{1} &= 0.151 \;
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V_{P_{1}} &= \sin \left( \alpha_{1} \right) \cdot P_{\infty} \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V_{P_{1}} &= 98.73\ \mathrm{kN} \;
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\alpha_{0} &= \operatorname{arctan} { \left( \frac{ 684 - 404 }{ 2500 } \right) } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\alpha_{0} &= 0.112 \;
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V_{P_{0}} &= \sin \left( \alpha_{0} \right) \cdot P_{\infty} \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V_{P_{0}} &= 73.13\ \mathrm{kN} \;
 \end{aligned}
 $$
 
@@ -1875,39 +1913,52 @@ Querschnitt beim Fliessen der Zugbewehrung betrachtet, sowie wird der
 Biegewiderstand bestimmt. Diese Punkte werden linear mit einander
 verbunden. Des Weiteren wird die Druckbewehrung stehts vernachlässigt.
 
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/../imgs/QS_14_analyse_4.pdf}
-
-}
-
-\caption{\label{fig-qs_fliessen_qualitativ}Querschnittsanalyse mit
-Fliessen der Zugbewehrung und elastischer Betondruckzone, qualitativer
-Verlauf}
-
-\end{figure}%
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/../imgs/QS_14_analyse_5.pdf}
-
-}
-
-\caption{\label{fig-qs_widerstand_qualitativ}Querschnittsanalyse mit
-erreichter Zugfestigkeit in der Bewehrung und vollständig
-plastifizierter Betondruckzone, qualitativer Verlauf}
-
-\end{figure}%
-
 \subsection{Abschätzung}\label{abschuxe4tzung}
 
 Hier wird die Krümmung und das Biegemoment für den Querschnitt A-A
 abgeschätzt, als Referenzwerte für die numerisch erstellten
-Momenten-Krümmungs-Diagramme.
+Momenten-Krümmungs-Diagramme. Die Bewehrungsführung wird dabei
+vereinfacht, schematisch für negative Biegung gezeigt in der
+Abbildung~\ref{fig-t6_qs_approx}.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_qs_approx.pdf}
+
+}
+
+\caption{\label{fig-t6_qs_approx}Vereinfachung der Bewehrungsführung,
+Druckbewehrung vernachlässigt, Zugbewehrung zu einem Stab
+zusammengefasst}
+
+\end{figure}%
+
+\subsubsection{Negative Momente - Zug im
+Obergurt}\label{negative-momente---zug-im-obergurt}
+
+Es wird der Biegewiderstand betrachtet, unter der Prämisse dass der
+Beton vollständig plastifiziert, sowie die Bewehrung die Zugfestigkeit
+erreicht. Somit ist dieser Zustand als Grenzzustand zu betrachten. Sind
+die numerischen Ergebnisse, dargestellt im Anhang, kleiner oder gleich
+diesem Widerstand, so ist das Ergebnis zufriedenstellend.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_qs_MR.pdf}
+
+}
+
+\caption{\label{fig-t6_qs_MR}Erreichen des Biegewiderstands,
+Betondruckzone vollständig plastifiziert, Bewehrung erreicht
+Zugfestigkeit}
+
+\end{figure}%
+
+Die Querschnittsfläche der schlaffen Bewehrung:
 
 $$
 \begin{aligned}
@@ -1921,55 +1972,175 @@ A_{s_{1}} &= 1972.9\ \mathrm{mm}^{2} \;
 \end{aligned}
 $$
 
+Die statische Höhe wird abgeschätzt und beträgt:
+
 $$
 \begin{aligned}
-d_{\sim} &= 750 \cdot \mathrm{mm} \; 
-\\[11pt]
-z_{\sim} &= 0.9 \cdot d_{\sim} \; 
+d_{1} &= h_{tot} - \frac{ h_{5} }{ 2 } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-z_{\sim} &= 675.0\ \mathrm{mm} \;
+d_{1} &= 730.0\ \mathrm{mm} \;
+\end{aligned}
+$$
+
+Mittels horizontalem Gleichgewicht der Kräfte lässt sich die
+Druckzonenhöhe bestimmen:
+
+$$
+\begin{aligned}
+x_{1} &= \frac{ A_{s_{1}} \cdot f_{st} + A_{p} \cdot \left( f_{pt} - \sigma_{P_{\infty}} \right) + P_{\infty} }{ b_{tot_{inf}} \cdot 0.85 \cdot f_{c} } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-x_{\sim} &= \frac{ A_{s_{1}} \cdot f_{st} + A_{p} \cdot \left( f_{pt} - \sigma_{P_{\infty}} \right) }{ b_{tot_{inf}} \cdot 0.85 \cdot f_{c} } \; 
+x_{1} &= 132.6\ \mathrm{mm} \;
+\end{aligned}
+$$
+
+Mit welcher der Biegewiderstand ermittelt werden kann.
+
+$$
+\begin{aligned}
+M_{R1} &= \left( A_{s_{1}} \cdot f_{sy} + A_{p} \cdot \left( f_{py} - \sigma_{P_{\infty}} \right) \right) \cdot \left( d_{1} - S_{z} \right) + 0.85 \cdot b_{tot_{inf}} \cdot f_{c} \cdot x_{1} \cdot \left( S_{z} - 0.425 \cdot x_{1} \right) \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-x_{\sim} &= 95.5\ \mathrm{mm} \;
+M_{R1} &= 1315.4\ \mathrm{kN} \cdot \mathrm{m} \;
+\end{aligned}
+$$
+
+Die Krümmung wird dabei ebenfalls abgeschätzt:
+
+$$
+\begin{aligned}
+\chi_{1} &= \frac{ \varepsilon_{sv} }{ d_{1} - x_{1} } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-M_{R_{\sim}} &= z_{\sim} \cdot \left( A_{s_{1}} \cdot f_{sy} + A_{p} \cdot \left( f_{py} - \sigma_{P_{\infty}} \right) \right) \; 
+\chi_{1} &= 0.0402\ \frac{1}{\mathrm{m}} \;
+\end{aligned}
+$$
+
+\subsubsection{Positive Biegemomente - Zug im
+Untergurt}\label{positive-biegemomente---zug-im-untergurt}
+
+Das gleiche Vorgehen wird für positive Biegebeanspruchung angewendet.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_qs_MR_neg.pdf}
+
+}
+
+\caption{\label{fig-t6_qs_MR_pos}Erreichen des Biegewiderstands,
+Betondruckzone vollständig plastifiziert, Bewehrung erreicht
+Zugfestigkeit}
+
+\end{figure}%
+
+Die Querschnittsfläche der Bewehrung beträgt:
+
+$$
+\begin{aligned}
+A_{s_{2}} &= 8 \cdot \frac{ \left( 14 \cdot \mathrm{mm} \right) ^{ 2 } }{ 4 } \cdot \pi \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-M_{R_{\sim}} &= 908.7\ \mathrm{kN} \cdot \mathrm{m} \;
+A_{s_{2}} &= 1231.5\ \mathrm{mm}^{2} \;
+\end{aligned}
+$$
+
+Die abgeschätzte statische Höhe:
+
+$$
+\begin{aligned}
+d_{2} &= h_{tot} - \frac{ h_{1} }{ 2.5 } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\chi_{\sim} &= \frac{ \varepsilon_{sv} }{ d_{\sim} - x_{\sim} } \; 
+d_{2} &= 728.0\ \mathrm{mm} \;
+\end{aligned}
+$$
+
+Mit horizontalem Gleichgewicht der Kräfte folgt die Druckzonenhöhe zu:
+
+$$
+\begin{aligned}
+x_{2} &= \frac{ A_{s_{2}} \cdot f_{st} + P_{\infty} }{ b_{tot_{sup}} \cdot 0.85 \cdot f_{c} } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\chi_{\sim} &= 0.0367\ \frac{1}{\mathrm{m}} \;
+x_{2} &= 40.4\ \mathrm{mm} \;
 \end{aligned}
 $$
+
+$$
+\begin{aligned}
+M_{R2} &= A_{s_{2}} \cdot f_{sy} \cdot \left( d_{2} - S_{z} \right) + 0.85 \cdot b_{tot_{sup}} \cdot f_{c} \cdot x_{2} \cdot \left( S_{z} - 0.425 \cdot x_{2} \right) \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+M_{R2} &= 802.7\ \mathrm{kN} \cdot \mathrm{m} \;
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\chi_{2} &= \frac{ \varepsilon_{sv} }{ d_{2} - x_{2} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\chi_{2} &= 0.0349\ \frac{1}{\mathrm{m}} \;
+\end{aligned}
+$$
+
+Vergleichbar mit
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/T6_m_chi/qs_35.pdf}
+
+}
+
+\caption{\label{fig-qs_a_a}Querschnitt an der Stelle A-A verglichen mit
+Abbildung~\ref{fig-bewehrung_laengs_t6}}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-m_chi_schaetzung-output-1.pdf}
+
+}
+
+\caption{\label{fig-m_chi_schaetzung}Momenten-Krümmungs-Beziehung
+numerisch gelöst, dazu grobe Abschätzung der Grenzpunkte aufgezeigt}
+
+\end{figure}%
 
 \subsection{Stoffgesetze}\label{stoffgesetze}
 
