@@ -275,10 +275,16 @@ Version 0.9 - Entwurf \hfill 07. Juni 2024 \quad \quad \quad \quad \quad PG\\
 
 \chapter{Einleitung}\label{einleitung}
 
-\begin{itemize}
-\tightlist
-\item
-\end{itemize}
+Die vorliegende Arbeit ist in mehrere Kapitel unterteilt. Nach dieser
+Einleitung folgt eine detaillierte Vorstellung der verwendeten Modelle
+und Methoden. Anschliessend werden Einführungsbeispiele präsentiert, um
+die theoretischen Grundlagen zu veranschaulichen. Im Kapitel zur
+Modellverifizierung werden die numerischen Modelle anhand von
+Experimenten geprüft und validiert. Ein spezielles Kapitel widmet sich
+der Untersuchung vorgespannter Träger, wobei die Versuchsaufbauten und
+-ergebnisse ausführlich beschrieben werden. Abschliessend wird der
+Einsatz der kommerziellen Software IdeaStatica zur Bestimmung des
+Verformungsverhaltens behandelt und die Ergebnisse kritisch hinterfragt.
 
 \bookmarksetup{startatroot}
 
@@ -338,13 +344,15 @@ gekoppelt mit einem Wegfederpaar}
 
 \chapter{Einführungsbeispiel}\label{einfuxfchrungsbeispiel}
 
-Das Einführungsbeispiel verfolgt das Ziel das Modellverhalten zu
-plausibilisieren. Die Eingabe der nicht-linearen Parameter in der
-Statiksoftware liegt im Vordergrund.
+Um das allgemeine Verständnis der Modellierung zu fördern, wird mit
+einem Einführungsbeispiel gestartet. Das Beispiel verfolgt das Ziel, das
+nicht-lineare Verformungsverhalten des Modells zu plausibilisieren. Es
+gilt zu verstehen, wie das System in einer Stabstatik-Software zu
+modellieren ist, um die gewünschten Ergebnisse zu erhalten.
 
-Es werden die Verformungen des fiktiven Beispiels von Hand mittels der
-Arbeitsgleichung, sowie numerisch mit der Stabstatik-Software ermittelt.
-Das statische System ist in Abbildung~\ref{fig-kragarm-feder}
+Dazu werden die Verformungen des fiktiven Beispiels analytisch mittels
+der Arbeitsgleichung, sowie numerisch mit der Stabstatik-Software
+ermittelt. Das statische System ist in Abbildung~\ref{fig-kragarm-feder}
 aufgezeigt. Das Beispiel ist mit einer Drehfeder versehen, welche eine
 nicht-lineare Federcharakteristik aufweist. Es werden zwei Laststufen
 betrachtet. Diese sind entsprechend gewählt, dass das nicht-lineare
@@ -385,7 +393,8 @@ E &= 10000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 $$
 
 Der Rechteckquerschnitt ist in Abbildung~\ref{fig-qs-kragarm}
-aufgezeigt, dieser gilt für den gesamten Kragarm.
+aufgezeigt, dieser gilt für den gesamten Kragarm. Dieser dient lediglich
+zur Bestimmung der Biegesteifigkeit.
 
 \begin{figure}[H]
 
@@ -400,7 +409,7 @@ durchwegs linear-elastischem Materialverhalten}
 
 \end{figure}%
 
-Die Entsprechende Federcharakteristik ist in
+Die entsprechende Drehfedercharakteristik ist in
 Abbildung~\ref{fig-springcharacteristic} zu sehen. Das Bilineare
 Verhalten gilt für positive und negative Biegemomente um die
 \(Y\)-Achse.
@@ -1614,11 +1623,11 @@ $$
 f_{py} &= 1706.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &f_{pt} &= 1855.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &V_{om} &= 730.0\ \mathrm{kN} \; 
-\\[11pt]
+\\[10pt]
  A_{p} &= 596.0\ \mathrm{mm}^{2} \; 
  &E_{p} &= 190000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &\varepsilon_{pu} &= 1.5\ \mathrm{\%} \; 
-\\[11pt]
+\\[10pt]
  \eta &= 0.9 \; \;\textrm{(Verlustfaktor)}
 \end{aligned}
 $$
@@ -1663,7 +1672,7 @@ $$
 f_{c} &= 52.10\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &f_{cts} &= 4.30\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &E_{c} &= 50200.00\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
-\\[11pt]
+\\[10pt]
  \rho_{c} &= 2409.00\ \frac{\mathrm{kg}}{\mathrm{m}^{3}} \; 
  &\varepsilon_{cu} &= 0.16\ \mathrm{\%} \;
 \end{aligned}
@@ -1685,11 +1694,11 @@ $$
 \oslash_{1} &= 10.0\ \mathrm{mm} \; 
  &\oslash_{2} &= 12.0\ \mathrm{mm} \; 
  &\oslash_{3} &= 14.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  f_{sy} &= 500.0\ \mathrm{MPa} \; 
  &f_{st} &= 630.0\ \mathrm{MPa} \; 
  &\varepsilon_{sv} &= 2.4\ \mathrm{\%} \; 
-\\[11pt]
+\\[10pt]
  E_{s} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
@@ -1712,19 +1721,19 @@ $$
 h_{1} &= 180.0\ \mathrm{mm} \; 
  &h_{2} &= 50.0\ \mathrm{mm} \; 
  &h_{3} &= 400.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  h_{4} &= 30.0\ \mathrm{mm} \; 
  &h_{5} &= 140.0\ \mathrm{mm} \; 
  &h_{tot} &= 800.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  b_{1_{inf}} &= 90.0\ \mathrm{mm} \; 
  &b_{2_{inf}} &= 220.0\ \mathrm{mm} \; 
  &b_{3_{inf}} &= 90.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  b_{tot_{inf}} &= 400.0\ \mathrm{mm} \; 
  &b_{tot_{sup}} &= 800.0\ \mathrm{mm} \; 
  &S_{z} &= \mathtt{\text{464.00 mm}} \; 
-\\[11pt]
+\\[10pt]
 \end{aligned}
 $$
 
@@ -1744,7 +1753,7 @@ $$
 L_{1} &= 3500.0\ \mathrm{mm} \; 
  &L_{2} &= 9600.0\ \mathrm{mm} \; 
  &L_{3} &= 500.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  L_{tot} &= 13600.0\ \mathrm{mm} \;
 \end{aligned}
 $$
@@ -1756,7 +1765,7 @@ $$
 L_{P} &= 0.5\ \mathrm{m} \; 
  &L_{q} &= 3.8\ \mathrm{m} \; 
  &l_{q} &= 9.0\ \mathrm{m} \; \;\textrm{(Streckenlast)}
-\\[11pt]
+\\[10pt]
 \end{aligned}
 $$
 
@@ -2186,147 +2195,42 @@ der Vorspannung}
 
 \end{figure}%
 
-\begin{verbatim}
-qs0 fertig
-qs1 fertig
-qs2 fertig
-qs3 fertig
-qs4 fertig
-qs5 fertig
-qs6 fertig
-qs7 fertig
-qs8 fertig
-qs9 fertig
-qs10 fertig
-qs11 fertig
-qs12 fertig
-qs13 fertig
-qs14 fertig
-qs15 fertig
-qs16 fertig
-qs17 fertig
-qs18 fertig
-qs19 fertig
-qs20 fertig
-qs21 fertig
-qs22 fertig
-qs23 fertig
-qs24 fertig
-qs25 fertig
-qs26 fertig
-qs27 fertig
-qs28 fertig
-qs29 fertig
-qs30 fertig
-qs31 fertig
-qs32 fertig
-qs33 fertig
-qs34 fertig
-qs35 fertig
-qs36 fertig
-qs37 fertig
-qs38 fertig
-qs39 fertig
-qs40 fertig
-qs41 fertig
-qs42 fertig
-qs43 fertig
-qs44 fertig
-qs45 fertig
-qs46 fertig
-qs47 fertig
-qs48 fertig
-qs49 fertig
-qs50 fertig
-qs51 fertig
-qs52 fertig
-qs53 fertig
-qs54 fertig
-qs55 fertig
-qs56 fertig
-qs57 fertig
-qs58 fertig
-qs59 fertig
-qs60 fertig
-qs61 fertig
-qs62 fertig
-qs63 fertig
-qs64 fertig
-qs65 fertig
-qs66 fertig
-qs67 fertig
-qs68 fertig
-qs69 fertig
-qs70 fertig
-qs71 fertig
-qs72 fertig
-qs73 fertig
-qs74 fertig
-qs75 fertig
-qs76 fertig
-qs77 fertig
-qs78 fertig
-qs79 fertig
-qs80 fertig
-qs81 fertig
-qs82 fertig
-qs83 fertig
-qs84 fertig
-qs85 fertig
-qs86 fertig
-qs87 fertig
-qs88 fertig
-qs89 fertig
-qs90 fertig
-qs91 fertig
-qs92 fertig
-qs93 fertig
-qs94 fertig
-qs95 fertig
-qs96 fertig
-qs97 fertig
-qs98 fertig
-qs99 fertig
-qs100 fertig
-qs101 fertig
-qs102 fertig
-qs103 fertig
-qs104 fertig
-qs105 fertig
-qs106 fertig
-qs107 fertig
-qs108 fertig
-qs109 fertig
-qs110 fertig
-qs111 fertig
-qs112 fertig
-qs113 fertig
-qs114 fertig
-qs115 fertig
-qs116 fertig
-qs117 fertig
-qs118 fertig
-qs119 fertig
-qs120 fertig
-qs121 fertig
-qs122 fertig
-qs123 fertig
-qs124 fertig
-qs125 fertig
-qs126 fertig
-qs127 fertig
-qs128 fertig
-qs129 fertig
-qs130 fertig
-qs131 fertig
-qs132 fertig
-qs133 fertig
-qs134 fertig
-qs135 fertig
-qs136 fertig
-\end{verbatim}
+\section{Versatzmass}\label{versatzmass-1}
 
-\section{Schiebungs-Beziehung}\label{schiebungs-beziehung}
+Das Versatzmass wird vereinfacht abgeschätzt
+
+$$
+\begin{aligned}
+V_{z} &= 120.0\ \mathrm{kN} \; 
+ &\theta_{c3} &= 25.0\ \mathrm{deg} \; \;\textrm{(Sigrist)}
+ &z_{\sim} &= 657.0\ \mathrm{mm} \; 
+\\[10pt]
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\Delta_{V} &= \frac{ V_{z} }{ \tan \left( \theta_{c3} \right) } \cdot \frac{1} { 2 } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\Delta_{V} &= 128.7\ \mathrm{kN} \;
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\Delta_{M} &= \Delta_{V} \cdot z_{\sim} \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\Delta_{M} &= 84.5\ \mathrm{kN} \cdot \mathrm{m} \;
+\end{aligned}
+$$
 
 \section{Versuchsresultate}\label{versuchsresultate}
 
