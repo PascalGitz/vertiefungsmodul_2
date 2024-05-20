@@ -277,7 +277,7 @@ Version 0.9 - Entwurf \hfill 07. Juni 2024 \quad \quad \quad \quad \quad PG\\
 
 Die vorliegende Arbeit ist in mehrere Kapitel unterteilt. Nach dieser
 Einleitung folgt eine detaillierte Vorstellung der verwendeten Modelle
-und Methoden. Anschliessend werden Einführungsbeispiele präsentiert, um
+und Methoden. Anschliessend wird ein Einführungsbeispiel präsentiert, um
 die theoretischen Grundlagen zu veranschaulichen. Im Kapitel zur
 Modellverifizierung werden die numerischen Modelle anhand von
 Experimenten geprüft und validiert. Ein spezielles Kapitel widmet sich
@@ -748,26 +748,49 @@ Nachvollziehen der Resultate.
 
 \chapter{Modellverifizierung}\label{modellverifizierung}
 
-In diesem Kapitel werden die beiden Versuche aus der Vorarbeit
-{[}\citeproc{ref-gitz_ansatze_2024}{1}{]} mit einem Drehfedermodell,
-gemäss dem Beschrieb in Kapitel~\ref{sec-modellvorstellung},
-nachgerechnet. Dazu wird eine feine Stabunterteilung gewählt, um das
-Verformungsverhalten präzise abzubilden. Detaillierte Berechnungen und
-Versuchsbeschriebe, welche als Grundlagen für die Modellierung dienen,
-sind in {[}\citeproc{ref-gitz_ansatze_2024}{1}{]} zu finden.
-Grundsätzlich gilt, dass für den Betonstahl bilineare
-Spannungs-Dehnungs-Beziehungen hinterlegt sind und für den Beton ein
-elastisch-ideal-plastisches Gesetz mit Berücksichtigung der
-Zugfestigkeit.
+Diese Kapitel beschreibt die Anwendung des Drehfedermodells auf die
+beiden Versuche der Vorarbeit {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}.
+Dabei sind lediglich die relevanten Grundlagen der Versuche aufgezeigt.
+Detaillierte Beschriebe sind aus
+{[}\citeproc{ref-gitz_ansatze_2024}{1}{]} und verwiesener Literatur zu
+entnehmen.
+
+Es wird erwartet, dass das Drehfedermodell die Biegeverformungen
+vollumfänglich beschreibt, sofern die Momenten-Verdrehungs-Beziehung
+präzise bestimmt werden kann. Zusätzlich ermöglicht das Modell die
+Beschreibung der Schubverformungen. Dies bedingt eine entsprechende
+Ermittlung der Steifigkeit in Richtung der erwarteten Schubverformungen.
+Abschliessend wird ein Ansatz gezeigt um Längszugkräfte infolge
+Querkraft mit dem Modell abzubilden.
 
 \section{Dreipunktbiegeversuch}\label{dreipunktbiegeversuch}
 
 Der Dreipunktbiegeversuch ist der dritte Versuch der Serie A in der
 zweiten Versuchsanordnung aus
-{[}\citeproc{ref-jager_versuche_2006}{2}{]}, kurz betitelt mit A3V2.
-Dieser ist mit einer durchegehenden Längsbewehrung im Zugbereich
-bewehrt. Die Schubdübel sind nicht durchgängig verlegt. Dargestellt ist
-das Bewehrungslayout in der Abbildung~\ref{fig-bewehrung_a3v2}.
+{[}\citeproc{ref-jager_versuche_2006}{2}{]}, kurz betitelt mit A3V2. Der
+Versuchsaufbau ist in der Abbildung~\ref{fig-anordnung_a3v2} gezeigt. An
+der Stelle \(A\) wird der Plattenstreifen bis zum Versagen belastet.
+Gemessen sind die Verformungen an der Stelle der Lasteinleitung nach dem
+Einbringen des Trägers auf dem Versuchsstand.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/versuchsanordnung_A3V2.pdf}
+
+}
+
+\caption{\label{fig-anordnung_a3v2}Versuchsanordnung des Versuchs A3V2,
+Zeichnung entnommen aus {[}\citeproc{ref-jager_versuche_2006}{2}{]}}
+
+\end{figure}%
+
+Das Bewehrungslayout ist in der Abbildung~\ref{fig-bewehrung_a3v2}
+aufgezeigt. Der Plattenstreifen ist mit einer durchgehenden
+Längsbewehrung in der Zugzone bewehrt. Verankert ist die Längsbewehrung
+mit angeschweissten Platten. Die Schubdübel sind nicht durchgängig
+verlegt.
 
 \begin{figure}[H]
 
@@ -782,25 +805,8 @@ Zeichnung entnommen aus {[}\citeproc{ref-jager_versuche_2006}{2}{]}}
 
 \end{figure}%
 
-Das statische System des Versuchs ist in Abbildung~\ref{fig-system_a3v2}
-dargestellt. Das Eigengewicht wird vernachlässigt, da die
-Verformungsmessungen nach dem Einbau des Versuchs beginnen, bzw. erst
-bei Belastungsbeginn mit der Einzellast.
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/../imgs/A3V2_system.pdf}
-
-}
-
-\caption{\label{fig-system_a3v2}Statisches System des Versuchs A3V2}
-
-\end{figure}%
-
-Die Abbildung~\ref{fig-qs_a3v2} zeigt den Querschnitt des Versuchs mit
-der entsprechenden Bewehrungsführung.
+Die Abbildung~\ref{fig-qs_a3v2} zeigt das Bewehrungslayout in
+querrichtung, sowie entsprechende Abmessungen des Plattenstreifens.
 
 \begin{figure}[H]
 
@@ -815,10 +821,53 @@ entnommen aus {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}}
 
 \end{figure}%
 
-\subsection{Drehfedercharakteristik}\label{drehfedercharakteristik}
+\subsection{Modellierung}\label{modellierung}
 
-Als erster Eingabeparamter in das Drehfedermodell dient die
-Momenten-Krümmungs-Beziehung. Für den Querschnitt ist die nicht-lineare
+In diesem Abschnitt wird die Modellbildung beschrieben. Das Ziel ist es
+das Verhalten des Versuchskörpers mit einem möglichst simplen Modell
+abzubilden. Das statische System des Versuchs ist in
+Abbildung~\ref{fig-system_a3v2} dargestellt. Das Eigengewicht wird
+vernachlässigt, da die Verformungsmessungen nach dem Einbau des Versuchs
+beginnen, bzw. erst bei Belastungsbeginn mit der Einzellast.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/A3V2_system.pdf}
+
+}
+
+\caption{\label{fig-system_a3v2}Statisches System des Versuchs A3V2}
+
+\end{figure}%
+
+Die Auflagerbreiten werden vernachlässigt, bzw. wird der Plattenstreifen
+punktgestützt modelliert. Auf die Darstellung der biegesteifen Elemente
+mit Endgelenken wird verzichtet. Diese sind in einem Abstand von \(10\)
+mm entlang der Stabachse verteilt.
+
+$$
+\begin{aligned}
+l_{E} &= 10.0\ \mathrm{mm} \; \;\textrm{(Elementlänge des Biegesteifen Stabs)}
+\end{aligned}
+$$
+
+Der Einfluss der Elementlänge wurde mittels einer Sensitivitätsanalyse
+ermittelt. Eine feinere Stabunterteilung resultiert zu keiner
+signifikanten Steigerung der Genauigkeit.
+
+\subsubsection{Biegeverformungen}\label{biegeverformungen}
+
+Um das Biegeverhalten passend zu beschreiben gilt es eine entsprechende
+Drehfedercharakteristik zu bestimmen. Dazu wird anhand einer
+Querschnittsanalyse eine Momenten-Krümmungs-Beziehung ermittelt. Durch
+Multiplikation der Krümmung mit der Elementlänge resultiert eine
+Momenten-Verdrehungs-Beziehung, sprich eine Drehfedercharakteristik. Es
+wird von einem Bilinearen Spannungs-Dehnungs-Verhalten des Betonstahls,
+sowie von einer linear-elastischen ideal plastischen
+Spannungs-Dehnungs-Beziehung des Betons mit Berücksichtigung der
+Zugfestigkeit ausgegangen. Für den Querschnitt ist die nicht-lineare
 Beziehung in der Abbildung~\ref{fig-mchi_a3v2} gezeigt. Detaillierte
 Berechnungen sind in der Vorarbeit
 {[}\citeproc{ref-gitz_ansatze_2024}{1}{]} zu finden.
@@ -837,22 +886,39 @@ Dreipunktbiegeversuchs, übernommen aus
 
 \end{figure}%
 
-$$
-\begin{aligned}
-l_{E} &= 10.0\ \mathrm{mm} \; \;\textrm{(Elementlänge des Biegesteifen Stabs)}
-\end{aligned}
-$$
+Die Momenten-Krümmungs-Beziehung zeigt einen Bereich des ungerissenen
+Querschnitts, gefolgt vom gerissenen Bereich, welcher die Zugversteifung
+mit dem Ansatz nach Marti basierend auf dem Zuggurtmodell
+berücksichtigt. Beim Erreichen der Fliessspannung in den
+Bewehrungsstäben flacht die Beziehung deutlich ab.
 
-\subsection{Wegfedercharakteristik}\label{wegfedercharakteristik}
+Die daraus resultierende Momenten-Verdrehungs-Beziehung ist in der
+Abbildung~\ref{fig-mphi_a3v2} aufgezeigt. Diese ist den Stabendgelenken
+als Verdrehung in globaler \(Y\)-Richtung, gemäss
+Abbildung~\ref{fig-system_a3v2}, zu hinterlegen.
 
-\subsubsection{Schiebung}\label{schiebung}
+\begin{figure}[H]
 
-Als Grundlage zur Modellierung der Schubverformungen dient das
+\centering{
+
+\includegraphics{index_files/mediabag/05_Versuchsnachrechnung_VM1_files/figure-pdf/fig-mphi_a3v2-output-1.pdf}
+
+}
+
+\caption{\label{fig-mphi_a3v2}Momenten-Verdrehungs-Beziehung des
+Dreipunktbiegeversuchs}
+
+\end{figure}%
+
+\subsubsection{Schubverformungen}\label{schubverformungen}
+
+Um die Schubverformungen im Modell abzubilden, gilt es eine
+Wegfedercharakteristik in globaler \(Z\)-Richtung, entsprechend dem
+Koordinatensystem aus Abbildung~\ref{fig-system_a3v2}, zu bestimmen. Als
+Grundlage zur Modellierung der Schubverformungen dient das
 Spannungsfeld-Modell in Abbildung~\ref{fig-spannungsfelder_a3v2}. Dabei
 wird vorausgesetzt, dass sämtliche Dehnung des Systems in vertikaler
-Richtung lediglich aus der Stabdehnung der Schubbewehrung erfolgt. Das
-Ziel ist es ein Kraft-Verformungs-Diagramm, bzw. eine
-Wegfedercharakteristik zu ermitteln.
+Richtung lediglich aus der Stabdehnung der Schubbewehrung erfolgt.
 
 \begin{figure}[H]
 
@@ -870,19 +936,24 @@ des Versuchs A3V2, Zeichnung entnommen aus
 
 Durch die Einteilung in Spannungsfelder kann die Anzahl an mitwirkenden
 Schubdübeln bestimmt werden. Mit der Querschnittsfläche der mitwirkenden
-Dübel kann das nicht-lineare Spannungs-Dehnungs-Verhalten in ein
-Kraft-Verformungs-Diagramm bzw. in eine Wegfedercharakteristik
-umgewandelt werden. Die bekannte Dehnung aus der Stahlkennlinie wird
-über den Hebelarm der inneren Kräfte zu einer Verformung umgewandelt.
-Wichtig dabei ist die Elementlänge der biegesteifen Stäbe im FEM-Modell.
-Dazu wird die Verformung um den Faktor gemäss der folgenden Gleichung
-reduziert, bzw. die Steifigkeit der Feder um diesen Faktor erhöht.
+Dübel kann mittels dem nicht-linearen Spannungs-Dehnungs-Verhalten,
+gezeigt in der Abbildung~\ref{fig-sigma-eps-a3v2}, die Kraftkomponente
+ermittelt werden. Die Verformung wird mittels Multiplikation der
+Dehnungen aus der Spannungs-Dehnungs-Beziehung mit dem Hebelarm der
+inneren Kräfte bestimmt. Dies führt zu einer
+Kraft-Verformungs-Beziehung, sprich einer Wegfedercharakteristik für das
+gesamte Spannungsfeld.
 
 \[
 \gamma_{E} = \frac{z \cdot \cot(\theta)}{n_{E}}
 \]
 
 \(n_{E}\) steht für die Anzahl steifer Stabelemente
+
+Abschliessend wird die Verformung um den Faktor gemäss der folgenden
+Gleichung reduziert, bzw. die Steifigkeit der Feder um diesen Faktor
+erhöht. Die daraus resultierende Wegfedercharakteristik ist den
+Stabendgelenken zu hinterlegen.
 
 \begin{figure}[H]
 
@@ -902,9 +973,10 @@ Folgend sind die Parameter zur Bestimmung der Wegfedercharakteristik in
 vertikaler Richtung gezeigt. Der gewählte Neigungswinkel der
 Spannungsfelder \(\theta_{c3}\) gilt grundsätzlich nur im Bruchzustand.
 Als Approximation wird die daraus bestimmte Wegfedercharakteristik für
-sämtliche Laststufen angesetzt. Dies führt zu Abweichungen im Lastniveau
-unterhalb der Traglast, sofern die Schubverformung einen signifikanten
-Einfluss an der der Gesamtverformung liefern.
+sämtliche Laststufen angesetzt. Dies führt zu Abweichungen des
+Verformungsverhalten im Lastniveau unterhalb der Traglast. Da der
+Einfluss der Schubverformungen jedoch gering ist, ist diese
+Vereinfachung unproblematisch.
 
 $$
 \begin{aligned}
@@ -921,7 +993,10 @@ $$
 \end{aligned}
 $$
 
-Die Querschnittsfläche der Schubbewehrung bestimmt sich zu:
+In einem ersten Schritt wird die Querschnittsfläche der Schubbewehrung
+bestimmt. Gemäss der Abbildung~\ref{fig-bewehrung_a3v2} ist ersichtlich,
+dass entlang der Plattenbreite \(7\) Schubdübel verlegt sind. Die
+Querschnittsfläche für eine Dübelreihe folgt somit zu:
 
 $$
 \begin{aligned}
@@ -935,7 +1010,7 @@ A_{sw_{A3V2}} &= 197.9\ \mathrm{mm}^{2} \;
 \end{aligned}
 $$
 
-Verschmiert über einen Meterstreifen:
+Wird diese nun über einen Meterstreifen verschmiert, so folgt:
 
 $$
 \begin{aligned}
@@ -949,7 +1024,13 @@ a_{sw_{A3V2}} &= 2474.0\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} \;
 \end{aligned}
 $$
 
-Der Querkraftwiderstand mit gewählter Neigung:
+In einem nächsten Schritt wird der Querkraftwiderstand bestimmt. Dies
+dient grundsätzlich zur Bestimmung des Neigungswinkel. Aus den
+Versuchsergebnissen ist ersichtlich, dass der Plattenstreifen bei
+\(320\) kN versagt. Somit muss ein Spannungsfeld gewählt werden, welches
+einen Querkraftwiderstand entsprechend der Traglast liefert. Durch
+Iteration dieser Gleichung wurde der Neigungswinkel \(\theta_{c3}\)
+ermittelt.
 
 $$
 \begin{aligned}
@@ -963,7 +1044,7 @@ V_{Rd_{A3V2}} &= 319.9\ \mathrm{kN} \;
 \end{aligned}
 $$
 
-Der Reduktionsfaktor bestimmt sich zu:
+Abschliessend gilt es den Reduktionsfaktor zu bestimmen:
 
 $$
 \begin{aligned}
@@ -971,9 +1052,9 @@ $$
 \end{aligned}
 $$
 
-Die Abbildung~\ref{fig-wegfeder-schub-a3v2} zeigt das
-Kraft-Verformungs-Verhalten für die Gelenke des Stabmodells in
-vertikaler Richtung.
+Die Abbildung~\ref{fig-wegfeder-schub-a3v2} zeigt das ermittelte
+Kraft-Verformungs-Verhalten. Das Verhalten ist analog dem bilinearen
+Spannungs-Dehnungs-Diagramm.
 
 \begin{figure}[H]
 
@@ -988,13 +1069,16 @@ Wegfedercharakteristik des Schubgelenks vom Versuch A3V2}
 
 \end{figure}%
 
-\subsection{Versuchsvergleich}\label{versuchsvergleich}
+\subsection{Ergebnisse}\label{ergebnisse}
 
-Mit den bestimmten Federcharakteristiken kann die Biegelinie des Systems
-ermittelt werden unter Berücksichtigung der Schub- und Biegeverformungen
-auf nicht-linearen Grundlagen. Die Abbildung~\ref{fig-fwa3v2} zeigt das
-Last-Verformungs-Diagramm des Systems am Punkt \(w_1\). Das Modell
-beschreibt den Verformungsverlauf zufriedenstellend.
+Mit den bestimmten Federcharakteristiken kann die Verformungslinie des
+Systems ermittelt werden. Das Modell ist in der Lage, Biege- und
+Schubverformungen zu beschreiben, basierend auf nicht-linearen
+Eigenschaften. Die Abbildung~\ref{fig-fwa3v2} zeigt das
+Last-Verformungs-Diagramm des Systems am Punkt \(w_1\). Gezeigt sind die
+Resultate des Modells, mit und ohne Berücksichtigung der Zugversteifung,
+sowie die gemessenen Versuchsresultate aus dem Versuchsbericht. Das
+Modell beschreibt den Verformungsverlauf zufriedenstellend.
 
 \begin{figure}[H]
 
@@ -1047,10 +1131,12 @@ Verdrehungsverlauf}
 
 \section{Vierpunktbiegeversuch}\label{vierpunktbiegeversuch}
 
-Der Vierpunktbiegeversuch ist aus dem Paper
-{[}\citeproc{ref-tue_einfluss_2019}{3}{]} entnommen. Auffallend bei
-diesem Versuch ist die niedrig gehaltene Schubbewehrung. Dazu sind in
-Längsrichtung Stäbe mit unterschiedlicher Güte verlegt.
+Der Vierpunktbiegeversuch ist aus der Publikation
+{[}\citeproc{ref-tue_einfluss_2019}{3}{]} entnommen. Es handelt sich um
+einen Träger mit rechteckigem Querschnitt, gelagert als einfacher
+Balken. Auffallend bei diesem Versuch ist die niedrig gehaltene
+Schubbewehrung. Dazu sind in Längsrichtung Stäbe mit unterschiedlicher
+Güte verlegt.
 
 \begin{figure}[H]
 
@@ -1065,8 +1151,11 @@ SV14, Zeichnung entnommen aus {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}}
 
 \end{figure}%
 
-Der Querschnitt ist in der Abbildung~\ref{fig-QS-SV14} gezeigt. Die
-Druckbewehrung wird vernachlässigt.
+Die Abbildung~\ref{fig-versuchsskizze-SV14} zeigt die Lagerung des
+Trägers, sowie die Stellen der Lasteinleitung. Zusätzlich ist das
+Bewehrungslayout dargestellt. Der Querschnitt ist in der
+Abbildung~\ref{fig-QS-SV14} gezeigt. Es ist lediglich die Längsbewehrung
+dargestellt.
 
 \begin{figure}[H]
 
@@ -1080,6 +1169,15 @@ Druckbewehrung wird vernachlässigt.
 entnommen aus {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}}
 
 \end{figure}%
+
+Belastet wird der Träger an beiden Stellen \(F_A\) bis zum Versagen.
+Aufgrund des unterschiedlichen Schubbewehrungsgehalts in beiden
+Trägerhälften erfolgt zuerst ein Schubversagen in der schwächer
+bewehrten Zone. Diese wird nachträglich verstärkt. Abschliessend wird
+die Last gesteigert, bis ein Schubversagen in der stärker bewehrten Zone
+eintritt. Die gemessenen Verformungen sind an der Stelle \(w_1\).
+
+\subsection{Modellierung}\label{modellierung-1}
 
 Das statische System ist in der Abbildung~\ref{fig-system-SV14} gezeigt.
 Auch hier wird das Eigengewicht, wie im Versuch A3V2, vernachlässigt.
@@ -1101,7 +1199,7 @@ Zeichnung entnommen aus {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}}
 
 \subsection{Schnittgrössen}\label{schnittgruxf6ssen}
 
-\subsection{Drehfedercharakteristik}\label{drehfedercharakteristik-1}
+\subsection{Drehfedercharakteristik}\label{drehfedercharakteristik}
 
 Als Grundlage für die Drehfedercharakteristik gilt die
 Momenten-Krümmungs-Beziehung. Für den Querschnitt des Versuchs SV14 gilt
@@ -1387,9 +1485,9 @@ der Stabachse}
 
 \end{figure}%
 
-\subsection{Wegfedercharakteristik}\label{wegfedercharakteristik-1}
+\subsection{Wegfedercharakteristik}\label{wegfedercharakteristik}
 
-\subsubsection{Schiebung}\label{schiebung-1}
+\subsubsection{Schiebung}\label{schiebung}
 
 Die Wegfedercharakteristik basiert auf der Spannungsfeldmodellierung
 gemäss der Abbildung~\ref{fig-spannungsfelder_sv14}. Die Einteilung in
@@ -1468,7 +1566,7 @@ Wegfedercharakteristik des Schubgelenks vom Versuch SV14}
 
 \end{figure}%
 
-\subsection{Versuchsvergleich}\label{versuchsvergleich-1}
+\subsection{Versuchsvergleich}\label{versuchsvergleich}
 
 Mit den bestimmten Federcharakteristiken kann die Biegelinie des Systems
 ermittelt werden unter Berücksichtigung der Schub- und Biegeverformungen
@@ -1769,7 +1867,7 @@ L_{P} &= 0.5\ \mathrm{m} \;
 \end{aligned}
 $$
 
-\section{Modellierung}\label{modellierung}
+\section{Modellierung}\label{modellierung-2}
 
 $$
 \begin{aligned}
@@ -2324,6 +2422,8 @@ Berlin}
 \chapter{Momenten-Krümmungs-Beziehungen Versuch
 T6}\label{momenten-kruxfcmmungs-beziehungen-versuch-t6}
 
+\addtocontents{lof}{\protect\setcounter{tocdepth}{0}}
+
 Dieses Kapitel zeigt lediglich die einzelnen Querschnitte mit den
 entsprechenden Parametern und der resultierenden
 Momenten-Krümmungs-Beziehung. Es wird keinen Wert auf die Leserlichkeit
@@ -2347,7 +2447,7 @@ in Papierformat gelegt.
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_0.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 0}
 
 \end{figure}%
@@ -2360,7 +2460,7 @@ Querschnitts 0}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_1.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 1}
 
 \end{figure}%
@@ -2373,7 +2473,7 @@ Querschnitts 1}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_2.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 2}
 
 \end{figure}%
@@ -2386,7 +2486,7 @@ Querschnitts 2}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_3.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 3}
 
 \end{figure}%
@@ -2399,7 +2499,7 @@ Querschnitts 3}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_4.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 4}
 
 \end{figure}%
@@ -2412,7 +2512,7 @@ Querschnitts 4}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_5.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 5}
 
 \end{figure}%
@@ -2425,7 +2525,7 @@ Querschnitts 5}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_6.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 6}
 
 \end{figure}%
@@ -2438,7 +2538,7 @@ Querschnitts 6}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_7.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 7}
 
 \end{figure}%
@@ -2451,7 +2551,7 @@ Querschnitts 7}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_8.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 8}
 
 \end{figure}%
@@ -2464,7 +2564,7 @@ Querschnitts 8}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_9.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 9}
 
 \end{figure}%
@@ -2477,7 +2577,7 @@ Querschnitts 9}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_10.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 10}
 
 \end{figure}%
@@ -2490,7 +2590,7 @@ Querschnitts 10}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_11.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 11}
 
 \end{figure}%
@@ -2503,7 +2603,7 @@ Querschnitts 11}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_12.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 12}
 
 \end{figure}%
@@ -2516,7 +2616,7 @@ Querschnitts 12}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_13.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 13}
 
 \end{figure}%
@@ -2529,7 +2629,7 @@ Querschnitts 13}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_14.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 14}
 
 \end{figure}%
@@ -2542,7 +2642,7 @@ Querschnitts 14}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_15.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 15}
 
 \end{figure}%
@@ -2555,7 +2655,7 @@ Querschnitts 15}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_16.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 16}
 
 \end{figure}%
@@ -2568,7 +2668,7 @@ Querschnitts 16}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_17.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 17}
 
 \end{figure}%
@@ -2581,7 +2681,7 @@ Querschnitts 17}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_18.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 18}
 
 \end{figure}%
@@ -2594,7 +2694,7 @@ Querschnitts 18}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_19.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 19}
 
 \end{figure}%
@@ -2607,7 +2707,7 @@ Querschnitts 19}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_20.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 20}
 
 \end{figure}%
@@ -2620,7 +2720,7 @@ Querschnitts 20}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_21.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 21}
 
 \end{figure}%
@@ -2633,7 +2733,7 @@ Querschnitts 21}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_22.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 22}
 
 \end{figure}%
@@ -2646,7 +2746,7 @@ Querschnitts 22}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_23.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 23}
 
 \end{figure}%
@@ -2659,7 +2759,7 @@ Querschnitts 23}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_24.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 24}
 
 \end{figure}%
@@ -2672,7 +2772,7 @@ Querschnitts 24}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_25.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 25}
 
 \end{figure}%
@@ -2685,7 +2785,7 @@ Querschnitts 25}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_26.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 26}
 
 \end{figure}%
@@ -2698,7 +2798,7 @@ Querschnitts 26}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_27.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 27}
 
 \end{figure}%
@@ -2711,7 +2811,7 @@ Querschnitts 27}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_28.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 28}
 
 \end{figure}%
@@ -2724,7 +2824,7 @@ Querschnitts 28}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_29.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 29}
 
 \end{figure}%
@@ -2737,7 +2837,7 @@ Querschnitts 29}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_30.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 30}
 
 \end{figure}%
@@ -2750,7 +2850,7 @@ Querschnitts 30}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_31.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 31}
 
 \end{figure}%
@@ -2763,7 +2863,7 @@ Querschnitts 31}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_32.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 32}
 
 \end{figure}%
@@ -2776,7 +2876,7 @@ Querschnitts 32}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_33.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 33}
 
 \end{figure}%
@@ -2789,7 +2889,7 @@ Querschnitts 33}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_34.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 34}
 
 \end{figure}%
@@ -2802,7 +2902,7 @@ Querschnitts 34}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_35.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 35}
 
 \end{figure}%
@@ -2815,7 +2915,7 @@ Querschnitts 35}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_36.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 36}
 
 \end{figure}%
@@ -2828,7 +2928,7 @@ Querschnitts 36}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_37.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 37}
 
 \end{figure}%
@@ -2841,7 +2941,7 @@ Querschnitts 37}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_38.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 38}
 
 \end{figure}%
@@ -2854,7 +2954,7 @@ Querschnitts 38}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_39.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 39}
 
 \end{figure}%
@@ -2867,7 +2967,7 @@ Querschnitts 39}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_40.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 40}
 
 \end{figure}%
@@ -2880,7 +2980,7 @@ Querschnitts 40}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_41.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 41}
 
 \end{figure}%
@@ -2893,7 +2993,7 @@ Querschnitts 41}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_42.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 42}
 
 \end{figure}%
@@ -2906,7 +3006,7 @@ Querschnitts 42}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_43.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 43}
 
 \end{figure}%
@@ -2919,7 +3019,7 @@ Querschnitts 43}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_44.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 44}
 
 \end{figure}%
@@ -2932,7 +3032,7 @@ Querschnitts 44}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_45.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 45}
 
 \end{figure}%
@@ -2945,7 +3045,7 @@ Querschnitts 45}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_46.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 46}
 
 \end{figure}%
@@ -2958,7 +3058,7 @@ Querschnitts 46}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_47.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 47}
 
 \end{figure}%
@@ -2971,7 +3071,7 @@ Querschnitts 47}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_48.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 48}
 
 \end{figure}%
@@ -2984,7 +3084,7 @@ Querschnitts 48}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_49.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 49}
 
 \end{figure}%
@@ -2997,7 +3097,7 @@ Querschnitts 49}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_50.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 50}
 
 \end{figure}%
@@ -3010,7 +3110,7 @@ Querschnitts 50}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_51.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 51}
 
 \end{figure}%
@@ -3023,7 +3123,7 @@ Querschnitts 51}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_52.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 52}
 
 \end{figure}%
@@ -3036,7 +3136,7 @@ Querschnitts 52}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_53.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 53}
 
 \end{figure}%
@@ -3049,7 +3149,7 @@ Querschnitts 53}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_54.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 54}
 
 \end{figure}%
@@ -3062,7 +3162,7 @@ Querschnitts 54}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_55.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 55}
 
 \end{figure}%
@@ -3075,7 +3175,7 @@ Querschnitts 55}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_56.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 56}
 
 \end{figure}%
@@ -3088,7 +3188,7 @@ Querschnitts 56}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_57.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 57}
 
 \end{figure}%
@@ -3101,7 +3201,7 @@ Querschnitts 57}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_58.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 58}
 
 \end{figure}%
@@ -3114,7 +3214,7 @@ Querschnitts 58}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_59.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 59}
 
 \end{figure}%
@@ -3127,7 +3227,7 @@ Querschnitts 59}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_60.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 60}
 
 \end{figure}%
@@ -3140,7 +3240,7 @@ Querschnitts 60}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_61.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 61}
 
 \end{figure}%
@@ -3153,7 +3253,7 @@ Querschnitts 61}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_62.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 62}
 
 \end{figure}%
@@ -3166,7 +3266,7 @@ Querschnitts 62}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_63.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 63}
 
 \end{figure}%
@@ -3179,7 +3279,7 @@ Querschnitts 63}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_64.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 64}
 
 \end{figure}%
@@ -3192,7 +3292,7 @@ Querschnitts 64}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_65.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 65}
 
 \end{figure}%
@@ -3205,7 +3305,7 @@ Querschnitts 65}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_66.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 66}
 
 \end{figure}%
@@ -3218,7 +3318,7 @@ Querschnitts 66}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_67.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 67}
 
 \end{figure}%
@@ -3231,7 +3331,7 @@ Querschnitts 67}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_68.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 68}
 
 \end{figure}%
@@ -3244,7 +3344,7 @@ Querschnitts 68}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_69.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 69}
 
 \end{figure}%
@@ -3257,7 +3357,7 @@ Querschnitts 69}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_70.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 70}
 
 \end{figure}%
@@ -3270,7 +3370,7 @@ Querschnitts 70}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_71.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 71}
 
 \end{figure}%
@@ -3283,7 +3383,7 @@ Querschnitts 71}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_72.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 72}
 
 \end{figure}%
@@ -3296,7 +3396,7 @@ Querschnitts 72}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_73.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 73}
 
 \end{figure}%
@@ -3309,7 +3409,7 @@ Querschnitts 73}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_74.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 74}
 
 \end{figure}%
@@ -3322,7 +3422,7 @@ Querschnitts 74}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_75.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 75}
 
 \end{figure}%
@@ -3335,7 +3435,7 @@ Querschnitts 75}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_76.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 76}
 
 \end{figure}%
@@ -3348,7 +3448,7 @@ Querschnitts 76}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_77.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 77}
 
 \end{figure}%
@@ -3361,7 +3461,7 @@ Querschnitts 77}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_78.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 78}
 
 \end{figure}%
@@ -3374,7 +3474,7 @@ Querschnitts 78}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_79.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 79}
 
 \end{figure}%
@@ -3387,7 +3487,7 @@ Querschnitts 79}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_80.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 80}
 
 \end{figure}%
@@ -3400,7 +3500,7 @@ Querschnitts 80}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_81.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 81}
 
 \end{figure}%
@@ -3413,7 +3513,7 @@ Querschnitts 81}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_82.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 82}
 
 \end{figure}%
@@ -3426,7 +3526,7 @@ Querschnitts 82}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_83.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 83}
 
 \end{figure}%
@@ -3439,7 +3539,7 @@ Querschnitts 83}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_84.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 84}
 
 \end{figure}%
@@ -3452,7 +3552,7 @@ Querschnitts 84}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_85.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 85}
 
 \end{figure}%
@@ -3465,7 +3565,7 @@ Querschnitts 85}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_86.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 86}
 
 \end{figure}%
@@ -3478,7 +3578,7 @@ Querschnitts 86}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_87.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 87}
 
 \end{figure}%
@@ -3491,7 +3591,7 @@ Querschnitts 87}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_88.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 88}
 
 \end{figure}%
@@ -3504,7 +3604,7 @@ Querschnitts 88}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_89.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 89}
 
 \end{figure}%
@@ -3517,7 +3617,7 @@ Querschnitts 89}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_90.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 90}
 
 \end{figure}%
@@ -3530,7 +3630,7 @@ Querschnitts 90}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_91.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 91}
 
 \end{figure}%
@@ -3543,7 +3643,7 @@ Querschnitts 91}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_92.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 92}
 
 \end{figure}%
@@ -3556,7 +3656,7 @@ Querschnitts 92}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_93.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 93}
 
 \end{figure}%
@@ -3569,7 +3669,7 @@ Querschnitts 93}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_94.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 94}
 
 \end{figure}%
@@ -3582,7 +3682,7 @@ Querschnitts 94}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_95.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 95}
 
 \end{figure}%
@@ -3595,7 +3695,7 @@ Querschnitts 95}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_96.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 96}
 
 \end{figure}%
@@ -3608,7 +3708,7 @@ Querschnitts 96}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_97.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 97}
 
 \end{figure}%
@@ -3621,7 +3721,7 @@ Querschnitts 97}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_98.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 98}
 
 \end{figure}%
@@ -3634,7 +3734,7 @@ Querschnitts 98}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_99.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 99}
 
 \end{figure}%
@@ -3647,7 +3747,7 @@ Querschnitts 99}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_100.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 100}
 
 \end{figure}%
@@ -3660,7 +3760,7 @@ Querschnitts 100}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_101.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 101}
 
 \end{figure}%
@@ -3673,7 +3773,7 @@ Querschnitts 101}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_102.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 102}
 
 \end{figure}%
@@ -3686,7 +3786,7 @@ Querschnitts 102}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_103.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 103}
 
 \end{figure}%
@@ -3699,7 +3799,7 @@ Querschnitts 103}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_104.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 104}
 
 \end{figure}%
@@ -3712,7 +3812,7 @@ Querschnitts 104}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_105.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 105}
 
 \end{figure}%
@@ -3725,7 +3825,7 @@ Querschnitts 105}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_106.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 106}
 
 \end{figure}%
@@ -3738,7 +3838,7 @@ Querschnitts 106}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_107.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 107}
 
 \end{figure}%
@@ -3751,7 +3851,7 @@ Querschnitts 107}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_108.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 108}
 
 \end{figure}%
@@ -3764,7 +3864,7 @@ Querschnitts 108}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_109.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 109}
 
 \end{figure}%
@@ -3777,7 +3877,7 @@ Querschnitts 109}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_110.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 110}
 
 \end{figure}%
@@ -3790,7 +3890,7 @@ Querschnitts 110}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_111.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 111}
 
 \end{figure}%
@@ -3803,7 +3903,7 @@ Querschnitts 111}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_112.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 112}
 
 \end{figure}%
@@ -3816,7 +3916,7 @@ Querschnitts 112}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_113.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 113}
 
 \end{figure}%
@@ -3829,7 +3929,7 @@ Querschnitts 113}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_114.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 114}
 
 \end{figure}%
@@ -3842,7 +3942,7 @@ Querschnitts 114}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_115.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 115}
 
 \end{figure}%
@@ -3855,7 +3955,7 @@ Querschnitts 115}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_116.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 116}
 
 \end{figure}%
@@ -3868,7 +3968,7 @@ Querschnitts 116}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_117.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 117}
 
 \end{figure}%
@@ -3881,7 +3981,7 @@ Querschnitts 117}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_118.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 118}
 
 \end{figure}%
@@ -3894,7 +3994,7 @@ Querschnitts 118}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_119.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 119}
 
 \end{figure}%
@@ -3907,7 +4007,7 @@ Querschnitts 119}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_120.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 120}
 
 \end{figure}%
@@ -3920,7 +4020,7 @@ Querschnitts 120}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_121.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 121}
 
 \end{figure}%
@@ -3933,7 +4033,7 @@ Querschnitts 121}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_122.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 122}
 
 \end{figure}%
@@ -3946,7 +4046,7 @@ Querschnitts 122}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_123.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 123}
 
 \end{figure}%
@@ -3959,7 +4059,7 @@ Querschnitts 123}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_124.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 124}
 
 \end{figure}%
@@ -3972,7 +4072,7 @@ Querschnitts 124}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_125.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 125}
 
 \end{figure}%
@@ -3985,7 +4085,7 @@ Querschnitts 125}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_126.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 126}
 
 \end{figure}%
@@ -3998,7 +4098,7 @@ Querschnitts 126}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_127.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 127}
 
 \end{figure}%
@@ -4011,7 +4111,7 @@ Querschnitts 127}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_128.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 128}
 
 \end{figure}%
@@ -4024,7 +4124,7 @@ Querschnitts 128}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_129.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 129}
 
 \end{figure}%
@@ -4037,7 +4137,7 @@ Querschnitts 129}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_130.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 130}
 
 \end{figure}%
@@ -4050,7 +4150,7 @@ Querschnitts 130}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_131.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 131}
 
 \end{figure}%
@@ -4063,7 +4163,7 @@ Querschnitts 131}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_132.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 132}
 
 \end{figure}%
@@ -4076,7 +4176,7 @@ Querschnitts 132}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_133.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 133}
 
 \end{figure}%
@@ -4089,7 +4189,7 @@ Querschnitts 133}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_134.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 134}
 
 \end{figure}%
@@ -4102,7 +4202,7 @@ Querschnitts 134}
 \begin{minipage}{0.50\linewidth}
 \includegraphics{index_files/mediabag/T6_m_chi/m_chi_135.pdf}\end{minipage}%
 
-\caption{\label{fig-m_chi_appendix}Momenten-Krümmungs-Beziehung des
+\caption{\label{fig-mchi_anhang}Momenten-Krümmungs-Beziehung des
 Querschnitts 135}
 
 \end{figure}%
