@@ -985,11 +985,10 @@ $$
  &b_{w_{A3V2}} &= 800.0\ \mathrm{mm} \; 
 \\[12pt]
  E_{sw_{A3V2}} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
- &E_{sh_{A3V2}} &= 1774.5\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &z_{A3V2} &= 140.0\ \mathrm{mm} \; 
+ &\theta_{c3_{A3V2}} &= 34.3\ \mathrm{°} \; 
 \\[12pt]
- \theta_{c3_{A3V2}} &= 34.3\ \mathrm{°} \; 
- &f_{su_{A3V2}} &= 630.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
+ f_{su_{A3V2}} &= 630.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
 
@@ -1136,7 +1135,9 @@ Der Vierpunktbiegeversuch ist aus der Publikation
 einen Träger mit rechteckigem Querschnitt, gelagert als einfacher
 Balken. Auffallend bei diesem Versuch ist die niedrig gehaltene
 Schubbewehrung. Dazu sind in Längsrichtung Stäbe mit unterschiedlicher
-Güte verlegt.
+Güte verlegt. Die Materialeigenschaften für den Bst 550 sind in
+{[}\citeproc{ref-marienhutte_produktdatenblatt_b550bpdf_nodate}{4}{]}
+ersichtlich.
 
 \begin{figure}[H]
 
@@ -1180,9 +1181,10 @@ eintritt. Die gemessenen Verformungen sind an der Stelle \(w_1\).
 \subsection{Modellierung}\label{modellierung-1}
 
 Das statische System ist in der Abbildung~\ref{fig-system-SV14} gezeigt.
-Auch hier wird das Eigengewicht, wie im Versuch A3V2, vernachlässigt.
-Die gemessene und rechnerisch bestimmte Verformung gelten für den
-Mittelspunkt, beschrieben mit \(w_1\).
+Die Auflagerbreite wird vernachlässigt. Die Messungen der Durchbiegungen
+zeigt, dass die Verformung bei \(F_A = 0\) ebenfalls null ist. Dies
+führt zur Annahme, dass der Einfluss des Eigengewichts nicht gemessen
+wurde. Somit wird dieses vernachlässigt.
 
 \begin{figure}[H]
 
@@ -1197,15 +1199,30 @@ Zeichnung entnommen aus {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}}
 
 \end{figure}%
 
-\subsection{Schnittgrössen}\label{schnittgruxf6ssen}
+Auf die Darstellung der biegesteifen Elemente mit Endgelenken wird
+verzichtet. Diese sind in einem Abstand von \(10\) mm entlang der
+Stabachse verteilt.
 
-\subsection{Drehfedercharakteristik}\label{drehfedercharakteristik}
+$$
+\begin{aligned}
+l_{E} &= 10.0\ \mathrm{mm} \; \;\textrm{(Elementlänge des Biegesteifen Stabs)}
+\end{aligned}
+$$
+
+Analog zum Dreipunktbiegeversuch wurde die Elementlänge mittels einer
+Sensitivitätsanalyse emittelt. Eine feinere Stabunterteilung liefert
+keine Verbesserung hinsichtlich der Präzision der Resultate.
+
+\subsubsection{Biegeverformungen}\label{biegeverformungen-1}
 
 Als Grundlage für die Drehfedercharakteristik gilt die
 Momenten-Krümmungs-Beziehung. Für den Querschnitt des Versuchs SV14 gilt
 die Beziehung gemäss Abbildung~\ref{fig-mchi_sv14}. Für detaillierte
 Berechnungen ist die Vorarbeit {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}
-zu konsultieren.
+zu konsultieren. Die Beziehung wurde basierend auf bilinearen
+Spannungs-Dehnungs-Beziehungen für den Betonstahl und linear-elastischen
+ideal-plastischen Spannungs-Dehnungs-Beziehungen für den Beton mit
+Berücksichtigung der Zugfestigkeit bestimmt.
 
 \begin{figure}[H]
 
@@ -1221,16 +1238,49 @@ Vierpunktbiegeversuchs, übernommen aus
 
 \end{figure}%
 
-\subsection{Versatzmass}\label{versatzmass}
+Die Momenten-Krümmungs-Beziehung beschreibt das Biegeverhalten des
+Querschnitts für positive Biegung. Der Querschnitt ist deutlich steifer
+vor dem Reissen. Nach dem Reissen des Querschnitts reduziert sich die
+Biegesteifigkeit, dargestellt mit dem Bereich mit der Zugversteifung.
+Die Zugversteifung wurde mittels dem Ansatz nach Marti, basierend auf
+dem Zuggurtmodell bestimmt. In diesem Bereich ist ebenfalls ein Knick
+erkennbar, dieser charaktisiert das Fliessen der schwächeren Bewehrung
+im Zugbereich. Der grosse Steifigkeitsabfall resultiert durch das
+Fliessen der starken Zugbewehrung.
 
-In diesem Kapitel wird das Versatzmass bestimmt. Bzw. im Vergleich mit
-der Vertiefungsarbeit {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}
-berichtigt. Es wird vom Versuch lediglich die starke Seite betrachtet,
-da durch Verstärkungsmassnahmen diese bis zum Versagen gebracht wird.
+\begin{figure}[H]
 
-Die Materialeigenschaften sind in
-{[}\citeproc{ref-marienhutte_produktdatenblatt_b550bpdf_nodate}{4}{]}
-ersichtlich.
+\centering{
+
+\includegraphics{index_files/mediabag/05_Versuchsnachrechnung_VM1_files/figure-pdf/fig-mphi_sv14-output-1.pdf}
+
+}
+
+\caption{\label{fig-mphi_sv14}Momenten-Verdrehungs-Beziehung des
+Vierpunktbiegeversuchs}
+
+\end{figure}%
+
+Die Momenten-Verdrehung-Beziehung ist in der
+Abbildung~\ref{fig-mphi_sv14} dargestellt. Diese ist den Stabendgelenken
+als Verdrehung in globaler \(Y\)-Richtung, gemäss dem Koordinatensystem
+in der Abbildung~\ref{fig-system-SV14}, zu hinterlegen. Da die
+Längsbewehrung nicht abgestuft ist, bzw. der Querschnitt für den
+gesamten Stab gilt, ist diese Beziehung für sämtliche Elemente gültig.
+
+\subsubsection{Versatzmass}\label{versatzmass}
+
+Das Versatzmass berücksichtigt die Längszugkraft aus der Querkraft. Zur
+Bestimmung des Versatzmass wird der Träger in Spannungsfelder
+eingeteilt. Die Neigung der Spannungsfelder wird mittels der Traglast
+bestimmt, welcher für den stärker schubbewehrten Bereich gilt. Es wird
+ein Neigungswinkel \(\theta_{c3}\) gewählt um einen Querkraftwiderstand
+zu erreichen, welcher der Traglast entspricht.
+
+Anhand der Spannungsfeldeinteilung wird der Gurtkraftverlauf für den
+unter- und den Obergurt bestimmt. Wird dem Zuggurt die Längszugkraft aus
+dem Biegemoment subtrahiert, so resultiert das Versatzmass. Dies wird
+folgend aufgezeigt. Zuerst sind die verwendeten Parameter aufgezeigt:
 
 $$
 \begin{aligned}
@@ -1249,8 +1299,9 @@ V_{exp_{sv14}} &= 105.0\ \mathrm{kN} \;
 \end{aligned}
 $$
 
-Mit den Parametern, bzw. der Neigung der Betondruckdiagonale resultiert
-der nötige Querkraftwiderstand.
+Mit der gewählten Neigung der Betondruckdiagonale resultiert der nötige
+Querkraftwiderstand. Dazu wird zuerst die Querschnittsfläche der
+Schubbewehrung bestimmt. Für den zweischenkligen Bügel folgt diese zu:
 
 $$
 \begin{aligned}
@@ -1264,6 +1315,8 @@ A_{sw_{SV14}} &= 29.0\ \mathrm{mm}^{2} \;
 \end{aligned}
 $$
 
+Verschmiert über einen Meterstreifen resultiert:
+
 $$
 \begin{aligned}
 a_{sw_{SV14}} &= \frac{ A_{sw_{SV14}} }{ S_{sw_{SV14}} } \; 
@@ -1275,6 +1328,8 @@ $$
 a_{sw_{SV14}} &= 193.6\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} \;
 \end{aligned}
 $$
+
+Und abschliessend folgt der Querkraftwiderstand zu:
 
 $$
 \begin{aligned}
@@ -1288,7 +1343,8 @@ V_{Rd_{SV14}} &= 103.8\ \mathrm{kN} \;
 \end{aligned}
 $$
 
-Die Spannungsfeldeinteilung ist in der
+Der Querkraftwiderstand ist etwa gleich der Querkraft beim Erreichen der
+Traglast. Die Spannungsfeldeinteilung ist in der
 Abbildung~\ref{fig-spannungsfelder_sv14} gezeigt. Die Feldneigung ist
 näherungsweise an die berechnete Neigung angepasst.
 
@@ -1305,7 +1361,9 @@ näherungsweise an die berechnete Neigung angepasst.
 \end{figure}%
 
 Wird nun Gleichgewicht an den entsprechenden Spannungsfeldern ausgeübt,
-so lässt sich der Zug- und Druckkraftverlauf bestimmen.
+so lässt sich der Zug- und Druckkraftverlauf bestimmen. Für den
+zentrierten Fächer beim Auflager gilt das Schnittkörperdiagramm in der
+Abbildung~\ref{fig-skd_1_spannungsfelder_sv14}.
 
 \begin{figure}[H]
 
@@ -1320,7 +1378,8 @@ zentrierten Fächers}
 
 \end{figure}%
 
-Die Kraft im Untergurt:
+Die Kraft im Untergurt lässt sich durch Momentengleichgewicht um den
+Punkt \(O'\) bestimmen.
 
 $$
 \begin{aligned}
@@ -1334,7 +1393,7 @@ F_{inf_{1}} &= 109.7\ \mathrm{kN} \;
 \end{aligned}
 $$
 
-Die Kraft im Obergurt:
+Durch das Gleichgewicht der horizontalen Kräfte folgt die Obergurtkraft:
 
 $$
 \begin{aligned}
@@ -1348,7 +1407,8 @@ F_{sup_{1}} &= 109.7\ \mathrm{kN} \;
 \end{aligned}
 $$
 
-Der Anteil an der Schubbewehrung:
+Mittels Gleichgewicht der vertikalen Kräfte folgt die Kraft in der
+Schubbewehrung:
 
 $$
 \begin{aligned}
@@ -1361,6 +1421,10 @@ $$
 f_{sw_{1}} &= 611.0\ \frac{\mathrm{kN}}{\mathrm{m}} \;
 \end{aligned}
 $$
+
+Am zentrierten Fächer schliesst das Parallelfeld an. Das entsprechende
+Schnittkörperdiagramm zeigt die
+Abbildung~\ref{fig-skd_2_spannungsfelder_sv14}.
 
 \begin{figure}[H]
 
@@ -1375,6 +1439,9 @@ Parallelfelds}
 
 \end{figure}%
 
+Durch Gleichgewicht der Momente um den Punkt \(O'\) folgt wiederum die
+Untergurtkraft:
+
 $$
 \begin{aligned}
 F_{inf_{2}} &= F_{B} \cdot \frac{ 3 }{ 2 } \cdot \frac{ z_{SV14} }{ \tan \left( \theta_{c3_{SV14}} \right) } \cdot \frac{1} { z_{SV14} } \; 
@@ -1386,6 +1453,8 @@ $$
 F_{inf_{2}} &= 329.0\ \mathrm{kN} \;
 \end{aligned}
 $$
+
+Die Obergurtkraft folgt aus dem Gleichgewicht der horizontalen Kräfte:
 
 $$
 \begin{aligned}
@@ -1399,6 +1468,8 @@ F_{sup_{2}} &= 329.0\ \mathrm{kN} \;
 \end{aligned}
 $$
 
+Abschliessend folgt die Kraft in der Schubbewehrung zu:
+
 $$
 \begin{aligned}
 f_{sw_{2}} &= \frac{ F_{B} }{ z_{SV14} } \cdot \frac{1} { \tan \left( \theta_{c3_{SV14}} \right) } \; 
@@ -1410,6 +1481,9 @@ $$
 f_{sw_{2}} &= 611.0\ \frac{\mathrm{kN}}{\mathrm{m}} \;
 \end{aligned}
 $$
+
+Das Schnittkörperdiagramm bei der Krafteinleitung ist in der
+Abbildung~\ref{fig-skd_3_spannungsfelder_sv14} gezeigt.
 
 \begin{figure}[H]
 
@@ -1424,6 +1498,8 @@ zentrierten Fächers 2}
 
 \end{figure}%
 
+Die Untergurtkraft folgt zu:
+
 $$
 \begin{aligned}
 F_{inf_{3}} &= F_{B} \cdot 2 \cdot \frac{ z_{SV14} }{ \tan \left( \theta_{c3_{SV14}} \right) } \cdot \frac{1} { z_{SV14} } \; 
@@ -1436,6 +1512,8 @@ F_{inf_{3}} &= 438.7\ \mathrm{kN} \;
 \end{aligned}
 $$
 
+Die Obergurtkraft entspricht dabei:
+
 $$
 \begin{aligned}
 F_{sup_{3}} &= F_{inf_{3}} \; 
@@ -1447,6 +1525,12 @@ $$
 F_{sup_{3}} &= 438.7\ \mathrm{kN} \;
 \end{aligned}
 $$
+
+Damit ist abschliessend der Gurtkraftverlauf definiert. Dargestellt ist
+dieser in Abbildung~\ref{fig-gurtkraft_sv14}. Ebenfalls aufgezeigt ist
+der Anteil im Untergurt aus dem Biegemoment. Die Differenz zwischen der
+gesamten Untergurtkraft und dem Anteil aus dem Biegemoment führt zum
+Versatzmass.
 
 \begin{figure}[H]
 
@@ -1472,6 +1556,11 @@ Versatzmoment.
 \Delta_M = \Delta_F \cdot z
 \]
 
+Das Versatzmoment ist in der Abbildung~\ref{fig-versatzmoment_sv14}
+entlang der Stabachse aufgezeigt. Dieses wird dem Modell auf Seiten der
+Einwirkung hinterlegt. Es wird ein Lastfall definiert, welcher zu dem
+Biegemomentenverlauf gemäss dem Versatzmass führt.
+
 \begin{figure}[H]
 
 \centering{
@@ -1485,16 +1574,20 @@ der Stabachse}
 
 \end{figure}%
 
-\subsection{Wegfedercharakteristik}\label{wegfedercharakteristik}
+\subsubsection{Schubverformungen}\label{schubverformungen-1}
 
-\subsubsection{Schiebung}\label{schiebung}
-
-Die Wegfedercharakteristik basiert auf der Spannungsfeldmodellierung
-gemäss der Abbildung~\ref{fig-spannungsfelder_sv14}. Die Einteilung in
-Spannungsfelder ermöglicht die Bestimmung der mitwirkenden
-Schubbewehrung beim Versagen des Querschnitts. Die Neigung des Feldes
-ist so gewählt damit der Querkraftwiderstand der Schubbewehrung der
-Traglast des Systems entspricht.
+Die Schubverformungen werden im Modell mittels einer
+Wegfedercharakteristik in globaler \(Z\)-Richtung, gemäss dem
+Koordinatensystem in der Abbildung~\ref{fig-system-SV14},
+berücksichtigt. Die Wegfedercharakteristik basiert auf der
+Spannungsfeldmodellierung gemäss der
+Abbildung~\ref{fig-spannungsfelder_sv14}. Es wird vorausgesetzt, dass
+sämtliche Verformung aus der Schubbewehrung erfolgt, ein Mitwirken des
+Betons wird vernachlässigt. Die Einteilung in Spannungsfelder ermöglicht
+die Bestimmung der mitwirkenden Schubbewehrung beim Versagen des
+Querschnitts. Die Neigung des Feldes ist so gewählt damit der
+Querkraftwiderstand der Schubbewehrung der Traglast des Systems
+entspricht.
 
 \begin{figure}[H]
 
@@ -1510,32 +1603,28 @@ Schubbewehrung, übernommen aus
 
 \end{figure}%
 
-Folgend sind die Parameter zur Bestimmung der Wegfedercharakteristik in
-vertikaler Richtung gezeigt.
+Wird das Spannungs-Dehnungs-Verhalten gemäss der
+Abbildung~\ref{fig-sigma-epsilon-sv14} berücksichtigt. So resultiert mit
+der Querschnittsfläche der Schubbewehrung pro Spannungsfeld die
+entsprechende Kraftkomponente der Wegfedercharakteristik. Die
+Verformungskomponente entspricht der Dehnung multipliziert mit dem
+Hebelarm der inneren Kräfte. Dies führt zum Kraft-Verformungs-Verhalten
+für ein Spannungsfeld. Um die Wegfedercharakteristik eines einzelnen
+Stabendgelenks zu erhalten, ist die Verformung um die Anzahl an
+Stabelementen im Spannungsfeld zu reduzieren.
+
+Die verwendeten Parameter sind bereits bei der Bestimmung des
+Versatzmass aufgezeigt, lediglich der Elastizitätsmodul findet noch
+Einfluss in die Berechnung.
 
 $$
 \begin{aligned}
-E_{sw_{SV14}} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
- &E_{sh_{SV14}} &= 3487.1\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
+E_{sw_{SV14}} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
 
-Die Querschnittsfläche der Schubbewehrung und der Bewehrungsgehalt
-bestimmt sich zu:
-
-$$
-\begin{aligned}
-\rho_{sw_{SV14}} &= \frac{ a_{sw_{SV14}} }{ b_{w_{SV14}} } \; 
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-\rho_{sw_{SV14}} &= 0.11\ \mathrm{\%} \;
-\end{aligned}
-$$
-
-Der Reduktionsfaktor bestimmt sich zu:
+Der Reduktionsfaktor zur Erhöhung der Steifigkeit des Stabendgelenks
+folgt zu:
 
 $$
 \begin{aligned}
@@ -1551,7 +1640,8 @@ $$
 
 Die Abbildung~\ref{fig-wegfeder-schub-sv14} zeigt das
 Kraft-Verformungs-Verhalten für die Gelenke des Stabmodells in
-vertikaler Richtung.
+vertikaler Richtung. Das Verhalten ist analog dem des biliniearen
+Spannungs-Dehnungs-Diagramms.
 
 \begin{figure}[H]
 
@@ -1566,15 +1656,13 @@ Wegfedercharakteristik des Schubgelenks vom Versuch SV14}
 
 \end{figure}%
 
-\subsection{Versuchsvergleich}\label{versuchsvergleich}
+\subsection{Ergebnisse}\label{ergebnisse-1}
 
 Mit den bestimmten Federcharakteristiken kann die Biegelinie des Systems
 ermittelt werden unter Berücksichtigung der Schub- und Biegeverformungen
 auf nicht-linearen Grundlagen. Die Abbildung~\ref{fig-l-w-sv14} zeigt
 das Last-Verformungs-Diagramm des Systems am Punkt \(w_1\). Der
-Verformungsverlauf zeigt Abweichungen zu den gemessenen Resultate. Dies
-ist auf das Unterschlagen der Längszugkraft aus Querkraft
-zurückzuführen.
+Verformungsverlauf zeigt Abweichungen zu den gemessenen Resultate.
 
 \begin{figure}[H]
 
@@ -1586,6 +1674,47 @@ zurückzuführen.
 
 \caption{\label{fig-l-w-sv14}Last-Verformungs-Verlauf am Punkt \(w_1\),
 für das Federmodell und den Versuch}
+
+\end{figure}%
+
+Bis zum Erreichen des ersten Knicks im Verlauf des Federmodells ist das
+Modell etwas zu steif. Trotzdem ist dies akzeptabel. Der Knick
+resultiert aus dem Fliessen der Schubbewehrung. Bei den
+Versuchsresultaten ist bei gleicher Verformung ebenfalls ein Knick zu
+erkennen. Jedoch lässt sich daraus schliessen, dass die Schubbewehrung
+bei einem zu hohen Lastniveau beginnt zu fliessen, sowie ist das
+verfestigende Verhalten nicht gleich mit dem Versuchsverhalten.
+Möglicherweise müssten die Fliessspannung und die Zugfestigkeit der
+Schubbewehrung angepasst werden, bzw. nicht aus genormten
+Produktedokumentation entnommen werden. Sondern aus effektiven
+Materialproben.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/05_Versuchsnachrechnung_VM1_files/figure-pdf/fig-phi-max-sv14-output-1.pdf}
+
+}
+
+\caption{\label{fig-phi-max-sv14}Verdrehungsverlauf aus dem Federmodell
+für die Höchstlast des Versuchs SV14}
+
+\end{figure}%
+
+Der Krümmungsverlauf gibt Aufschluss über den Fliessbereich der
+Bewehrung, bzw. über den Steifigkeitenverlauf entlang der Stabachse.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/05_Versuchsnachrechnung_VM1_files/figure-pdf/fig-chi-max-sv14-output-1.pdf}
+
+}
+
+\caption{\label{fig-chi-max-sv14}Berechneter Krümmungsverlauf aus dem
+Verdrehungsverlauf für den Versuch SV14}
 
 \end{figure}%
 
