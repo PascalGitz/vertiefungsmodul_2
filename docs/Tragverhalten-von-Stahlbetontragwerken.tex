@@ -385,7 +385,7 @@ E &= 10000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
  &k_{\varphi_{1}} &= 100000.0\ \frac{\mathrm{N} \cdot \mathrm{m}}{\mathrm{rad}} \; 
  &k_{\varphi_{2}} &= 10000.0\ \frac{\mathrm{N} \cdot \mathrm{m}}{\mathrm{rad}} \; 
 \\[12pt]
- l_{Kragarm} &= 5.0\ \mathrm{m} \; 
+ L &= 5.0\ \mathrm{m} \; 
  &z &= 400.0\ \mathrm{mm} \; 
  &b &= 200.0\ \mathrm{mm} \; 
 \\[12pt]
@@ -463,7 +463,7 @@ Die maximale Verformung am Endpunkt des Kragarms beträgt:
 
 $$
 \begin{aligned}
-w_{bendingF1} &= 39.1\ \mathrm{mm} \;
+w_{EI_{F1}} &= 39.1\ \mathrm{mm} \;
 \end{aligned}
 $$
 
@@ -489,14 +489,14 @@ entspricht der Faktor der Erhöhung des Verformung dem Quotient der
 beiden Laststufen.
 
 \[
-\frac{w_{1,Bending,F2}}{w_{1,Bending,F1}} = \frac{F_2}{F_1}
+\frac{w_{EI_{F2}}}{w_{EI_{F1}}} = \frac{F_2}{F_1}
 \]
 
 Dabei entspricht die maximale Biegeverformung am Ende des Kragarms:
 
 $$
 \begin{aligned}
-w_{bendingF2} &= 84.0\ \mathrm{mm} \;
+w_{EI_{F2}} &= 84.0\ \mathrm{mm} \;
 \end{aligned}
 $$
 
@@ -541,7 +541,7 @@ Die Verformung der Drehfeder kann abschliessend mit der folgenden
 Gleichung bestimmt werden.
 
 \[
-w_{Spring} = \bar{M} \frac{M}{k_\varphi} = \bar{M} \varphi
+w_{\varphi} = \bar{M} \frac{M}{k_\varphi} = \bar{M} \varphi
 \]
 
 Die Verdrehung lässt sich aus der Federcharakteristik mit dem
@@ -567,8 +567,8 @@ für die beiden Laststufen die Deformationen der Drehfeder zu:
 
 $$
 \begin{aligned}
-w_{spring_{F1}} &= 625.0\ \mathrm{mm} \; 
- &w_{spring_{F2}} &= 2201.3\ \mathrm{mm} \;
+w_{\varphi_{F1}} &= 625.0\ \mathrm{mm} \; 
+ &w_{\varphi_{F2}} &= 2201.3\ \mathrm{mm} \;
 \end{aligned}
 $$
 
@@ -577,9 +577,9 @@ Verformung folgt zu:
 
 $$
 \begin{aligned}
-w_{tot_{F1}} &= w_{spring_{F1}} + w_{bendingF1}  = 625.0\ \mathrm{mm} + 39.1\ \mathrm{mm} &= 664.1\ \mathrm{mm}  
+w_{F1} &= w_{\varphi_{F1}} + w_{EI_{F1}}  = 625.0\ \mathrm{mm} + 39.1\ \mathrm{mm} &= 664.1\ \mathrm{mm}  
 \\[12pt]
-w_{tot_{F2}} &= w_{spring_{F2}} + w_{bendingF2}  = 2201.3\ \mathrm{mm} + 84.0\ \mathrm{mm} &= 2285.2\ \mathrm{mm}  
+w_{F2} &= w_{\varphi_{F2}} + w_{EI_{F2}}  = 2201.3\ \mathrm{mm} + 84.0\ \mathrm{mm} &= 2285.2\ \mathrm{mm}  
 \end{aligned}
 $$
 
@@ -1718,20 +1718,30 @@ Verdrehungsverlauf für den Versuch SV14}
 
 \end{figure}%
 
+\section{Schlussfolgerung}\label{schlussfolgerung}
+
+Das Kapitel der Modellverifizierung zeigt auf, dass mittels dem Modell
+die Versuchsresultate zufriedenstellend nachgerechnet werden können. Das
+Modell ermöglicht die Berücksichtigung des Versatzmass, sowie
+Verformungen basierend auf nicht-linearen Biege- und Schubbeziehung.
+
 \bookmarksetup{startatroot}
 
 \chapter{Vorgespannter Träger}\label{vorgespannter-truxe4ger}
 
-Die folgende Versuchsnachrechnung zeigt die Möglichkeiten des Modells im
-Bezug mit einer Vorspannung.
+Nachdem das Kapitel der Modellverifizierung die Anwendbarkeit des
+Modells bestätigt hat, wird in diesem Kapitel ein Versuch eines
+vorgespannten Trägers mittels dem Federmodell nachgerechnet. Es wird die
+Bestimmung der Momenten-Krümmungs-Beziehung aufgezeigt. Auf das
+Versatzmass und auf die Schubverformungen wird nicht eingegangen.
 
 \section{Versuchsbeschrieb}\label{versuchsbeschrieb}
 
-In diesem Kapitel wird der vorgespannte Träger T6 nach dem
-Versuchsbericht {[}\citeproc{ref-sigrist_versuche_1993}{5}{]} mit dem
-Drehfedermodell nachgerechnet. Es handelt sich um einen einfachen Balken
-mit einer Auskragung. Die Geometrie des Versuchs in Längsrichtung ist in
-Abbildung~\ref{fig-geometrie_t6} gezeigt.
+Der vorgespannte Träger T6 ist im Versuchsbericht
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]} aufgezeigt. Es handelt
+sich um einen einfachen Balken mit einer Auskragung. Die Geometrie des
+Versuchs in Längsrichtung ist in Abbildung~\ref{fig-geometrie_t6}
+gezeigt.
 
 \begin{figure}[H]
 
@@ -1766,7 +1776,8 @@ Versuchsträgers T6, entnommen aus
 Die Lastsituation zeigt die Abbildung~\ref{fig-last_t6}. Am Ende des
 Kragarms greift eine Einzellast \(P\) an. Mit \(Q\) wird eine
 Streckenlast simuliert. Der Träger ist an den Punkten \(A\) und \(B\)
-einfach gelagert.
+gelenkig gelagert. Zusätzlich ist der Träger beim Auflager \(B\)
+horizontal gehalten.
 
 \begin{figure}[H]
 
@@ -1783,7 +1794,8 @@ Versuchsträgers T6, entnommen aus
 \end{figure}%
 
 Die verlegte schlaffe Bewehrung in Längsrichtung ist in der
-Abbildung~\ref{fig-bewehrung_laengs_t6} gezeigt.
+Abbildung~\ref{fig-bewehrung_laengs_t6} gezeigt. Diese ist an mehreren
+Punkten abgestuft. Die Stosslänge beträgt jeweils \(60\) cm.
 
 \begin{figure}[H]
 
@@ -1817,7 +1829,8 @@ Versuchsträgers T6, entnommen aus
 \end{figure}%
 
 Die Führung der Vorspannung ist in der
-Abbildung~\ref{fig-vorspannung_t6} gezeigt.
+Abbildung~\ref{fig-vorspannung_t6} gezeigt. Das Kabel konnte im Mittel
+bis auf \(730\) kN vorgespannt werden.
 
 \begin{figure}[H]
 
@@ -1834,16 +1847,23 @@ Versuchsträgers T6. Horizontaler Abstand {[}m{]} und vertikale Position
 
 \end{figure}%
 
-\section{Parameter}\label{parameter}
+Zunächst wird die Einzelllast \(P\) gesteigert bis ca. \(490\) kN. Ab
+dieser Stufe wurde die Einzellast konstant gehalten, die Streckenlast
+\(Q\) wurde abschliessend erhöht, bis der Träger versagte. Das Versagen
+geschah schlagartig, durch das Versagen der Vorspannlitzen.
+
+\subsection{Parameter}\label{parameter}
 
 In diesem Abschnitt werden die allgemein verwendeten Parameter
 aufgelistet. Gegliedert nach den einzelnen Aspekten des Versuchs.
 
-\subsection{Vorspannung}\label{vorspannung}
+\subsubsection{Vorspannung}\label{vorspannung}
 
-Die Parameter der Vorspannung sind die Folgenden. Es ist die Initiale
-Vorspannkraft, sowie die entsprechenden Querschnittseigenschaften
-aufgezeigt:
+Der folgende Abschnitt charakterisiert die Vorspannung. Aufgezeigt ist
+die mittlere initiale Vorspannkraft, die Fliessgrenze der Litzen, sowie
+deren Zugfestigkeit und entprechende Bruchdehnung. Ebenfalls dargestellt
+ist der Elasitzitätsmodul, die Querschnittsfläche des Spannglieds und
+der angewendete Verlustfaktor.
 
 $$
 \begin{aligned}
@@ -1874,7 +1894,7 @@ P_{\infty} &= 657.0\ \mathrm{kN} \;
 \end{aligned}
 $$
 
-Die Spannung im Spannstahl:
+Die Spannung im Spannglied aufgrund der Vorspannung defniert sich zu:
 
 $$
 \begin{aligned}
@@ -1888,11 +1908,31 @@ $$
 \end{aligned}
 $$
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-8-output-1.pdf}
+Wird nun das Spannungs-Dehnungs-Verhalten des Spannstahls betrachtet, so
+ist ersichtlich, dass durch die Vorspannung die Spannlitzen noch nicht
+ausgeschöpft sind. Dargestellt ist dies in der
+Abbildung~\ref{fig-ausnutzung_sigma_p}. Unter dieser Voraussetzung
+beteiligt sich das Vorspannkabel ebenfalls am Abtrag der Biegemomente,
+bzw. fliesst in die Momenten-Krümmungs-Beziehung mit ein.
 
-\subsection{Beton}\label{beton}
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-ausnutzung_sigma_p-output-1.pdf}
+
+}
+
+\caption{\label{fig-ausnutzung_sigma_p}Spannungs-Dehnungs-Beziehung der
+Spannlitzen mit ergänzter Ausnutzung durch die Vorspannung}
+
+\end{figure}%
+
+\subsubsection{Beton}\label{beton}
 
 Die Parameter sind Mittelwerte aus Betonwürfel- und Betonzylinderproben.
+Entnommen aus dem Versuchsbericht
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}.
 
 $$
 \begin{aligned}
@@ -1905,24 +1945,14 @@ f_{c} &= 52.10\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
 
-Das Spannungs-Dehnungs-Verhalten des Betons ist in der
-Abbildung~\ref{fig-sigma_epc_t6} dargestellt. Definiert ist das
-Verhalten im positiven Spannungsbereich bis zum Erreichen der
-Betonzugfestigkeit \(f_{cts}\). Das Verhalten im negativen
-Spannungsbereich wird mit einem linear-elastischem ideal-plastischem
-Verhalten approximiert.
+\subsubsection{Betonstahl}\label{betonstahl}
 
-\subsection{Betonstahl}\label{betonstahl}
-
-Mittelwerte der Zugproben.
+Mittelwerte der Zugproben. Ebenfalls entnommen aus dem Versuchsbericht
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}.
 
 $$
 \begin{aligned}
-\oslash_{1} &= 10.0\ \mathrm{mm} \; 
- &\oslash_{2} &= 12.0\ \mathrm{mm} \; 
- &\oslash_{3} &= 14.0\ \mathrm{mm} \; 
-\\[10pt]
- f_{sy} &= 500.0\ \mathrm{MPa} \; 
+f_{sy} &= 500.0\ \mathrm{MPa} \; 
  &f_{st} &= 630.0\ \mathrm{MPa} \; 
  &\varepsilon_{sv} &= 2.4\ \mathrm{\%} \; 
 \\[10pt]
@@ -1930,18 +1960,11 @@ $$
 \end{aligned}
 $$
 
-Die entsprechende Spannungs-Dehnungs-Beziehung ist in
-Abbildung~\ref{fig-sigma_eps_t6} gezeigt. Als Annahme gilt, dass die
-Stäbe lediglich unter Zug belastet werden. Die Druckbewehrung wird bei
-der Bestimmung der Momenten-Krümmungs-Beziehung vernachlässigt. Das
-Verhalten wird mit einem Bilinearem Verhalten approximiert.
-
 \subsection{Geometrie}\label{geometrie}
 
-\subsubsection{Querschnitt}\label{querschnitt}
-
 Die Parameter der Geometrie des Querschnitts beziehen sich auf die
-Abbildung~\ref{fig-geometrie_qs_t6}.
+Abbildung~\ref{fig-geometrie_qs_t6}. Der Schwerpunkt \(S_z\) des
+Querschnitts ist von der Unterkante aus gemessen.
 
 $$
 \begin{aligned}
@@ -1951,37 +1974,17 @@ h_{1} &= 180.0\ \mathrm{mm} \;
 \\[10pt]
  h_{4} &= 30.0\ \mathrm{mm} \; 
  &h_{5} &= 140.0\ \mathrm{mm} \; 
- &h_{tot} &= 800.0\ \mathrm{mm} \; 
+ &h &= 800.0\ \mathrm{mm} \; 
 \\[10pt]
  b_{1_{inf}} &= 90.0\ \mathrm{mm} \; 
  &b_{2_{inf}} &= 220.0\ \mathrm{mm} \; 
  &b_{3_{inf}} &= 90.0\ \mathrm{mm} \; 
 \\[10pt]
- b_{tot_{inf}} &= 400.0\ \mathrm{mm} \; 
- &b_{tot_{sup}} &= 800.0\ \mathrm{mm} \; 
+ b_{inf} &= 400.0\ \mathrm{mm} \; 
+ &b_{sup} &= 800.0\ \mathrm{mm} \; 
  &S_{z} &= \mathtt{\text{464.00 mm}} \; 
 \\[10pt]
-\end{aligned}
-$$
-
-Schwerpunkt des Querschnitts von der Unterkante aus gemessen:
-
-\subsubsection{Längsrichtung}\label{luxe4ngsrichtung}
-
-Der Abschluss des Querschnitts wird nicht mehr weiter verfolgt.
-Vereinfacht wird der I-Querschnitt als konstant über die Länge
-betrachtet.
-
-Die beschriebenen Abmessungen \(L_n\) sind jeweils vom Stabanfang
-gemessen.
-
-$$
-\begin{aligned}
-L_{1} &= 3500.0\ \mathrm{mm} \; 
- &L_{2} &= 9600.0\ \mathrm{mm} \; 
- &L_{3} &= 500.0\ \mathrm{mm} \; 
-\\[10pt]
- L_{tot} &= 13600.0\ \mathrm{mm} \;
+ L &= 13600.0\ \mathrm{mm} \;
 \end{aligned}
 $$
 
@@ -2025,7 +2028,7 @@ $$
 
 \subsubsection{Vorspannung}\label{vorspannung-1}
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-20-output-1.pdf}
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-19-output-1.pdf}
 
 \[
 u_p(x) \simeq z_p(x)'' \cdot P
@@ -2212,7 +2215,7 @@ Die statische Höhe wird abgeschätzt und beträgt:
 
 $$
 \begin{aligned}
-d_{1} &= h_{tot} - \frac{ h_{5} }{ 2 } \; 
+d_{1} &= h - \frac{ h_{5} }{ 2 } \; 
 \end{aligned}
 $$
 
@@ -2227,7 +2230,7 @@ Druckzonenhöhe bestimmen:
 
 $$
 \begin{aligned}
-x_{1} &= \frac{ A_{s_{1}} \cdot f_{st} + A_{p} \cdot \left( f_{pt} - \sigma_{P_{\infty}} \right) + P_{\infty} }{ b_{tot_{inf}} \cdot 0.85 \cdot f_{c} } \; 
+x_{1} &= \frac{ A_{s_{1}} \cdot f_{st} + A_{p} \cdot \left( f_{pt} - \sigma_{P_{\infty}} \right) + P_{\infty} }{ b_{inf} \cdot 0.85 \cdot f_{c} } \; 
 \end{aligned}
 $$
 
@@ -2241,7 +2244,7 @@ Mit welcher der Biegewiderstand ermittelt werden kann.
 
 $$
 \begin{aligned}
-M_{R1} &= \left( A_{s_{1}} \cdot f_{sy} + A_{p} \cdot \left( f_{py} - \sigma_{P_{\infty}} \right) \right) \cdot \left( d_{1} - S_{z} \right) + 0.85 \cdot b_{tot_{inf}} \cdot f_{c} \cdot x_{1} \cdot \left( S_{z} - 0.425 \cdot x_{1} \right) \; 
+M_{R1} &= \left( A_{s_{1}} \cdot f_{sy} + A_{p} \cdot \left( f_{py} - \sigma_{P_{\infty}} \right) \right) \cdot \left( d_{1} - S_{z} \right) + 0.85 \cdot b_{inf} \cdot f_{c} \cdot x_{1} \cdot \left( S_{z} - 0.425 \cdot x_{1} \right) \; 
 \end{aligned}
 $$
 
@@ -2302,7 +2305,7 @@ Die abgeschätzte statische Höhe:
 
 $$
 \begin{aligned}
-d_{2} &= h_{tot} - \frac{ h_{1} }{ 2.5 } \; 
+d_{2} &= h - \frac{ h_{1} }{ 2.5 } \; 
 \end{aligned}
 $$
 
@@ -2316,7 +2319,7 @@ Mit horizontalem Gleichgewicht der Kräfte folgt die Druckzonenhöhe zu:
 
 $$
 \begin{aligned}
-x_{2} &= \frac{ A_{s_{2}} \cdot f_{st} + P_{\infty} }{ b_{tot_{sup}} \cdot 0.85 \cdot f_{c} } \; 
+x_{2} &= \frac{ A_{s_{2}} \cdot f_{st} + P_{\infty} }{ b_{sup} \cdot 0.85 \cdot f_{c} } \; 
 \end{aligned}
 $$
 
@@ -2328,7 +2331,7 @@ $$
 
 $$
 \begin{aligned}
-M_{R2} &= A_{s_{2}} \cdot f_{sy} \cdot \left( d_{2} - S_{z} \right) + 0.85 \cdot b_{tot_{sup}} \cdot f_{c} \cdot x_{2} \cdot \left( S_{z} - 0.425 \cdot x_{2} \right) \; 
+M_{R2} &= A_{s_{2}} \cdot f_{sy} \cdot \left( d_{2} - S_{z} \right) + 0.85 \cdot b_{sup} \cdot f_{c} \cdot x_{2} \cdot \left( S_{z} - 0.425 \cdot x_{2} \right) \; 
 \end{aligned}
 $$
 
@@ -2384,16 +2387,7 @@ numerisch gelöst, dazu grobe Abschätzung der Grenzpunkte aufgezeigt}
 
 \centering{
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-sigma_epc_t6-output-1.pdf}
-
-}
-
-\caption{\label{fig-sigma_epc_t6}Spannungs-Dehnungs-Verhalten des
-Betons}
-
-\end{figure}%
-
-\begin{figure}[H]
+\captionsetup{labelsep=none}
 
 \centering{
 
@@ -2401,10 +2395,28 @@ Betons}
 
 }
 
-\caption{\label{fig-sigma_eps_t6}Spannungs-Dehnungs-Verhalten des
+\subcaption{\label{fig-sigma_eps_t6-1}Spannungs-Dehnungs-Verhalten des
 Betonstahls}
 
+\centering{
+
+\captionsetup{labelsep=none}\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-sigma_eps_t6-output-2.pdf}
+
+}
+
+\subcaption{\label{fig-sigma_eps_t6-2}}
+
+}
+
+\caption{\label{fig-sigma_eps_t6}}
+
 \end{figure}%
+
+Die entsprechende Spannungs-Dehnungs-Beziehung ist in
+Abbildung~\ref{fig-sigma_eps_t6} gezeigt. Als Annahme gilt, dass die
+Stäbe lediglich unter Zug belastet werden. Die Druckbewehrung wird bei
+der Bestimmung der Momenten-Krümmungs-Beziehung vernachlässigt. Das
+Verhalten wird mit einem Bilinearem Verhalten approximiert.
 
 Die Spannungs-Dehnungs-Beziehung des Spannstahls wird mit der
 Vorspannspannung \(\sigma_{P\infty}\) reduziert.
