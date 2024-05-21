@@ -217,7 +217,7 @@
 \title{Tragverhalten von Stahlbetontragwerken}
 
 \subtitle
-{Ansätze zur Modellierung}
+{Verformungsberechnungen mittels Federmodell}
 
 %\thanks{
 %Version 1.0
@@ -746,7 +746,7 @@ Nachvollziehen der Resultate.
 
 \bookmarksetup{startatroot}
 
-\chapter{Modellverifizierung}\label{modellverifizierung}
+\chapter{Modellverifizierung}\label{sec-verifizierung}
 
 Diese Kapitel beschreibt die Anwendung des Drehfedermodells auf die
 beiden Versuche der Vorarbeit {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}.
@@ -1729,7 +1729,7 @@ Verformungen basierend auf nicht-linearen Biege- und Schubbeziehung.
 
 \chapter{Vorgespannter Träger}\label{vorgespannter-truxe4ger}
 
-Nachdem das Kapitel der Modellverifizierung die Anwendbarkeit des
+Nachdem das Kapitel~\ref{sec-verifizierung} die Anwendbarkeit des
 Modells bestätigt hat, wird in diesem Kapitel ein Versuch eines
 vorgespannten Trägers mittels dem Federmodell nachgerechnet. Es wird die
 Bestimmung der Momenten-Krümmungs-Beziehung aufgezeigt. Auf das
@@ -1960,7 +1960,7 @@ f_{sy} &= 500.0\ \mathrm{MPa} \;
 \end{aligned}
 $$
 
-\subsection{Geometrie}\label{geometrie}
+\subsubsection{Geometrie}\label{geometrie}
 
 Die Parameter der Geometrie des Querschnitts beziehen sich auf die
 Abbildung~\ref{fig-geometrie_qs_t6}. Der Schwerpunkt \(S_z\) des
@@ -1988,53 +1988,133 @@ h_{1} &= 180.0\ \mathrm{mm} \;
 \end{aligned}
 $$
 
-\subsubsection{Lasten}\label{lasten}
+\section{Versuchsergebnisse}\label{versuchsergebnisse}
 
-$$
-\begin{aligned}
-L_{P} &= 0.5\ \mathrm{m} \; 
- &L_{q} &= 3.8\ \mathrm{m} \; 
- &l_{q} &= 9.0\ \mathrm{m} \; \;\textrm{(Streckenlast)}
-\\[10pt]
-\end{aligned}
-$$
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_durchbiegung_laengs.pdf}
+
+}
+
+\caption{\label{fig-durchbiegung_laengs_t6}Verformungsverlauf des
+Versuchsträgers T6, entnommen aus
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_durchbiegungen.pdf}
+
+}
+
+\caption{\label{fig-durchbiegung_t6}Last-Verformungs-Verhalten des
+Versuchsträgers T6, entnommen aus
+{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
+
+\end{figure}%
 
 \section{Modellierung}\label{modellierung-2}
 
+Der Versuch wird mittels dem Federmodell modelliert. Als Grundlage dient
+das statische System in der \textbf{?@fig-system\_t6}. Die
+Auflagerbreiten sind vernachlässigt. Sowie wird das Eigengewicht nicht
+berücksichtigt. Auf die Darstellung der Federn wird verzichtet. Diese
+sind in einem Abstand von \(l_E\) angeordnet.
+
 $$
 \begin{aligned}
-l_{E} &= 10.0\ \mathrm{cm} \;
+l_{E} &= 10.0\ \mathrm{cm} \; \;\textrm{(Elementlänge des biegesteifen Stabs)}
 \end{aligned}
 $$
 
+Die Elementlänge wird im Vergleich mit den Versuchen aus dem Kapitel
+Kapitel~\ref{sec-verifizierung} deutlich grober gewählt. Dies ist auf
+die aufwändige Bestimmung der Momenten-Krümmungs-Beziehung
+zurückzuführen.
+
 \subsection{Lastfälle}\label{lastfuxe4lle}
+
+In diesem Abschnitt wird speziell auf die modellierung der Lasten
+eingegangen. Diese sind im Vergleich mit den beiden Versuchen aus dem
+Kapitel~\ref{sec-verifizierung} etwas komplexer. Es wird zwischen dem
+Lastfall der Versuchslast und der Einwirkung durch die Vorspannung
+unterschieden.
 
 \subsubsection{Versuch}\label{versuch}
 
-Der Versuch wird in den folgenden Laststufen belastet.
+Gemäss dem Versuchsbeschrieb lässt sich der Träger bis zu den folgenden
+maximalen Lasten belasten:
 
 $$
 \begin{aligned}
 Q_{max} &= 1638.0\ \mathrm{kN} \; 
- &P_{max} &= 512.0\ \mathrm{kN} \;
+ &P_{max} &= 512.0\ \mathrm{kN} \; 
+ &L_{q} &= 9.0\ \mathrm{m} \; 
+\\[10pt]
 \end{aligned}
 $$
+
+Die mit \(Q\) simulierte Streckenlast wird als effektive Streckenlast
+modelliert. Dies führt zu folgender Grösse:
 
 $$
 \begin{aligned}
-q_{Q} &= \frac{ Q_{max} }{ l_{q} }  = \frac{ 1638.0\ \mathrm{kN} }{ 9.0\ \mathrm{m} } &= 182.0\ \frac{\mathrm{kN}}{\mathrm{m}}  
+q_{Q_{max}} &= \frac{ Q_{max} }{ L_{q} }  = \frac{ 1638.0\ \mathrm{kN} }{ 9.0\ \mathrm{m} } &= 182.0\ \frac{\mathrm{kN}}{\mathrm{m}}  
 \end{aligned}
 $$
 
+Im Stabstatik-Modell werden zwei Lastfälle definiert zum Abbilden der
+Versuchslast. Zum einen wird die maximale Einzellast \(P_{LS8}\) und die
+entsprechende Streckenlast \(q_{LS8}\) gemäss der Laststufe 8,
+aufgezeigt in der Abbildung~\ref{fig-durchbiegung_t6}, modelliert.
+Dieser Lastfall wird in Laststufen unterteilt bei der Berechnung und
+liefert so Resultate für sämtliche Laststufen unterhalb der Laststufe 8.
+
+Der zweite Lastfall beinhaltet die konstante Einzellast \(P_{max}\),
+sowie die Streckenlast \(q_{Q_{max}} - q_{LS8}\). In diesem Lastfall
+wird lediglich die Streckenlast in Laststufen unterteilt.
+
 \subsubsection{Vorspannung}\label{vorspannung-1}
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/cell-19-output-1.pdf}
+Unabhängig von der Versuchslast gilt es den Einfluss der Vorspannung auf
+das System zu modellieren. Dazu wird die Vorspannung als Anker - Umlenk
+- und Reibungskräfte (AUR) interpretiert. Grundlagen dazu sind in
+{[}\citeproc{ref-thoma_vorspannung_2020}{6}{]} aufgezeigt. Die
+Interpretation nach AUR führt zu Umlenkkräften im parabolischen Bereich
+der Vorspannung, sowie zu Normal- und Querkräften, sowie einem
+Biegemoment bei der Spannstelle.
+
+Dazu wird in einem ersten Schritt die Kabelgeometrie, sprich \(z_p(x)\)
+analytisch beschrieben. Dargestellt ist die Funktion in der
+Abbildung~\ref{fig-z_p_von_x}. Zusätzlich ist der Umriss des Trägers
+dargestellt.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-z_p_von_x-output-1.pdf}
+
+}
+
+\caption{\label{fig-z_p_von_x}Geometrie des Spannkabels als Funktion
+\(z_p(x)\)}
+
+\end{figure}%
+
+Unter Berücksichtigung der folgenden Gleichung können abschliessend die
+Umlenkkräfte bestimmt werden.
 
 \[
 u_p(x) \simeq z_p(x)'' \cdot P
 \]
 
-Dies führt zu den Umlenkkräften:
+Dargestellt sind die Umlenkkräfte in der Abbildung~\ref{fig-u_p_von_x}.
 
 \begin{figure}[H]
 
@@ -2048,9 +2128,9 @@ Dies führt zu den Umlenkkräften:
 
 \end{figure}%
 
-Zusätzlich zu den Umlenkkräften ist bei der Spannstelle eine Druckkraft
-in Richtung des Spannkabels einzuführen, sowie ein Versatz Moment, durch
-die Exzentrizität des Spannkabels zum Trägerschwerpunkt.
+Darauf folgend wird die Spannstelle betrachtet. Die Exzentrizität des
+Spannkabels zum geometrischen Schwerpunkt des Querschnitts führt zu
+einem Biegemoment. Die Exzentrizität entspricht dabei:
 
 $$
 \begin{aligned}
@@ -2058,6 +2138,9 @@ e_{P_{0}} &= 60.0\ \mathrm{mm} \; \;\textrm{($x=0$)}
  &e_{P_{1}} &= -60.9\ \mathrm{mm} \; \;\textrm{($x=L_{tot}$)}
 \end{aligned}
 $$
+
+Multipliziert mit der Vorspannkraft folgt das Biegemoment bei der
+Spannstelle links zu:
 
 $$
 \begin{aligned}
@@ -2067,9 +2150,11 @@ $$
 
 $$
 \begin{aligned}
-M_{P_{0}} &= 39.4\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(unten Zug)}
+M_{P_{0}} &= 39.4\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(OK Zug)}
 \end{aligned}
 $$
+
+Und bei der Spannstelle rechts zu:
 
 $$
 \begin{aligned}
@@ -2079,35 +2164,12 @@ $$
 
 $$
 \begin{aligned}
-M_{P_{1}} &= -40.0\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(oben Zug)}
+M_{P_{1}} &= -40.0\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(UK Zug)}
 \end{aligned}
 $$
 
-Die Momente sind so einzugeben, dass unterhalb des
-
-$$
-\begin{aligned}
-\alpha_{1} &= \operatorname{arctan} { \left( \frac{ 525 - 373 }{ 1000 } \right) } \; 
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-\alpha_{1} &= 0.151 \;
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-V_{P_{1}} &= \sin \left( \alpha_{1} \right) \cdot P_{\infty} \; 
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-V_{P_{1}} &= 98.73\ \mathrm{kN} \;
-\end{aligned}
-$$
+Die Querkraft resultiert aus der Neigung des Spannkabels bei der
+Spannstelle. Die Neigung des Kabels links entspricht dabei:
 
 $$
 \begin{aligned}
@@ -2121,6 +2183,8 @@ $$
 \end{aligned}
 $$
 
+Die vertikale Kompontente resultiert dabei zu:
+
 $$
 \begin{aligned}
 V_{P_{0}} &= \sin \left( \alpha_{0} \right) \cdot P_{\infty} \; 
@@ -2133,7 +2197,35 @@ V_{P_{0}} &= 73.13\ \mathrm{kN} \;
 \end{aligned}
 $$
 
-\section{Momenten-Krümmungs-Beziehung}\label{momenten-kruxfcmmungs-beziehung}
+Bei der Spannstelle rechts resultiert die Kabelneigung zu:
+
+$$
+\begin{aligned}
+\alpha_{1} &= \operatorname{arctan} { \left( \frac{ 525 - 373 }{ 1000 } \right) } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\alpha_{1} &= 0.151 \;
+\end{aligned}
+$$
+
+Und die vertikale Kraftkomponente beträgt dabei:
+
+$$
+\begin{aligned}
+V_{P_{1}} &= \sin \left( \alpha_{1} \right) \cdot P_{\infty} \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+V_{P_{1}} &= 98.73\ \mathrm{kN} \;
+\end{aligned}
+$$
+
+\subsection{Momenten-Krümmungs-Beziehung}\label{momenten-kruxfcmmungs-beziehung}
 
 Die Momenten-Krümmungs-Beziehung zeigt bei diesem Versuch eine gewisse
 Komplexität. Grundsätzlich gilt es für jede Abstufung der Bewehrung eine
@@ -2152,7 +2244,7 @@ Querschnitt beim Fliessen der Zugbewehrung betrachtet, sowie wird der
 Biegewiderstand bestimmt. Diese Punkte werden linear mit einander
 verbunden. Des Weiteren wird die Druckbewehrung stehts vernachlässigt.
 
-\subsection{Abschätzung}\label{abschuxe4tzung}
+\subsubsection{Abschätzung}\label{abschuxe4tzung}
 
 Hier wird die Krümmung und das Biegemoment für den Querschnitt A-A
 abgeschätzt, als Referenzwerte für die numerisch erstellten
@@ -2174,7 +2266,7 @@ zusammengefasst}
 
 \end{figure}%
 
-\subsubsection{Negative Momente - Zug im
+\paragraph{Negative Momente - Zug im
 Obergurt}\label{negative-momente---zug-im-obergurt}
 
 Es wird der Biegewiderstand betrachtet, unter der Prämisse dass der
@@ -2268,7 +2360,7 @@ $$
 \end{aligned}
 $$
 
-\subsubsection{Positive Biegemomente - Zug im
+\paragraph{Positive Biegemomente - Zug im
 Untergurt}\label{positive-biegemomente---zug-im-untergurt}
 
 Das gleiche Vorgehen wird für positive Biegebeanspruchung angewendet.
@@ -2381,7 +2473,7 @@ numerisch gelöst, dazu grobe Abschätzung der Grenzpunkte aufgezeigt}
 
 \end{figure}%
 
-\subsection{Stoffgesetze}\label{stoffgesetze}
+\subsubsection{Stoffgesetze}\label{stoffgesetze}
 
 \begin{figure}[H]
 
@@ -2473,34 +2565,6 @@ $$
 
 \section{Versuchsresultate}\label{versuchsresultate}
 
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/../imgs/T6_durchbiegung_laengs.pdf}
-
-}
-
-\caption{\label{fig-durchbiegung_laengs_t6}Verformungsverlauf des
-Versuchsträgers T6, entnommen aus
-{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
-
-\end{figure}%
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/../imgs/T6_durchbiegungen.pdf}
-
-}
-
-\caption{\label{fig-durchbiegung_t6}Last-Verformungs-Verhalten des
-Versuchsträgers T6, entnommen aus
-{[}\citeproc{ref-sigrist_versuche_1993}{5}{]}}
-
-\end{figure}%
-
 \bookmarksetup{startatroot}
 
 \chapter{IdeaStatica}\label{ideastatica}
@@ -2552,6 +2616,10 @@ https://doi.org/\url{https://doi.org/10.1002/best.201800075}}
 \CSLRightInline{Sigrist V, Marti P (1993) Versuche zum
 {Verformungsvermögen} von {Stahlbetonträgern}. Birkhäuser, Basel Boston
 Berlin}
+
+\bibitem[\citeproctext]{ref-thoma_vorspannung_2020}
+\CSLLeftMargin{6. }%
+\CSLRightInline{Thoma K (2020) Vorspannung. HSLU Technik \& Architektur}
 
 \end{CSLReferences}
 
