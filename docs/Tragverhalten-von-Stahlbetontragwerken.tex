@@ -1950,11 +1950,11 @@ $$
 f_{py} &= 1706.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &f_{pt} &= 1855.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &V_{om} &= 730.0\ \mathrm{kN} \; 
-\\[10pt]
+\\[11pt]
  A_{p} &= 596.0\ \mathrm{mm}^{2} \; 
  &E_{p} &= 190000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &\varepsilon_{pu} &= 1.5\ \mathrm{\%} \; 
-\\[10pt]
+\\[11pt]
  \eta &= 0.9 \; \;\textrm{(Verlustfaktor)}
 \end{aligned}
 $$
@@ -2037,7 +2037,7 @@ $$
 f_{c} &= 52.10\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &f_{cts} &= 4.30\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &E_{c} &= 50200.00\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
-\\[10pt]
+\\[11pt]
  \rho_{c} &= 2409.00\ \frac{\mathrm{kg}}{\mathrm{m}^{3}} \; 
  &\varepsilon_{cu} &= 0.35\ \mathrm{\%} \;
 \end{aligned}
@@ -2073,7 +2073,7 @@ $$
 f_{sy} &= 500.0\ \mathrm{MPa} \; 
  &f_{st} &= 630.0\ \mathrm{MPa} \; 
  &\varepsilon_{su} &= 12.7\ \mathrm{\%} \; 
-\\[10pt]
+\\[11pt]
  E_{s} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
@@ -2089,19 +2089,19 @@ $$
 h_{1} &= 180.0\ \mathrm{mm} \; 
  &h_{2} &= 50.0\ \mathrm{mm} \; 
  &h_{3} &= 400.0\ \mathrm{mm} \; 
-\\[10pt]
+\\[11pt]
  h_{4} &= 30.0\ \mathrm{mm} \; 
  &h_{5} &= 140.0\ \mathrm{mm} \; 
  &h &= 800.0\ \mathrm{mm} \; 
-\\[10pt]
+\\[11pt]
  b_{1_{inf}} &= 90.0\ \mathrm{mm} \; 
  &b_{2_{inf}} &= 220.0\ \mathrm{mm} \; 
  &b_{3_{inf}} &= 90.0\ \mathrm{mm} \; 
-\\[10pt]
+\\[11pt]
  b_{inf} &= 400.0\ \mathrm{mm} \; 
  &b_{sup} &= 800.0\ \mathrm{mm} \; 
  &S_{z} &= \mathtt{\text{464.00 mm}} \; 
-\\[10pt]
+\\[11pt]
  L &= 13600.0\ \mathrm{mm} \;
 \end{aligned}
 $$
@@ -2270,7 +2270,7 @@ $$
 Q_{max} &= 1638.0\ \mathrm{kN} \; 
  &P_{max} &= 512.0\ \mathrm{kN} \; 
  &L_{q} &= 9.0\ \mathrm{m} \; 
-\\[10pt]
+\\[11pt]
 \end{aligned}
 $$
 
@@ -2295,7 +2295,7 @@ $$
 P_{LS8} &= 471.0\ \mathrm{kN} \; 
  &q_{LS8} &= 85.0\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
  &Q_{LS8} &= 765.0\ \mathrm{kN} \; 
-\\[10pt]
+\\[11pt]
 \end{aligned}
 $$
 
@@ -2308,7 +2308,7 @@ $$
 P_{LS12} &= 471.0\ \mathrm{kN} \; 
  &q_{LS12} &= 163.0\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
  &Q_{LS12} &= 1467.0\ \mathrm{kN} \; 
-\\[10pt]
+\\[11pt]
 \end{aligned}
 $$
 
@@ -2833,9 +2833,7 @@ Last-Verformungs-Diagramm an der Stelle \(18\)}
 
 \end{figure}%
 
-\bookmarksetup{startatroot}
-
-\chapter{IdeaStatica}\label{ideastatica}
+\section{IdeaStatica}\label{ideastatica}
 
 In diesem Kapitel wird darauf abgezielt, das Verformungsverhalten der
 behandelten Versuche mit einer kommerziellen Software zu bestimmen. Das
@@ -2900,6 +2898,36 @@ Stabknoten}
 \caption{\label{fig-fem_werkstoff}Ausgeschnittenes Netzelement mit
 zweidimensionalen Betonelementen mit qualitativem Dehnungsverlauf linear
 interpoliert}
+
+\end{figure}%
+
+\subsection{Ergebnisse}\label{ergebnisse-2}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-p_w10_vergleich_idea-output-1.pdf}
+
+}
+
+\caption{\label{fig-p_w10_vergleich_idea}Vergleich der Versuchsresultate
+mit den numerisch ermittelten Resultate aus IDEAStatiCa, dargestellt im
+Last-Verformungs-Diagramm an der Stelle \(10\)}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-q_w18_vergleich_idea-output-1.pdf}
+
+}
+
+\caption{\label{fig-q_w18_vergleich_idea}Vergleich der Versuchsresultate
+mit den numerisch ermittelten Resultate aus IDEAStatiCa, dargestellt im
+Last-Verformungs-Diagramm an der Stelle \(18\)}
 
 \end{figure}%
 
