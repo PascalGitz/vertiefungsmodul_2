@@ -1044,15 +1044,15 @@ Vereinfachung unproblematisch.
 
 $$
 \begin{aligned}
-\oslash_{sw_{A3V2}} &= 6.0\ \mathrm{mm} \; 
- &S_{sw_{A3V2}} &= 80.0\ \mathrm{mm} \; 
- &b_{w_{A3V2}} &= 800.0\ \mathrm{mm} \; 
-\\[12pt]
- E_{sw_{A3V2}} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
- &z_{A3V2} &= 140.0\ \mathrm{mm} \; 
- &\theta_{c3_{A3V2}} &= 34.3\ \mathrm{°} \; 
-\\[12pt]
- f_{su_{A3V2}} &= 630.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
+\oslash_{sw} &= 6.0\ \mathrm{mm} \; 
+ &S_{sw} &= 80.0\ \mathrm{mm} \; 
+ &b_{w} &= 800.0\ \mathrm{mm} \; 
+\\[11pt]
+ E_{sw} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+ &z &= 140.0\ \mathrm{mm} \; 
+ &\theta_{c3} &= 34.3\ \mathrm{°} \; 
+\\[11pt]
+ f_{su} &= 630.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
 
@@ -1063,13 +1063,13 @@ Querschnittsfläche für eine Dübelreihe folgt somit zu:
 
 $$
 \begin{aligned}
-A_{sw_{A3V2}} &= 7 \cdot \left( \frac{ \oslash_{sw_{A3V2}} }{ 2 } \right) ^{ 2 } \cdot \pi \; 
+A_{sw} &= 7 \cdot \left( \frac{ \oslash_{sw} }{ 2 } \right) ^{ 2 } \cdot \pi \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-A_{sw_{A3V2}} &= 197.9\ \mathrm{mm}^{2} \;
+A_{sw} &= 197.9\ \mathrm{mm}^{2} \;
 \end{aligned}
 $$
 
@@ -1077,13 +1077,13 @@ Wird diese nun über einen Meterstreifen verschmiert, so folgt:
 
 $$
 \begin{aligned}
-a_{sw_{A3V2}} &= \frac{ A_{sw_{A3V2}} }{ S_{sw_{A3V2}} } \; 
+a_{sw} &= \frac{ A_{sw} }{ S_{sw} } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-a_{sw_{A3V2}} &= 2474.0\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} \;
+a_{sw} &= 2474.0\ \frac{\mathrm{mm}^{2}}{\mathrm{m}} \;
 \end{aligned}
 $$
 
@@ -1097,13 +1097,13 @@ ermittelt.
 
 $$
 \begin{aligned}
-V_{Rd_{A3V2}} &= a_{sw_{A3V2}} \cdot z_{A3V2} \cdot \frac{ f_{su_{A3V2}} }{ \tan \left( \theta_{c3_{A3V2}} \right) } \; 
+V_{Rd} &= a_{sw} \cdot z \cdot \frac{ f_{su} }{ \tan \left( \theta_{c3} \right) } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-V_{Rd_{A3V2}} &= 319.9\ \mathrm{kN} \;
+V_{Rd} &= 319.9\ \mathrm{kN} \;
 \end{aligned}
 $$
 
@@ -1111,7 +1111,7 @@ Abschliessend gilt es den Reduktionsfaktor zu bestimmen:
 
 $$
 \begin{aligned}
-\gamma_{E_{A3V2}} &= z_{A3V2} \cdot \frac{ 1 }{ \tan \left( \theta_{c3_{A3V2}} \right) } \cdot \frac{1} { l_{E} }  = 140\ \mathrm{mm} \cdot \frac{ 1 }{ \tan \left( 34\ \mathrm{°} \right) } \cdot \frac{1} { 10\ \mathrm{mm} } &= 21\  
+\gamma_{E_{A3V2}} &= z \cdot \frac{ 1 }{ \tan \left( \theta_{c3} \right) } \cdot \frac{1} { l_{E} }  = 140\ \mathrm{mm} \cdot \frac{ 1 }{ \tan \left( 34\ \mathrm{°} \right) } \cdot \frac{1} { 10\ \mathrm{mm} } &= 21\  
 \end{aligned}
 $$
 
@@ -1351,15 +1351,15 @@ $$
 V_{exp_{sv14}} &= 105.0\ \mathrm{kN} \; 
  &z_{SV14} &= 359.0\ \mathrm{mm} \; 
  &\oslash_{sw_{SV14}} &= 4.3\ \mathrm{mm} \; 
-\\[12pt]
+\\[11pt]
  b_{w_{SV14}} &= 170.0\ \mathrm{mm} \; 
  &S_{sw_{SV14}} &= 150.0\ \mathrm{mm} \; 
  &f_{su_{SV14}} &= 715.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
-\\[12pt]
+\\[11pt]
  \theta_{c3_{SV14}} &= 25.6\ \mathrm{°} \; 
  &F_{B} &= 105.0\ \mathrm{kN} \; 
  &F_{A} &= 105.0\ \mathrm{kN} \; 
-\\[12pt]
+\\[11pt]
 \end{aligned}
 $$
 
@@ -1767,7 +1767,8 @@ für die Höchstlast des Versuchs SV14}
 \end{figure}%
 
 Der Krümmungsverlauf gibt Aufschluss über den Fliessbereich der
-Bewehrung, bzw. über den Steifigkeitenverlauf entlang der Stabachse.
+Bewehrung, bzw. über den Steifigkeitenverlauf entlang der Stabachse. Die
+Schubfeder bringt relativ viel Noise in die Resultate.
 
 \begin{figure}[H]
 
@@ -2652,13 +2653,13 @@ kleiner ist:
 
 $$
 \begin{aligned}
-\chi_{1} &= \frac{ \varepsilon_{pu} }{ d_{1} - x_{1} } \; 
+\chi_{1} &= \frac{ \varepsilon_{pu} - \frac{ \sigma_{P_{\infty}} }{ E_{p} } }{ d_{1} - x_{1} } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\chi_{1} &= 0.0251\ \frac{1}{\mathrm{m}} \;
+\chi_{1} &= 0.0154\ \frac{1}{\mathrm{m}} \;
 \end{aligned}
 $$
 
@@ -2772,25 +2773,25 @@ Abgeschlossen wir der Versuch mit dem Vergleich der gemessenen
 Verformungen mit den numerisch ermittelten Verformungen. Dazu wird das
 Last-Verformungs-Verhalten für die Einzellast \(P\) und die Messstelle
 \(w_{10}\) für die Nachrechnung und die Messung aufgezeigt. Dies ist in
-der \textbf{?@fig-p\_w1\_vergleich} dargestellt. Die Nachrechnung ist in
-etwa deckungsgleich mit den Messwerten bis zum Erreichen der Höchstlast.
-Das Plateau im Plot wird mit der Nachrechnung nicht getroffen.
-Betrachtet man die Belastungsgeschichte des Trägers gemäss dem
-Versuchsbeschrieb, so wurde die Einzellast beim Erreichen der höchstlast
-konstant gehalten. Das numerische Modell zeigt, dass bei \(P_{max}\) der
-negative Biegewiderstand in etwa erreicht wurde. Dies bedeutet, dass
-sich bei einer Steigerung der Last rechnerisch ein plastisches Gelenk
-ausbildet, folglich sich ein Mechanismus einstellt beim Kragarm. Es
-lässt sich Vermuten dass dieses Verhalten bei der Messung aufgezeichnet
-wurde. Die Verformungsfigur bestätigt diese Vermutung. Dazu gilt es zu
-erwähnen, dass dich Last im Versuch keineswegs absolut konstant gehalten
-werden kann. Kleine Schwankungen der Last bei einem enorm weichen
-Verhalten liefern möglicherweise die gemessenen Verformungen. Mit den
-gewählten vereinfachten bilinearen Spannungs-Dehnungs-Beziehungen des
-Betonstahls und des Spannstahls wird jedoch eine solche Präzision nicht
-angestrebt. Folglich ist das Resultat zufriedenstellend, dass die
-Verformungen bis zum Erreichen der Höchstlast nachgerechnet werden
-konnten.
+der Abbildung~\ref{fig-p_w10_vergleich} dargestellt. Die Nachrechnung
+ist in etwa deckungsgleich mit den Messwerten bis zum Erreichen der
+Höchstlast. Das Plateau im Plot wird mit der Nachrechnung nicht
+getroffen. Betrachtet man die Belastungsgeschichte des Trägers gemäss
+dem Versuchsbeschrieb, so wurde die Einzellast beim Erreichen der
+höchstlast konstant gehalten. Das numerische Modell zeigt, dass bei
+\(P_{max}\) der negative Biegewiderstand in etwa erreicht wurde. Dies
+bedeutet, dass sich bei einer Steigerung der Last rechnerisch ein
+plastisches Gelenk ausbildet, folglich sich ein Mechanismus einstellt
+beim Kragarm. Es lässt sich Vermuten dass dieses Verhalten bei der
+Messung aufgezeichnet wurde. Die Verformungsfigur bestätigt diese
+Vermutung. Dazu gilt es zu erwähnen, dass dich Last im Versuch
+keineswegs absolut konstant gehalten werden kann. Kleine Schwankungen
+der Last bei einem enorm weichen Verhalten liefern möglicherweise die
+gemessenen Verformungen. Mit den gewählten vereinfachten bilinearen
+Spannungs-Dehnungs-Beziehungen des Betonstahls und des Spannstahls wird
+jedoch eine solche Präzision nicht angestrebt. Folglich ist das Resultat
+zufriedenstellend, dass die Verformungen bis zum Erreichen der
+Höchstlast nachgerechnet werden konnten.
 
 \begin{figure}[H]
 
@@ -2830,6 +2831,58 @@ wurde das Verformungsverhalten bis zu dieser Stufe getroffen.
 \caption{\label{fig-q_w18_vergleich}Vergleich der Versuchsresultate mit
 den numerisch ermittelten Resultate, dargestellt im
 Last-Verformungs-Diagramm an der Stelle \(18\)}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-phi-max-t6_l8-output-1.pdf}
+
+}
+
+\caption{\label{fig-phi-max-t6_l8}Verdrehungsverlauf aus dem Federmodell
+für die Laststufe 8 für den Träger T6}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-chi-max-t6l8-output-1.pdf}
+
+}
+
+\caption{\label{fig-chi-max-t6l8}Berechneter Krümmungsverlauf aus dem
+Verdrehungsverlauf für die Laststufe 8 für den Träger T6}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-phi-t6_l12-output-1.pdf}
+
+}
+
+\caption{\label{fig-phi-t6_l12}Verdrehungsverlauf aus dem Federmodell
+für die Laststufe 12 für den Träger T6}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-chi-max-t6l12-output-1.pdf}
+
+}
+
+\caption{\label{fig-chi-max-t6l12}Berechneter Krümmungsverlauf aus dem
+Verdrehungsverlauf für die Laststufe 12 für den Träger T6}
 
 \end{figure}%
 
@@ -2916,6 +2969,9 @@ mit den numerisch ermittelten Resultate aus IDEAStatiCa, dargestellt im
 Last-Verformungs-Diagramm an der Stelle \(10\)}
 
 \end{figure}%
+
+Resultate etwas weicher da Scheibenelemente auch Verschiebungen lateral
+zur Längsachse berücksichtigen.
 
 \begin{figure}[H]
 
