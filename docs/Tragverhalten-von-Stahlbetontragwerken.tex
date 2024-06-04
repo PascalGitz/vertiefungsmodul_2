@@ -270,7 +270,6 @@ Version 0.9 - Entwurf \hfill 07. Juni 2024 \quad \quad \quad \quad \quad PG\\
 \tableofcontents
 }
 \listoffigures
-\listoftables
 \bookmarksetup{startatroot}
 
 \chapter{Einleitung}\label{einleitung}
@@ -298,8 +297,7 @@ Arbeit liegt nun auf der Integration von FEM-Tools mit den theoretischen
 Grundlagen, um präzisere und praktisch anwendbare Lösungen zu
 entwickeln. Verwendet wird hierbei die 3D Statiksoftware AxisVM-X7 und
 RFEM-6, sowie die 2D Detailstatiksoftware IDEAStatiCa. Sämtliche
-Analysen bewegen sich im ebenen Spannungszustand und beziehen sich auf
-Stabtragwerke.
+Analysen beziehen sich auf Stabtragwerke.
 
 Diese Arbeit lässt sich in drei Kernthemen unterteilen. Zuerst wird die
 Modellbildung ausführlich beschrieben und anhand eines
@@ -311,8 +309,8 @@ wird die Anwendung an einem vorgespannten Träger demonstriert, um die
 praktische Relevanz und Anwendbarkeit des entwickelten Modells zu
 zeigen. Die Arbeit wird mit einem Fazit abgeschlossen, das eine
 differenzierte Betrachtung zwischen Rückblick und Ausblick bietet und
-damit sowohl die erreichten Ergebnisse zusammenfasst als auch zukünftige
-Forschungsperspektiven aufzeigt.
+damit sowohl die erreichten Ergebnisse zusammenfasst als auch
+Erweiterungen aufzeigt.
 
 Durch diese strukturierte Herangehensweise soll ein tieferes Verständnis
 für das komplexe Tragverhalten von Stahlbetontragwerken geschaffen
@@ -321,18 +319,27 @@ im Bauingenieurwesen gelegt werden.
 
 \bookmarksetup{startatroot}
 
-\chapter{Modellvorstellung}\label{sec-modellvorstellung}
+\chapter{Modellvorstellung}\label{modellvorstellung}
 
-In der Vertiefungsarbeit I {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}
-wurde das nicht-lineare Biegeverhalten verschiedener Versuche mittels
-numerischer Integration der Krümmungen zufriedenstellend abgebildet. Um
-dieses Vorgehen auf statisch unbestimmte Systeme zu erweitern und die
-nötige Flexibilität in der Geometrie der Systeme zu erhalten, wird ein
-Stabstatikmodell basierend auf dem angewendeten Berechnungsansatz
-erstellt. Die Abbildung~\ref{fig-modell_drehfeder} zeigt die
-Modellierung eines einfachen Balkens, bei dem biege- und schubsteife
-Stäbe mit Federn gekoppelt sind. In den folgenden Kapiteln wird diese
-Modellierung als Federmodell bezeichnet.
+Als einleitendes Kapitel wird hier die Modellvorstellung umschrieben und
+deren Grundgedanke beleuchtet. Auf die Implementierung in einer
+FEM-Software wird kurz eingegangen. Ein Einführungsbeispiel zeigt die
+konzeptionelle Anwendung. Sowie werden bereits erste Vor- und Nachteile
+der Modellbildung aufgezeigt.
+
+\section{Modellbeschreibung}\label{sec-modellvorstellung}
+
+In der Vorarbeit {[}\citeproc{ref-gitz_ansatze_2024}{1}{]} zu dieser
+Arbeit wurde mittels der numerischen Integration der Krümmung das
+nicht-lineare Verformungsverhalten von unterschiedlichen Versuchen
+zufriedenstellend abgebildet. Um das Vorgehen auf statisch unbestimmte
+Systeme zu erweitern, sowie in der Geometrie der Systeme die nötige
+Flexiblität zu erhalten, wird versucht, basierend auf dem angewendeten
+Berechnungsansatz, ein Stabstatikmodell zu erstellen. Die
+Abbildung~\ref{fig-modell_drehfeder} zeigt eine Modellierung eines
+einfachen Balkens. Dabei sind biege- und schubsteife Stäbe mit
+Drehfedern gekoppelt. Dies führt dazu, dass sämtliche Deformationen des
+Systems aus den Federverbindungen erfolgen.
 
 \begin{figure}[H]
 
@@ -343,26 +350,34 @@ Modellierung als Federmodell bezeichnet.
 }
 
 \caption{\label{fig-modell_drehfeder}Modellierung als biegesteife Stäbe
-gekoppelt mit Drehfedern, kurz Federmodell}
+gekoppelt mit Federn}
 
 \end{figure}%
 
 In dieser Modellierung erfolgen sämtliche Verformungsanteile des Systems
-aus den Federverbindungen, welche in den FEM-Softwares als Stabengelenk
+aus den Federverbindungen, welche in den FEM-Softwares als Stabendgelenk
 modellierbar sind. Mit der Wahl der entsprechenden Federcharakteristiken
 können passende Resultate erzielt werden. Dieser Ansatz ermöglicht es,
 der Anzahl an Freiheitsgraden in den Stabendgelenken entsprechend
-Steifigkeiten zuzuordnen. In den betrachteten 3D-Statiksoftwares können
-den Stabendgelenken Verläufe mittels eines Diagrammeditors eingegeben
+Steifigkeiten zuzuordnen. Den Rotationsfreiheitsgraden sind
+Momenten-Verdrehungs-Beziehungen zu hinterlegen. Den
+Translationsfreiheitsgraden sind Kraft-Verformungs-Beziehungen zu
+hinterlegen. In den betrachteten 3D-Statiksoftwares können den
+Stabendgelenken Verläufe mittels eines Diagrammeditors eingegeben
 werden, welche beliebige nicht-lineare Beziehungen abbilden, sofern
 diese numerisch stabil sind. Grundsätzlich wird die
 Momenten-Verdrehungs-Beziehung (Drehfedercharakteristik) anhand der
-Momenten-Krümmungs-Beziehung des Querschnitts hergeleitet. Durch die
-Einteilung in endlich lange Stäbe entspricht dies einer Diskretisierung
-der Integration der Krümmungen. Schubverformungen lassen sich
-beispielsweise durch die Bestimmung einer Kraft-Verformungs-Beziehung in
-Wirkungsrichtung der Querkraft ermitteln. Es lässt sich vorwegnehmen,
-dass die Wahl der Federcharakteristik die Krux des Systems darstellt.
+Momenten-Krümmungs-Beziehung des Querschnitts hergeleitet.
+Schubverformungen lassen sich beispielsweise durch die Bestimmung einer
+Kraft-Verformungs-Beziehung in Wirkungsrichtung der Querkraft ermitteln.
+Es lässt sich vorwegnehmen, dass die Wahl der Federcharakteristiken die
+Krux des Systems darstellt.
+
+Alternativ zur Modellierung mittels Drehfedern lässt sich das Verhalten
+der Drehfeder mit einem Wegfederpaar abbilden. Dies erlaubt eine
+Modellierung mittels den nicht-linearen Fachwerksstäben der Software
+Statik-9 der Cubus AG. Dieser Ansatz wird lediglich im
+Einführungsbeispiel berücksichtigt.
 
 \begin{figure}[H]
 
@@ -377,11 +392,20 @@ gekoppelt mit einem Wegfederpaar}
 
 \end{figure}%
 
-Alternativ zur Modellierung mittels Drehfedern lässt sich das Verhalten
-der Drehfeder mit einem Wegfederpaar abbilden. Dies erlaubt eine
-Modellierung mittels den nicht-linearen Fachwerksstäben der Software
-Statik-9 der Cubus AG. Dieser Ansatz wird lediglich im
-Einführungsbeispiel berücksichtigt.
+Mit der Modellierung als Federmodell lassen sich beliebig komplexe
+Stoffgesetze in einer praxisüblichen Statiksoftware anwenden, sofern die
+Momenten-Krümmungs-Beziehung anhand dieser Beziehungen bestimmt werden
+kann. Zudem lässt sich eine Momenten-Krümmungs-Beziehung mit einer
+händischen Querschnittsanalyse leicht verifizieren. Dies ermöglicht die
+Überprüfung der Resultate und steigert so die Zuverlässigkeit der
+Berechnung. Ein konzeptioneller Nachteil der Modellbildung ist die
+Vielzahl an Diskretisierungen. Dies gilt allgemein für numerische
+Lösungen. In diesem Modell fliesst die Wahl der Elementlänge mit ein.
+Die Inkrementgrösse zur Bestimmung der Momenten-Krümmungs-Beziehung,
+sofern diese numerisch bestimmt wurde, hat einen Einfluss. Zudem gilt es
+bei einer nicht-lienaren Berechnung eine Inkrementgrösse zur Steigerung
+der Last im Lösungsalgorithmus zu wählen. Diese Parameter haben einen
+Einfluss auf die Resultate und sind sorgfältig zu wählen.
 
 \section{Einführungsbeispiel}\label{einfuxfchrungsbeispiel}
 
@@ -450,7 +474,8 @@ Bestimmung der Biegesteifigkeit und folgend den Biegeverformungen dient.
 Alternativ könnte der Kragarm biegestarr modelliert werden, da lediglich
 die Verformungen aus der Drehfeder von Belang sind. Der
 Rechteckquerschnitt, der für den gesamten Kragarm gilt, ist in
-Abbildung~\ref{fig-qs-kragarm} dargestellt.
+Abbildung~\ref{fig-qs-kragarm} dargestellt. Der Querschnitt ist mit
+einem durchwegs linear-elastischem Materialverhalten versehen.
 
 \begin{figure}[H]
 
@@ -460,8 +485,8 @@ Abbildung~\ref{fig-qs-kragarm} dargestellt.
 
 }
 
-\caption{\label{fig-qs-kragarm}Fiktiver Querschnitt des Kragarms mit
-durchwegs linear-elastischem Materialverhalten}
+\caption{\label{fig-qs-kragarm}Fiktiver Rechteckquerschnitt des
+Kragarms}
 
 \end{figure}%
 
@@ -491,7 +516,7 @@ Zunächst werden die Biegeverformungen mittels der Differentialgleichung
 für reine Biegeträger ermittelt. Dabei wird die Drehfeder
 vernachlässigt. Das statische System ist in
 Abbildung~\ref{fig-kragarm-sys} dargestellt. Dieses Vorgehen führt zu
-den Zustandslinien der Schnittgrößen, die in
+den Zustandslinien der Schnittgrössen, die in
 Abbildung~\ref{fig-skkragarmreal} aufgezeigt sind.
 
 \begin{figure}[H]
@@ -547,8 +572,8 @@ Abbildung~\ref{fig-kragarm-sys} für die Last \(F2\)}
 Diese Darstellung zeigt, wie sich die Schnittgrößen des Kragarms unter
 einer erhöhten Last ändern, und bietet eine Vergleichsbasis zur ersten
 Laststufe \(F_1\). Da ein durchwegs linear-elastisches Biegeverhalten
-vorausgesetzt wird, entspricht der Faktor der Erhöhung des Verformung
-dem Quotient der beiden Laststufen.
+vorausgesetzt wird, entspricht der Faktor der Erhöhung der Verformung
+dem Quotienten der beiden Laststufen.
 
 \[
 \frac{w_{EI_{F2}}}{w_{EI_{F1}}} = \frac{F_2}{F_1}
@@ -609,7 +634,7 @@ w_{\varphi} = \bar{M} \frac{M}{k_\varphi} = \bar{M} \varphi
 \]
 
 Die Verdrehung lässt sich aus der Federcharakteristik mit dem
-Biegemoment an der Stelle der Drehfeder bestimmen. Die
+Biegemoment in Trägermitte bestimmen. Die
 Abbildung~\ref{fig-feder-force} zeigt die Position der Laststufen im
 Diagramm.
 
@@ -649,16 +674,15 @@ $$
 
 \subsection{Stabstatikmodell}\label{stabstatikmodell}
 
-Das statische System, gemäss Abbildung~\ref{fig-kragarm-feder}, wird
-mittels der Statiksoftware AxisVM X7 modelliert. Dazu wird die Drehfeder
-als Federelement modelliert und in der \(YY\)-Dimension mit der
-Federcharakteristik ergänzt. Die angeschlossenen Stäbe sind mit
-entsprechendem Querschnitt und der entsprechenden Biegesteifigkeit
-modelliert.
-
-Die Deformationen in \(Z\)-Richtung sind in
-Abbildung~\ref{fig-kragarm-drehfeder-10} und
-Abbildung~\ref{fig-kragarm-drehfeder-215}
+Die analytisch ermittelten Verformungen werden nun mit der Lösung der
+Stabstatiksoftware verglichen. Das statische System, gemäss
+Abbildung~\ref{fig-kragarm-feder}, wird in der Statiksoftware AxisVM X7
+modelliert. Dazu wird die Drehfeder als Federelement modelliert und in
+der \(YY\)-Dimension mit der Federcharakteristik ergänzt. Die
+angeschlossenen Stäbe sind mit entsprechendem Querschnitt und der
+entsprechenden Biegesteifigkeit modelliert. Die Verformungen in
+\(Z\)-Richtung sind in Abbildung~\ref{fig-kragarm-drehfeder-10} und
+Abbildung~\ref{fig-kragarm-drehfeder-215} gezeigt.
 
 \begin{figure}[H]
 
@@ -739,11 +763,9 @@ u = \frac{\tan(\varphi) \cdot z}{2} \simeq \frac{\varphi \cdot z}{2}
 Durch die Berücksichtigung der trigonometrischen Funktion ist der
 Verlauf nicht exakt bilinear. Eine Approximation mit einem bilinearen
 Verlauf führt zu beträchtlichen Abweichungen im Bereich der zweiten
-Laststufe \(F_2\). Dies ist auf die geringe Neigung, bzw.
+Laststufe. Dies ist auf die geringe Neigung, bzw. auf die Grösse von
 \(k_{\varphi_2}\) der Drehfedercharakteristik im oberen Lastniveau
-zurückzuführen.
-
-Die umgerechnete Wegfedercharakteristik ist in
+zurückzuführen. Die umgerechnete Wegfedercharakteristik ist in
 Abbildung~\ref{fig-wegfeder-force} aufgezeigt.
 
 \begin{figure}[H]
@@ -758,8 +780,9 @@ Abbildung~\ref{fig-wegfeder-force} aufgezeigt.
 
 \end{figure}%
 
-Die Resultate mit dem Modell sind in der Abbildung~\ref{fig-f1-wegfeder}
-und Abbildung~\ref{fig-f2-wegfeder} gezeigt.
+Die Resultate mit dem Wegfedermodell sind in der
+Abbildung~\ref{fig-f1-wegfeder} und Abbildung~\ref{fig-f2-wegfeder}
+gezeigt.
 
 \begin{figure}[H]
 
@@ -777,7 +800,7 @@ AxisVM mit Wegfedermodell}
 Die maximale Verformung in \(Z\)-Richtung ist für die Laststufe \(1\):
 
 \[
-w_{1,tot,F1} = 655 \text{mm}
+w_{1,tot,F1} = 659 \text{mm}
 \]
 
 Und für die Laststufe \(2\):
@@ -785,9 +808,6 @@ Und für die Laststufe \(2\):
 \[
 w_{1,tot,F2} = 2137.8 \text{mm}
 \]
-
-Hier zeigt sich eine Abweichung. Diese lässt sich auf die numerisch
-approximierte Modellierung der Wegfederbeziehung zurückführen.
 
 \begin{figure}[H]
 
@@ -802,11 +822,13 @@ AxisVM mit Wegfedermodell}
 
 \end{figure}%
 
-\subsection{Zusammenfassung}\label{zusammenfassung}
-
-Das Einführungsbeispiel zeigt die Präzision der Modellierung mittels dem
-Drehfedermodell. Sowie ermöglicht die simple Aufgabenstellung das
-Nachvollziehen der Resultate.
+Die Resultate der Modellierung mittels Wegfedern zeigen Differenzen zu
+denen mit der Drehfeder. Dies lässt sich auf die Diskretisierung des
+nicht-linearen Verlaufs der Wegfedercharakteristik zurückführen. Das
+Beispiel zeigt die Anwendung eines nicht-linearen
+Momenten-Verdrehungs-Verlaufs anschaulich auf. Zudem ist die Problematik
+der Diskterisierung, angesprochen in
+Kapitel~\ref{sec-modellvorstellung}, veranschaulicht.
 
 \bookmarksetup{startatroot}
 
@@ -1792,7 +1814,8 @@ Verformungen basierend auf nicht-linearen Biege- und Schubbeziehung.
 
 \bookmarksetup{startatroot}
 
-\chapter{Vorgespannter Träger}\label{vorgespannter-truxe4ger}
+\chapter{Modellanwendung an einem vorgespannten
+Träger}\label{modellanwendung-an-einem-vorgespannten-truxe4ger}
 
 Nachdem das Kapitel~\ref{sec-verifizierung} die Anwendbarkeit des
 Modells bestätigt hat, wird in diesem Kapitel ein Versuch eines
@@ -1949,13 +1972,13 @@ mittels Zugproben ermittelt für den Spannstahl}
 $$
 \begin{aligned}
 f_{py} &= 1706.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
- &f_{pt} &= 1855.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
+ &f_{pu} &= 1855.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &V_{om} &= 730.0\ \mathrm{kN} \; 
-\\[11pt]
+\\[10pt]
  A_{p} &= 596.0\ \mathrm{mm}^{2} \; 
  &E_{p} &= 190000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &\varepsilon_{pu} &= 1.5\ \mathrm{\%} \; 
-\\[11pt]
+\\[10pt]
  \eta &= 0.9 \; \;\textrm{(Verlustfaktor)}
 \end{aligned}
 $$
@@ -2038,7 +2061,7 @@ $$
 f_{c} &= 52.10\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &f_{cts} &= 4.30\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &E_{c} &= 50200.00\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
-\\[11pt]
+\\[10pt]
  \rho_{c} &= 2409.00\ \frac{\mathrm{kg}}{\mathrm{m}^{3}} \; 
  &\varepsilon_{cu} &= 0.35\ \mathrm{\%} \;
 \end{aligned}
@@ -2072,9 +2095,9 @@ ist lediglich das Fliessplateau dargestellt.
 $$
 \begin{aligned}
 f_{sy} &= 500.0\ \mathrm{MPa} \; 
- &f_{st} &= 630.0\ \mathrm{MPa} \; 
+ &f_{su} &= 630.0\ \mathrm{MPa} \; 
  &\varepsilon_{su} &= 12.7\ \mathrm{\%} \; 
-\\[11pt]
+\\[10pt]
  E_{s} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
@@ -2087,22 +2110,14 @@ Querschnitts ist von der Unterkante aus gemessen.
 
 $$
 \begin{aligned}
-h_{1} &= 180.0\ \mathrm{mm} \; 
- &h_{2} &= 50.0\ \mathrm{mm} \; 
- &h_{3} &= 400.0\ \mathrm{mm} \; 
-\\[11pt]
- h_{4} &= 30.0\ \mathrm{mm} \; 
- &h_{5} &= 140.0\ \mathrm{mm} \; 
+h_{sup} &= 180.0\ \mathrm{mm} \; 
+ &h_{inf} &= 140.0\ \mathrm{mm} \; 
  &h &= 800.0\ \mathrm{mm} \; 
-\\[11pt]
- b_{1_{inf}} &= 90.0\ \mathrm{mm} \; 
- &b_{2_{inf}} &= 220.0\ \mathrm{mm} \; 
- &b_{3_{inf}} &= 90.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  b_{inf} &= 400.0\ \mathrm{mm} \; 
  &b_{sup} &= 800.0\ \mathrm{mm} \; 
- &S_{z} &= \mathtt{\text{464.00 mm}} \; 
-\\[11pt]
+ &S_{z} &= 459.5\ \mathrm{mm} \; 
+\\[10pt]
  L &= 13600.0\ \mathrm{mm} \;
 \end{aligned}
 $$
@@ -2110,9 +2125,10 @@ $$
 \subsection{Versuchsergebnisse}\label{versuchsergebnisse}
 
 Der Versuchsbeschrieb wird mit den gemessenen Resultate abgeschlossen.
-Die Abbildung~\ref{fig-durchbiegung_laengs_t6} zeigt den
-Verformungsverlauf für den gesamten Träger für die entsprechenden
-Laststufen.
+Gemessen wurde der Einfluss der Vorspannung beim Einbringen des Trägers
+auf den Versuchsstand, sowie das Verhalten unter Belastung. Die
+Abbildung~\ref{fig-durchbiegung_laengs_t6} zeigt den Verformungsverlauf
+für den gesamten Träger für die entsprechenden Laststufen.
 
 \begin{figure}[H]
 
@@ -2133,7 +2149,7 @@ Kraft-Verformungs-Diagramm für die Einzellast \(P\) mit der gemessenen
 Verformung \(w_{10}\) an der Stelle \(10\), gemäss der
 Abbildung~\ref{fig-messstellen_t6}. Oben rechts ist das
 Kraft-Verformungs-Diagramm für die simulierte Streckenlast \(Q\) und die
-Verformung \(w_18\) aufgezeigt.
+Verformung \(w_{18}\) aufgezeigt.
 
 \begin{figure}[H]
 
@@ -2152,7 +2168,8 @@ Das Diagramm unten links gibt Aufschluss über den Belastungshergang.
 Zunächst wird die Einzelllast \(P\) gesteigert bis ca. \(480\) kN. Ab
 dieser Stufe wurde die Einzellast konstant gehalten, die Streckenlast
 \(Q\) wurde abschliessend erhöht, bis der Träger versagte. Das Versagen
-geschah schlagartig, durch das Versagen der Vorspannlitzen.
+geschah schlagartig, durch das Versagen der Vorspannlitzen links neben
+dem Auflager \(B\).
 
 \begin{figure}[H]
 
@@ -2232,7 +2249,7 @@ durch Eigengewicht}
 
 $$
 \begin{aligned}
-A_{c} &= 285200.0\ \mathrm{mm}^{2} \;
+A_{c} &= 302800.0\ \mathrm{mm}^{2} \;
 \end{aligned}
 $$
 
@@ -2244,77 +2261,9 @@ $$
 
 $$
 \begin{aligned}
-q_{c} &= 6.9\ \frac{\mathrm{kN}}{\mathrm{m}} \;
+q_{c} &= 7.3\ \frac{\mathrm{kN}}{\mathrm{m}} \;
 \end{aligned}
 $$
-
-\subsubsection{Versuch}\label{versuch}
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/../imgs/T6_versuch_lf.pdf}
-
-}
-
-\caption{\label{fig-t6_lastfall_versuch}Statisches System mit
-Versuchslasten}
-
-\end{figure}%
-
-Gemäss dem Versuchsbeschrieb lässt sich der Träger bis zu den folgenden
-maximalen Lasten belasten:
-
-$$
-\begin{aligned}
-Q_{max} &= 1638.0\ \mathrm{kN} \; 
- &P_{max} &= 512.0\ \mathrm{kN} \; 
- &L_{q} &= 9.0\ \mathrm{m} \; 
-\\[11pt]
-\end{aligned}
-$$
-
-Die mit \(Q\) simulierte Streckenlast wird als effektive Streckenlast
-modelliert. Dies führt zu folgender Grösse:
-
-$$
-\begin{aligned}
-q_{Q_{max}} &= \frac{ Q_{max} }{ L_{q} }  = \frac{ 1638.0\ \mathrm{kN} }{ 9.0\ \mathrm{m} } &= 182.0\ \frac{\mathrm{kN}}{\mathrm{m}}  
-\end{aligned}
-$$
-
-Im Stabstatik-Modell werden zwei Lastfälle definiert zum Abbilden der
-Versuchslast. Zum einen wird die maximale Einzellast \(P_{LS8}\) und die
-entsprechende Streckenlast \(q_{LS8}\) gemäss der Laststufe 8,
-aufgezeigt in der Abbildung~\ref{fig-durchbiegung_t6}, modelliert.
-Dieser Lastfall wird in Laststufen unterteilt bei der Berechnung und
-liefert so Resultate für sämtliche Laststufen unterhalb der Laststufe 8.
-
-$$
-\begin{aligned}
-P_{LS8} &= 471.0\ \mathrm{kN} \; 
- &q_{LS8} &= 85.0\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
- &Q_{LS8} &= 765.0\ \mathrm{kN} \; 
-\\[11pt]
-\end{aligned}
-$$
-
-Der zweite Lastfall beinhaltet die konstante Einzellast \(P_{LS12}\),
-sowie die Streckenlast \(q_{Q_{LS12}} - q_{LS8}\). In diesem Lastfall
-wird lediglich die Streckenlast in Laststufen unterteilt.
-
-$$
-\begin{aligned}
-P_{LS12} &= 471.0\ \mathrm{kN} \; 
- &q_{LS12} &= 163.0\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
- &Q_{LS12} &= 1467.0\ \mathrm{kN} \; 
-\\[11pt]
-\end{aligned}
-$$
-
-Das Modell konvergiert bei der Applikation der Traglast nicht mehr. Aus
-diesem Grund wird die maximale Streckenlast reduziert.
 
 \subsubsection{Vorspannung}\label{vorspannung-1}
 
@@ -2385,8 +2334,8 @@ einem Biegemoment. Die Exzentrizität entspricht dabei:
 
 $$
 \begin{aligned}
-e_{P0} &= 60.0\ \mathrm{mm} \; \;\textrm{($x=0$)}
- &e_{P1} &= -60.9\ \mathrm{mm} \; \;\textrm{($x=L_{tot}$)}
+e_{P0} &= 55.5\ \mathrm{mm} \; \;\textrm{($x=0$)}
+ &e_{P1} &= -65.3\ \mathrm{mm} \; \;\textrm{($x=L_{tot}$)}
 \end{aligned}
 $$
 
@@ -2401,7 +2350,7 @@ $$
 
 $$
 \begin{aligned}
-M_{P0} &= 39.4\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(OK Zug)}
+M_{P0} &= 36.5\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(OK Zug)}
 \end{aligned}
 $$
 
@@ -2415,7 +2364,7 @@ $$
 
 $$
 \begin{aligned}
-M_{P1} &= -40.0\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(UK Zug)}
+M_{P1} &= -42.9\ \mathrm{kN} \cdot \mathrm{m} \; \;\textrm{(UK Zug)}
 \end{aligned}
 $$
 
@@ -2476,7 +2425,78 @@ P_{V1} &= 98.73\ \mathrm{kN} \;
 \end{aligned}
 $$
 
+\subsubsection{Pressenkräfte}\label{pressenkruxe4fte}
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_versuch_lf.pdf}
+
+}
+
+\caption{\label{fig-t6_lastfall_versuch}Statisches System mit der
+Laststellung aus den Pressen}
+
+\end{figure}%
+
+Gemäss dem Versuchsbeschrieb lässt sich der Träger bis zu den folgenden
+maximalen Lasten belasten:
+
+$$
+\begin{aligned}
+Q_{max} &= 1638.0\ \mathrm{kN} \; 
+ &P_{max} &= 512.0\ \mathrm{kN} \; 
+ &L_{q} &= 9.0\ \mathrm{m} \; 
+\\[10pt]
+\end{aligned}
+$$
+
+Die mit \(Q\) simulierte Streckenlast wird als effektive Streckenlast
+modelliert. Dies führt zu folgender Grösse:
+
+$$
+\begin{aligned}
+q_{Q_{max}} &= \frac{ Q_{max} }{ L_{q} }  = \frac{ 1638.0\ \mathrm{kN} }{ 9.0\ \mathrm{m} } &= 182.0\ \frac{\mathrm{kN}}{\mathrm{m}}  
+\end{aligned}
+$$
+
+Im Stabstatik-Modell werden zwei Lastfälle definiert zum Abbilden der
+Versuchslast. Zum einen wird die Einzellast \(P_{1}\) und die
+entsprechende Streckenlast \(q_{1}\) angesetzt. Dies entspricht in etwa
+der Laststufe 8. Dies ist in der Abbildung~\ref{fig-durchbiegung_t6}
+aufgezeigt. Dieser Lastfall wird in Laststufen unterteilt bei der
+Berechnung und liefert so Resultate für sämtliche Laststufen unterhalb
+der Laststufe 8.
+
+$$
+\begin{aligned}
+P_{1} &= 475.0\ \mathrm{kN} \; 
+ &q_{1} &= 80.0\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
+ &Q_{1} &= 720.0\ \mathrm{kN} \; 
+\\[10pt]
+\end{aligned}
+$$
+
+Der zweite Lastfall beinhaltet die konstante Einzellast \(P_{2}\), sowie
+die Streckenlast \(q_{1}+ q_{\Delta}\). In diesem Lastfall wird
+lediglich die Streckenlast \(q_{\Delta}\) in Laststufen unterteilt.
+
+$$
+\begin{aligned}
+P_{2} &= 475.0\ \mathrm{kN} \; 
+ &q_{\Delta} &= 90.0\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
+ &q_{2} &= 169.9\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
+\\[10pt]
+ Q_{2} &= 1529.5\ \mathrm{kN} \;
+\end{aligned}
+$$
+
 \subsection{Baustoffe}\label{baustoffe}
+
+Nach Eurocode 2 bzw. DIN 1045 zur nicht-linearen
+Schnittgrössenermittlung. Direkte Anwendung der Würfelfestigkeit als
+Bauteilfestigkeit.
 
 \begin{figure}[H]
 
@@ -2567,14 +2587,13 @@ zusammengefasst}
 
 \end{figure}%
 
-\paragraph{Negative Momente - Zug im
-Obergurt}\label{negative-momente---zug-im-obergurt}
+\paragraph{Fliessen der Vorspannung - Zug im Obergurt
+(1)}\label{fliessen-der-vorspannung---zug-im-obergurt-1}
 
-Es wird der Biegewiderstand betrachtet, unter der Prämisse dass der
-Beton vollständig plastifiziert, sowie die Bewehrung die Zugfestigkeit
-erreicht. Somit ist dieser Zustand als Grenzzustand zu betrachten. Sind
-die numerischen Ergebnisse, dargestellt im Anhang, kleiner oder gleich
-diesem Widerstand, so ist das Ergebnis zufriedenstellend.
+Es wird vorausgesetzt, dass die Vorspannlitzen die Fliessgrenze
+erreichen. Die schlaffe Bewehrung hat ebenfalls die Fliessgrenze
+erreicht. Die Spannungsverteilung des Betons wird als Dreiecksverlauf
+angenommen.
 
 \begin{figure}[H]
 
@@ -2584,9 +2603,9 @@ diesem Widerstand, so ist das Ergebnis zufriedenstellend.
 
 }
 
-\caption{\label{fig-t6_qs_MR}Erreichen des Biegewiderstands,
-Betondruckzone vollständig plastifiziert, Bewehrung erreicht
-Zugfestigkeit}
+\caption{\label{fig-t6_qs_MR}Betondruckzone mit dreieckiger
+Spannungsverteilung, Bewehrung erreicht Fliessgrenze, Vorspannung
+erreicht die Fliessgrenze}
 
 \end{figure}%
 
@@ -2608,7 +2627,7 @@ Die statische Höhe wird abgeschätzt und beträgt:
 
 $$
 \begin{aligned}
-d_{1} &= h - \frac{ h_{5} }{ 2 } \; 
+d_{1} &= h - \frac{ h_{inf} }{ 2 } \; 
 \end{aligned}
 $$
 
@@ -2623,13 +2642,13 @@ Druckzonenhöhe bestimmen:
 
 $$
 \begin{aligned}
-x_{1} &= \frac{ A_{s_{1}} \cdot f_{st} + A_{p} \cdot \left( f_{pt} - \sigma_{P_{\infty}} \right) + P_{\infty} }{ b_{inf} \cdot 0.85 \cdot f_{c} } \; 
+x_{1} &= \frac{ A_{s_{1}} \cdot f_{sy} + A_{p} \cdot \left( f_{py} - \sigma_{P_{\infty}} \right) + P_{\infty} }{ b_{inf} \cdot 0.5 \cdot f_{c} } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-x_{1} &= 132.6\ \mathrm{mm} \;
+x_{1} &= 192.2\ \mathrm{mm} \;
 \end{aligned}
 $$
 
@@ -2637,13 +2656,86 @@ Mit welcher der Biegewiderstand ermittelt werden kann.
 
 $$
 \begin{aligned}
-M_{R1} &= \left( A_{s_{1}} \cdot f_{sy} + A_{p} \cdot \left( f_{py} - \sigma_{P_{\infty}} \right) \right) \cdot \left( d_{1} - S_{z} \right) + 0.85 \cdot b_{inf} \cdot f_{c} \cdot x_{1} \cdot \left( S_{z} - 0.425 \cdot x_{1} \right) \; 
+M_{R1} &= \left( A_{s_{1}} \cdot f_{sy} + A_{p} \cdot \left( f_{py} - \sigma_{P_{\infty}} \right) \right) \cdot \left( d_{1} - S_{z} \right) + 0.5 \cdot b_{inf} \cdot f_{c} \cdot x_{1} \cdot \left( S_{z} - \frac{ 1 }{ 3 } \cdot x_{1} \right) \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-M_{R1} &= 1315.4\ \mathrm{kN} \cdot \mathrm{m} \;
+M_{R1} &= 1156.3\ \mathrm{kN} \cdot \mathrm{m} \;
+\end{aligned}
+$$
+
+Die Krümmung wird dabei ebenfalls abgeschätzt.
+
+$$
+\begin{aligned}
+\varepsilon_{py} &= \frac{ f_{py} }{ E_{s} } \; 
+\\[10pt]
+\chi_{1} &= \frac{ \varepsilon_{py} - \frac{ \sigma_{P_{\infty}} }{ E_{p} } }{ d_{1} - x_{1} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\chi_{1} &= 0.0047\ \frac{1}{\mathrm{m}} \;
+\end{aligned}
+$$
+
+\paragraph{Biegewiderstand - Zug im Obergurt
+(2)}\label{biegewiderstand---zug-im-obergurt-2}
+
+Es wird der Biegewiderstand betrachtet, unter der Prämisse dass die
+Spannungsverteilung des Betons in der Druckzone einem Dreiecksverlauf
+gleicht, sowie das Vorspannkabel die Zugfestigkeit erreicht. Der
+schlaffen Bewehrung wird das Fliessen vorausgesetzt. Dieser Zustand ist
+als Grenzzustand zu betrachten. Sind die numerischen Ergebnisse,
+dargestellt im Anhang, kleiner oder gleich diesem Widerstand, so ist das
+Ergebnis zufriedenstellend.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_qs_MR.pdf}
+
+}
+
+\caption{\label{fig-t6_qs_MR}Erreichen des Biegewiderstands,
+Betondruckzone mit dreieckiger Spannungsverteilung, Vorspannkabel
+erreicht Zugfestigkeit, schlaffe Bewehrung fliesst}
+
+\end{figure}%
+
+Mittels horizontalem Gleichgewicht der Kräfte lässt sich die
+Druckzonenhöhe bestimmen:
+
+$$
+\begin{aligned}
+x_{2} &= \frac{ A_{s_{1}} \cdot f_{sy} + A_{p} \cdot \left( f_{pu} - \sigma_{P_{\infty}} \right) + P_{\infty} }{ b_{inf} \cdot 0.5 \cdot f_{c} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+x_{2} &= 200.8\ \mathrm{mm} \;
+\end{aligned}
+$$
+
+Die berechnete Druckzonenhöhe ist grösser als der rechteckige Bereich
+des Untergurts. Dies wird der Einfachkeits halber vernachlässigt.
+
+Der Biegewiderstand bestimmt sich somit zu:
+
+$$
+\begin{aligned}
+M_{R2} &= \left( A_{s_{1}} \cdot f_{sy} + A_{p} \cdot \left( f_{pu} - \sigma_{P_{\infty}} \right) \right) \cdot \left( d_{1} - S_{z} \right) + 0.5 \cdot b_{inf} \cdot f_{c} \cdot x_{2} \cdot \left( S_{z} - \frac{ 1 }{ 3 } \cdot x_{2} \right) \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+M_{R2} &= 1209.5\ \mathrm{kN} \cdot \mathrm{m} \;
 \end{aligned}
 $$
 
@@ -2653,18 +2745,18 @@ kleiner ist:
 
 $$
 \begin{aligned}
-\chi_{1} &= \frac{ \varepsilon_{pu} - \frac{ \sigma_{P_{\infty}} }{ E_{p} } }{ d_{1} - x_{1} } \; 
+\chi_{2} &= \frac{ \varepsilon_{pu} - \frac{ \sigma_{P_{\infty}} }{ E_{p} } }{ d_{1} - x_{2} } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\chi_{1} &= 0.0154\ \frac{1}{\mathrm{m}} \;
+\chi_{2} &= 0.0174\ \frac{1}{\mathrm{m}} \;
 \end{aligned}
 $$
 
-\paragraph{Positive Biegemomente - Zug im
-Untergurt}\label{positive-biegemomente---zug-im-untergurt}
+\paragraph{Fliessen der schlaffen Bewehrung - Zug im Untergurt
+(3)}\label{fliessen-der-schlaffen-bewehrung---zug-im-untergurt-3}
 
 Das gleiche Vorgehen wird für positive Biegebeanspruchung angewendet.
 
@@ -2686,13 +2778,13 @@ Die Querschnittsfläche der Bewehrung beträgt:
 
 $$
 \begin{aligned}
-A_{s_{2}} &= 8 \cdot \frac{ \left( 14 \cdot \mathrm{mm} \right) ^{ 2 } }{ 4 } \cdot \pi \; 
+A_{s_{3}} &= 8 \cdot \frac{ \left( 14 \cdot \mathrm{mm} \right) ^{ 2 } }{ 4 } \cdot \pi \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-A_{s_{2}} &= 1231.5\ \mathrm{mm}^{2} \;
+A_{s_{3}} &= 1231.5\ \mathrm{mm}^{2} \;
 \end{aligned}
 $$
 
@@ -2700,13 +2792,13 @@ Die abgeschätzte statische Höhe:
 
 $$
 \begin{aligned}
-d_{2} &= h - \frac{ h_{1} }{ 2.5 } \; 
+d_{3} &= h - \frac{ h_{sup} }{ 2.5 } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-d_{2} &= 728.0\ \mathrm{mm} \;
+d_{3} &= 728.0\ \mathrm{mm} \;
 \end{aligned}
 $$
 
@@ -2714,25 +2806,25 @@ Mit horizontalem Gleichgewicht der Kräfte folgt die Druckzonenhöhe zu:
 
 $$
 \begin{aligned}
-x_{2} &= \frac{ A_{s_{2}} \cdot f_{st} + P_{\infty} }{ b_{sup} \cdot 0.85 \cdot f_{c} } \; 
+x_{3} &= \frac{ A_{s_{3}} \cdot f_{sy} + P_{\infty} }{ b_{sup} \cdot 0.5 \cdot f_{c} } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-x_{2} &= 40.4\ \mathrm{mm} \;
+x_{3} &= 61.1\ \mathrm{mm} \;
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-M_{R2} &= A_{s_{2}} \cdot f_{sy} \cdot \left( d_{2} - S_{z} \right) + 0.85 \cdot b_{sup} \cdot f_{c} \cdot x_{2} \cdot \left( S_{z} - 0.425 \cdot x_{2} \right) \; 
+M_{R3} &= A_{s_{3}} \cdot f_{sy} \cdot \left( d_{3} - S_{z} \right) + 0.5 \cdot b_{sup} \cdot f_{c} \cdot x_{3} \cdot \left( S_{z} - \frac{ 1 }{ 3 } \cdot x_{3} \right) \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-M_{R2} &= 802.7\ \mathrm{kN} \cdot \mathrm{m} \;
+M_{R3} &= 724.2\ \mathrm{kN} \cdot \mathrm{m} \;
 \end{aligned}
 $$
 
@@ -2742,13 +2834,76 @@ aufweist.
 
 $$
 \begin{aligned}
-\chi_{2} &= \frac{ \varepsilon_{cu} }{ x_{2} } \; 
+\chi_{3} &= \frac{ \frac{ f_{sy} }{ E_{s} } }{ d_{3} - x_{3} } \; 
 \end{aligned}
 $$
 
 $$
 \begin{aligned}
-\chi_{2} &= 0.0865\ \frac{1}{\mathrm{m}} \;
+\chi_{3} &= 0.0037\ \frac{1}{\mathrm{m}} \;
+\end{aligned}
+$$
+
+\paragraph{Biegewiderstand - Zug im Untergurt
+(4)}\label{biegewiderstand---zug-im-untergurt-4}
+
+Das gleiche Vorgehen wird für positive Biegebeanspruchung angewendet.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_qs_MR_neg.pdf}
+
+}
+
+\caption{\label{fig-t6_qs_MR_pos}Erreichen des Biegewiderstands,
+Betondruckzone vollständig plastifiziert, Bewehrung erreicht
+Zugfestigkeit}
+
+\end{figure}%
+
+Da das verfestigende Verhalten der Bewehrung näherungsweise nicht
+vorhanden ist, wird ebenfalls die Fliessspannung bei der schlaffen
+Bewehrung angesetzt.
+
+$$
+\begin{aligned}
+x_{4} &= \frac{ A_{s_{3}} \cdot f_{sy} + P_{\infty} }{ b_{sup} \cdot 0.5 \cdot f_{c} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+x_{4} &= 61.1\ \mathrm{mm} \;
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+M_{R4} &= A_{s_{3}} \cdot f_{sy} \cdot \left( d_{3} - S_{z} \right) + 0.5 \cdot b_{sup} \cdot f_{c} \cdot x_{4} \cdot \left( S_{z} - \frac{ 1 }{ 3 } \cdot x_{4} \right) \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+M_{R4} &= 724.2\ \mathrm{kN} \cdot \mathrm{m} \;
+\end{aligned}
+$$
+
+Es wird von einem Betonversagen ausgegangen, da keine Vorspannung unter
+zug ist und die schlaffe bewehrung eine enorm hohe Bruchdehnung
+aufweist.
+
+$$
+\begin{aligned}
+\chi_{4} &= \frac{ \varepsilon_{cu} }{ x_{4} } \; 
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\chi_{4} &= 0.0573\ \frac{1}{\mathrm{m}} \;
 \end{aligned}
 $$
 
@@ -2779,8 +2934,22 @@ Höchstlast. Das Plateau im Plot wird mit der Nachrechnung nicht
 getroffen. Betrachtet man die Belastungsgeschichte des Trägers gemäss
 dem Versuchsbeschrieb, so wurde die Einzellast beim Erreichen der
 höchstlast konstant gehalten. Das numerische Modell zeigt, dass bei
-\(P_{max}\) der negative Biegewiderstand in etwa erreicht wurde. Dies
-bedeutet, dass sich bei einer Steigerung der Last rechnerisch ein
+\(P_{max}\) der negative Biegewiderstand in etwa erreicht wurde.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_LS8_spannungsverteilung.pdf}
+
+}
+
+\caption{\label{fig-spannungsverteilung_ls8}Spannungsverteilung beim
+Auflager \(B\) unter der Belastung \(LS8\)}
+
+\end{figure}%
+
+Dies bedeutet, dass sich bei einer Steigerung der Last rechnerisch ein
 plastisches Gelenk ausbildet, folglich sich ein Mechanismus einstellt
 beim Kragarm. Es lässt sich Vermuten dass dieses Verhalten bei der
 Messung aufgezeichnet wurde. Die Verformungsfigur bestätigt diese
@@ -2804,6 +2973,32 @@ Höchstlast nachgerechnet werden konnten.
 \caption{\label{fig-p_w10_vergleich}Vergleich der Versuchsresultate mit
 den numerisch ermittelten Resultate, dargestellt im
 Last-Verformungs-Diagramm an der Stelle \(10\)}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-phi-max-t6_l8-output-1.pdf}
+
+}
+
+\caption{\label{fig-phi-max-t6_l8}Verdrehungsverlauf aus dem Federmodell
+für die Laststufe 8 für den Träger T6}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-chi-max-t6l8-output-1.pdf}
+
+}
+
+\caption{\label{fig-chi-max-t6l8}Berechneter Krümmungsverlauf aus dem
+Verdrehungsverlauf für die Laststufe 8 für den Träger T6}
 
 \end{figure}%
 
@@ -2838,32 +3033,6 @@ Last-Verformungs-Diagramm an der Stelle \(18\)}
 
 \centering{
 
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-phi-max-t6_l8-output-1.pdf}
-
-}
-
-\caption{\label{fig-phi-max-t6_l8}Verdrehungsverlauf aus dem Federmodell
-für die Laststufe 8 für den Träger T6}
-
-\end{figure}%
-
-\begin{figure}[H]
-
-\centering{
-
-\includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-chi-max-t6l8-output-1.pdf}
-
-}
-
-\caption{\label{fig-chi-max-t6l8}Berechneter Krümmungsverlauf aus dem
-Verdrehungsverlauf für die Laststufe 8 für den Träger T6}
-
-\end{figure}%
-
-\begin{figure}[H]
-
-\centering{
-
 \includegraphics{index_files/mediabag/06_Vorspannversuch_files/figure-pdf/fig-phi-t6_l12-output-1.pdf}
 
 }
@@ -2883,6 +3052,19 @@ für die Laststufe 12 für den Träger T6}
 
 \caption{\label{fig-chi-max-t6l12}Berechneter Krümmungsverlauf aus dem
 Verdrehungsverlauf für die Laststufe 12 für den Träger T6}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics{index_files/mediabag/../imgs/T6_LS12_spannungsverteilung.pdf}
+
+}
+
+\caption{\label{fig-spannungsverteilung_ls12}Spannungsverteilung im Feld
+beim Erreichen des Biegewiderstands}
 
 \end{figure}%
 
