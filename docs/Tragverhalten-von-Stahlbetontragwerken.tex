@@ -267,7 +267,7 @@ Eine Modellvorstellung, das Federmodell, wird aufgezeigt. Dabei werden biege- un
 
 Im Anschluss wird das Modell verifiziert. In diesem Kapitel werden die Versuche aus der Vorarbeit mit dem Federmodell nachgerechnet, um identische Ergebnisse wie bei den Handrechnungen zu erzielen. An einem Dreipunktbiegeversuch werden Schub- und Biegeverformungen basierend auf nichtlinearen Stoffgesetzen ermittelt und mit den gemessenen Versuchsresultaten verglichen. Die Ergebnisse sind zufriedenstellend. An einem Vierpunktbiegeversuch werden ebenfalls Biege- und Schubverformungen bestimmt und die Anwendung des Versatzmasses aufgezeigt. Auch hier werden die Modellresultate mit den Versuchsresultaten verglichen, wobei Abweichungen erkennbar sind, die knapp akzeptabel sind. Diese Unterschiede werden auf Unschärfen in den angewendeten Stoffgesetzen zurückgeführt. Im Vergleich mit den Handrechnungen aus der Vorarbeit zeigt das Federmodell jedoch identische Ergebnisse. Die Modellverifizierung wird abschliessend als erfolgreich betrachtet.
 
-Im Kapitel der Modellanwendung wird das Federmodell an einem vorgespannten Träger angewendet. Das Kapitel beginnt mit einer detaillierten Versuchsbeschreibung, gefolgt von der Modellbildung. Die Interpretation der Vorspannung als Einwirkung sowie der Lastfall der Pressenkräfte und das Eigengewicht werden beschrieben. Der Hauptaspekt der Analyse ist die Ermittlung der Momenten-Krümmungs-Beziehung anhand nichtlinearer Stoffgesetze. Mittels einer Querschnittssoftware werden entlang der Stabachse 136 unterschiedliche Querschnitte analysiert. Die numerischen Ergebnisse werden erfolgreich durch Handrechnungen verifiziert. Die Resultate des Modells werden mit den Versuchsmessungen verglichen, wobei ein annähernd deckungsgleicher Verlauf festgestellt wird. Lediglich im Bereich der Traglast sind Unterschiede erkennbar. Das Kapitel endet mit einem Vergleich des Federmodells mit der Compatible Stress Field Method (CSFM), die in IDEAStatiCa implementiert ist. Die CSFM zeigt ähnliche Resultate wie das Federmodell.
+Im Kapitel der Modellanwendung wird das Federmodell an einem vorgespannten Träger angewendet. Das Kapitel beginnt mit einer detaillierten Versuchsbeschreibung, gefolgt von der Modellbildung. Die Interpretation der Vorspannung als Einwirkung sowie der Lastfall der Pressenkräfte und das Eigengewicht werden beschrieben. Der Hauptaspekt der Analyse ist die Ermittlung der Momenten-Krümmungs-Beziehung anhand nichtlinearer Stoffgesetze. Mittels einer Querschnittssoftware werden entlang der Stabachse 136 unterschiedliche Querschnitte analysiert. Die numerischen Ergebnisse werden erfolgreich durch Handrechnungen verifiziert. Die Resultate des Modells werden mit den Versuchsmessungen verglichen, wobei ein annähernd deckungsgleicher Verlauf festgestellt wird. Lediglich im Bereich der Traglast sind Unterschiede erkennbar. Das Kapitel endet mit einem Vergleich des Federmodells mit der Compatible Stress Field Method (CSFM). Die CSFM zeigt ähnliche Resultate wie das Federmodell.
 
 \renewcommand*\contentsname{Inhaltsverzeichnis}
 {
@@ -333,7 +333,7 @@ im konstruktiven Ingenieurbau gelegt werden.
 Dieses einleitende Kapitel beschreibt das Modell zur numerischen
 Integration kinematischer Grössen (Krümmung und Schiebung) und
 beleuchtet dessen Grundgedanken. Es wird kurz auf die Implementierung in
-einer FEM-Software eingegangen. Ein Einführungsbeispiel zeigt die
+einer FE-Software eingegangen. Ein Einführungsbeispiel zeigt die
 konzeptionelle Anwendung. Zudem werden erste Vor- und Nachteile der
 Modellvorstellung aufgezeigt.
 
@@ -365,13 +365,13 @@ Stäbe gekoppelt mit Federn}
 \end{figure}%
 
 In dieser Modellierung resultieren sämtliche Verformungen des Systems
-aus den Federverbindungen, welche in FEM-Softwares als Stabendgelenke
+aus den Federverbindungen, welche in FE-Softwares als Stabendgelenke
 modelliert werden können. Mit der Wahl der entsprechenden
 Federcharakteristiken können passende Resultate erzielt werden. Dieser
 Ansatz ermöglicht es, der Anzahl an Freiheitsgraden in den
 Stabendgelenken entsprechend Steifigkeiten zuzuordnen. Den
 Rotationsfreiheitsgraden werden Momenten-Verdrehungs-Beziehungen und den
-Translationsfreiheitsgraden Kraft-Verformungs-Beziehungen hinterlegt. In
+Translationsfreiheitsgraden Kraft-Verformungs-Beziehungen zugeordnet. In
 den betrachteten 3D-Statiksoftwares können den Stabendgelenken Verläufe
 mittels eines Diagrammeditors eingegeben werden, die beliebige
 nichtlineare Beziehungen abbilden, sofern diese numerisch stabil, sowie
@@ -405,18 +405,19 @@ Stäbe gekoppelt mit einem Wegfederpaar}
 \subsection{Modelleigenschaften}\label{modelleigenschaften}
 
 Mit der Modellierung als Federmodell lassen sich beliebig komplexe
-Stoffgesetze in einer praxisüblichen Statiksoftware anwenden.
-Zuverlässig sind die Berechnungen der Biegeverformungen, da sich die zu
-Grunde gelegte Momenten-Krümmungs-Beziehung mit einer händischen
-Querschnittsanalyse leicht verifizieren lässt. Dies ermöglicht die
-Überprüfung der Resultate und steigert so die Zuverlässigkeit der
-Berechnung. Ein weiterer Kernpunkt der Modellierung ist die
-Berücksichtigung der Momentenumlagerung. Durch die inkrementelle
-Steigerung der Last beim nichtlinearen Berechnungsalgorithmus können
-Momente entsprechend der beanspruchungsabhängigen Steifigkeit verteilt
-werden. Bei einem Zweifeldträger kann beispielsweise die Last nach dem
-Erreichen des Biegewiderstand beim Mittelauflager weiter gesteigert
-werden, sofern ausreichend Verformungsvermögen vorhanden ist.
+Stoffgesetze in einer praxisüblichen Statiksoftware anwenden. Speziell
+können Biegeverformungen zuverlässig bestimmt werden, basierend auf der
+Momenten-Krümmungs-Beziehung. Zudem lässt sich eine
+Momenten-Krümmungs-Beziehung mit einer händischen Querschnittsanalyse
+leicht verifizieren. Dies ermöglicht die Überprüfung der Resultate und
+steigert so die Zuverlässigkeit der Berechnung. Ein weiterer Kernpunkt
+der Modellierung ist die Berücksichtigung der Momentenumlagerung. Durch
+die inkrementelle Steigerung der Last beim nichtlinearen
+Berechnungsalgorithmus können Momente entsprechend der
+beanspruchungsabhängigen Steifigkeit verteilt werden. Bei einem
+Zweifeldträger kann beispielsweise die Last nach dem Erreichen des
+Biegewiderstand beim Mittelauflager weiter gesteigert werden, sofern
+ausreichend Verformungsvermögen vorhanden ist.
 
 Ein konzeptioneller Nachteil der Modellbildung ist die Vielzahl an
 Diskretisierungen. Dies gilt allgemein für numerische Lösungen. In
@@ -578,7 +579,7 @@ Abbildung~\ref{fig-skkragarmreal_high}.
 }
 
 \caption{\label{fig-skkragarmreal_high}Schnittkräfte des Systems aus
-Abbildung~\ref{fig-kragarm-sys} für die Last \(F_2\)}
+Abbildung~\ref{fig-kragarm-sys} für die Last \(F2\)}
 
 \end{figure}%
 
@@ -647,7 +648,7 @@ w_{\varphi} = \bar{M} \frac{M}{k_\varphi} = \bar{M} \varphi
 \]
 
 Die Verdrehung lässt sich aus der Federcharakteristik mit dem
-Biegemoment in Trägermitte aus den beiden Laststufen bestimmen. Die
+Biegemoment in Trägermitte bestimmen. Die
 Abbildung~\ref{fig-feder-force} zeigt die Position der Laststufen im
 Diagramm.
 
@@ -689,9 +690,9 @@ $$
 
 Die analytisch ermittelten Verformungen werden nun mit der Lösung der
 Stabstatiksoftware verglichen. Das statische System, gemäss
-Abbildung~\ref{fig-kragarm-feder}, wird in der Statiksoftware AxisVM-X7
+Abbildung~\ref{fig-kragarm-feder}, wird in der Statiksoftware AxisVM X7
 modelliert. Dazu wird die Drehfeder als Federelement modelliert und in
-der \(Y\)-Dimension mit der Drehfedercharakteristik versehen. Die
+der \(Y\)-Dimension mit der Federcharakteristik versehen. Die
 angeschlossenen Stäbe sind mit entsprechendem Querschnitt und der
 entsprechenden Biegesteifigkeit modelliert. Die Verformungen in
 \(Z\)-Richtung sind in Abbildung~\ref{fig-kragarm-drehfeder-10} und
@@ -762,7 +763,7 @@ reinen Biegeelements}
 
 \end{figure}%
 
-Mittels der folgenden Gleichungen lässt sich so die
+Mittels den folgenden Gleichungen lässt sich so die
 Wegfedercharakteristik bestimmen. Der Abstand zwischen dem Wegfederpaar
 wird mit \(z\) beschrieben.
 
@@ -845,12 +846,14 @@ Bereich der zweiten Laststufe. Dies ist auf die geringe Neigung, bzw.
 auf die Grösse von \(k_{\varphi_2}\) der Drehfedercharakteristik
 zurückzuführen.
 
-Das Beispiel zeigt die Anwendung eines nicht-linearen
-Momenten-Verdrehungs-Verlaufs anschaulich auf. Die Verformungsgrössen
-sind direkt von der Federcharakteristik abhängig. Dies ermöglicht eine
-gezielte Steuerung der Verformungen. Zudem ist die Nachvollziehbarkeit
-durch die direkte Abhängigkeit gegeben. Ebenfalls veranschaulicht das
-Beispiel die Problematik der Diskretisierung, angesprochen in
+Das Einführungsbeispiel zeigt wie das Biegeverhalten durch die Drehfeder
+beeinflusst wird. Die Verformungsgrösse ist unter Vernachlässigung der
+Stabverformungen direkt abhängig von der Federcharakteristik. Dies
+ermöglicht eine gezielte Steuerung der Verformungen. Zudem ist die
+Nachvollziehbarkeit durch die direkte Abhängigkeit gegeben. Das
+nichtlineare Verhalten ist problemlos modellierbar. Ebenfalls
+veranschaulicht das Beispiel, speziell die Modellierungsalternative, die
+Problematik der Diskterisierung, angesprochen in
 Kapitel~\ref{sec-modellvorstellung}.
 
 \bookmarksetup{startatroot}
@@ -1128,8 +1131,8 @@ Faktor gemäss folgender Gleichung reduziert.
 
 \(l_{E}\) steht für Elementlänge
 
-Diese erhöht die Steifigkeit jedes Stabendgelenks. In der Summe bilden
-die Verformungen der einzelnen Gelenke innerhalb des Spannungsfelds die
+Diese erhöht die Steifigkeit jeder Feder. In der Summe bilden die
+Verformungen der einzelnen Federn innerhalb des Spannungsfelds die
 gesamte Verformung des Spannungsfelds ab.
 
 \begin{figure}[H]
@@ -1158,11 +1161,11 @@ $$
 \oslash_{sw} &= 6.0\ \mathrm{mm} \; 
  &S_{sw} &= 80.0\ \mathrm{mm} \; 
  &b_{w} &= 800.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[12pt]
  E_{sw} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &z &= 140.0\ \mathrm{mm} \; 
  &\theta_{c3} &= 34.3\ \mathrm{°} \; 
-\\[11pt]
+\\[12pt]
  f_{su} &= 630.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
@@ -1230,7 +1233,7 @@ $$
 
 Die Abbildung~\ref{fig-wegfeder-schub-a3v2} zeigt das ermittelte
 Kraft-Verformungs-Verhalten. Das Verhalten ist analog dem bilinearen
-Spannungs-Dehnungs-Diagramm. Dies wird den Stabendgelenken in globaler
+Spannungs-Dehnungs-Diagramm. Dies wird den Federn in globaler
 \(Z\)-Richtung hinterlegt.
 
 \begin{figure}[H]
@@ -1242,7 +1245,7 @@ Spannungs-Dehnungs-Diagramm. Dies wird den Stabendgelenken in globaler
 }
 
 \caption{\label{fig-wegfeder-schub-a3v2}Berechnete
-Wegfedercharakteristik der Stabendgelenke in \(Z\)-Richtung des
+Wegfedercharakteristik der Federn in \(Z\)-Richtung des
 Dreipunktbiegeversuchs}
 
 \end{figure}%
@@ -1392,7 +1395,7 @@ aus {[}\citeproc{ref-tue_einfluss_2019}{3}{]}}
 \end{figure}%
 
 Die Abbildung~\ref{fig-sv14_versuchsres_2} zeigt einen Ausschnitt der
-Last-Verformungs-Diagramme sämtlicher Versuche der Serie. Rechts ist der
+Last-Verformungs-Diagramme der Versuche der Serie. Rechts ist der
 Versuch SV14 abgebildet. Die nachträgliche Verstärkung ist dargestellt,
 sowie die Stelle des Biegeversagens. Die Traglast beträgt circa \(105\)
 kN.
@@ -1405,7 +1408,7 @@ kN.
 
 }
 
-\caption{\label{fig-sv14_versuchsres_2}Last-Verformungs-Diagramm für die
+\caption{\label{fig-sv14_versuchsres_2}Last-Verformungs-Diagramm für
 einen Teil der Versuchsserie, Versuch SV14 rechts, entnommen aus
 {[}\citeproc{ref-tue_einfluss_2019}{3}{]}}
 
@@ -1479,8 +1482,8 @@ Vierpunktbiegeversuchs, ohne ungerissenen Bereich, übernommen aus
 
 Die Steigung der Momenten-Krümmungs-Beziehung beschreibt die
 Biegesteifigkeit. Das annähernd bilineare Verhalten lässt sich der
-Steifigkeit des gerissenen Querschnitts und der Steifigkeit des
-Fliessens der Bewehrung zuordnen. Im erstgenannten Bereich wird die
+Steifigkeit des gerissenen Querschnitts und der Steifigkeit des Zustands
+des Fliessens der Bewehrung zuordnen. Im erstgenannten Bereich wird die
 Zugversteifung berücksichtigt. Damit wird eine Steifigkeitserhöhung
 zwischen den Rissen abgebildet. Der leicht ausgeprägte Knick in diesem
 Bereich ist auf das Fliessen der schwächeren Bewehrung zurückzuführen.
@@ -1526,11 +1529,11 @@ $$
 z_{_{}} &= 359.0\ \mathrm{mm} \; 
  &\oslash_{sw_{_{}}} &= 4.3\ \mathrm{mm} \; 
  &b_{w_{_{}}} &= 170.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[12pt]
  S_{sw_{_{}}} &= 150.0\ \mathrm{mm} \; 
  &f_{su_{_{}}} &= 715.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &\theta_{c3_{_{}}} &= 25.6\ \mathrm{°} \; 
-\\[11pt]
+\\[12pt]
  F_{B} &= 105.0\ \mathrm{kN} \;
 \end{aligned}
 $$
@@ -1771,7 +1774,7 @@ so resultiert das Versatzmoment.
 Das Versatzmoment ist in der Abbildung~\ref{fig-versatzmoment_sv14}
 entlang der Stabachse aufgezeigt. Dieses wird dem Modell auf Seiten der
 Einwirkung hinterlegt. Es wird ein Lastfall definiert, welcher zu dem
-Biegemomentenverlauf gemäss dem Versatzmass führt.
+Biegemomentenverlauf gemäss dem Versatzmoment führt.
 
 \begin{figure}[H]
 
@@ -1820,10 +1823,10 @@ der Querschnittsfläche der Schubbewehrung pro Spannungsfeld die
 entsprechende Kraftkomponente der Wegfedercharakteristik. Die
 Verformungskomponente entspricht der Dehnung multipliziert mit dem
 Hebelarm der inneren Kräfte. Dies führt zum Kraft-Verformungs-Verhalten
-für ein Spannungsfeld. Um die Wegfedercharakteristik eines einzelnen
-Stabendgelenks zu erhalten, ist die Verformung um die Anzahl an
-Stabelementen im Spannungsfeld zu reduzieren. Der Reduktionsfaktor zur
-Erhöhung der Steifigkeit des Stabendgelenks folgt zu:
+für ein Spannungsfeld. Um die Wegfedercharakteristik einer einzelnen
+Feder zu erhalten, ist die Verformung um die Anzahl an Stabelementen im
+Spannungsfeld zu reduzieren. Der Reduktionsfaktor zur Erhöhung der
+Steifigkeit der Feder folgt zu:
 
 $$
 \begin{aligned}
@@ -1838,8 +1841,8 @@ $$
 $$
 
 Die Abbildung~\ref{fig-wegfeder-schub-sv14} zeigt das
-Kraft-Verformungs-Verhalten für die Gelenke des Stabmodells in
-vertikaler Richtung. Das Verhalten ist analog dem des bilinearen
+Kraft-Verformungs-Verhalten für die Federn des Stabmodells in vertikaler
+Richtung. Das Verhalten ist analog dem des bilinearen
 Spannungs-Dehnungs-Diagramms.
 
 \begin{figure}[H]
@@ -1851,7 +1854,7 @@ Spannungs-Dehnungs-Diagramms.
 }
 
 \caption{\label{fig-wegfeder-schub-sv14}Berechnete
-Wegfedercharakteristik des Schubgelenks des Vierpunktbiegeversuches}
+Wegfedercharakteristik der Federn des Vierpunktbiegeversuches}
 
 \end{figure}%
 
@@ -2117,11 +2120,11 @@ $$
 f_{py} &= 1706.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &f_{pu} &= 1855.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &V_{om} &= 730.0\ \mathrm{kN} \; 
-\\[11pt]
+\\[10pt]
  A_{p} &= 596.0\ \mathrm{mm}^{2} \; 
  &E_{p} &= 190000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &\varepsilon_{pu} &= 1.5\ \mathrm{\%} \; 
-\\[11pt]
+\\[10pt]
  \eta &= 0.9 \; \;\textrm{(Verlustfaktor)}
 \end{aligned}
 $$
@@ -2187,7 +2190,7 @@ $$
 f_{c} &= 52.10\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &f_{ct} &= 4.30\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
  &E_{c} &= 50200.00\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \; 
-\\[11pt]
+\\[10pt]
  \rho_{c} &= 2409.00\ \frac{\mathrm{kg}}{\mathrm{m}^{3}} \; 
  &\varepsilon_{cu} &= 0.35\ \mathrm{\%} \;
 \end{aligned}
@@ -2225,7 +2228,7 @@ $$
 f_{sy} &= 500.0\ \mathrm{MPa} \; 
  &f_{su} &= 630.0\ \mathrm{MPa} \; 
  &\varepsilon_{su} &= 12.7\ \mathrm{\%} \; 
-\\[11pt]
+\\[10pt]
  E_{s} &= 205000.0\ \frac{\mathrm{N}}{\mathrm{mm}^{2}} \;
 \end{aligned}
 $$
@@ -2241,11 +2244,11 @@ $$
 h_{sup} &= 140.0\ \mathrm{mm} \; 
  &h_{inf} &= 180.0\ \mathrm{mm} \; 
  &h &= 800.0\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  b_{inf} &= 400.0\ \mathrm{mm} \; 
  &b_{sup} &= 800.0\ \mathrm{mm} \; 
  &S_{z} &= 459.5\ \mathrm{mm} \; 
-\\[11pt]
+\\[10pt]
  L &= 13600.0\ \mathrm{mm} \;
 \end{aligned}
 $$
@@ -2463,7 +2466,7 @@ einem Biegemoment. Die Exzentrizität entspricht dabei:
 $$
 \begin{aligned}
 e_{P0} &= 55.5\ \mathrm{mm} \; \;\textrm{($x=0$)}
- &e_{P1} &= -65.3\ \mathrm{mm} \; \;\textrm{($x=L_{tot}$)}
+ &e_{P1} &= -65.3\ \mathrm{mm} \; \;\textrm{($x=L$)}
 \end{aligned}
 $$
 
@@ -2537,7 +2540,7 @@ $$
 Q_{max} &= 1638.0\ \mathrm{kN} \; 
  &P_{max} &= 512.0\ \mathrm{kN} \; 
  &L_{q} &= 9.0\ \mathrm{m} \; 
-\\[11pt]
+\\[10pt]
 \end{aligned}
 $$
 
@@ -2553,8 +2556,8 @@ $$
 Im Stabstatikmodell werden zwei Lastfälle definiert zum Abbilden der
 Pressenkräfte. Zum einen wird die Einzellast \(P_{1}\) und die
 entsprechende Streckenlast \(q_{1}\) angesetzt. Betitelt wird diese
-Lastsituation mit Pressenkräfte \(1\). Betragsmässig entspricht der
-Lastfall \emph{Pressenkräfte \(1\)} in etwa der Laststufe 8 gemäss der
+Lastsituation mit \emph{Pressenkräfte 1}. Betragsmässig entspricht der
+Lastfall \emph{Pressenkräfte 1} in etwa der Laststufe 8 gemäss der
 Abbildung~\ref{fig-durchbiegung_t6}. Bei der Berechnung werden \(P_1\)
 und \(q_1\) inkrementell gesteigert. Sie liefern somit Resultate für
 sämtliche Laststufen unterhalb der Laststufe 8.
@@ -2564,7 +2567,7 @@ $$
 P_{1} &= 475.0\ \mathrm{kN} \; 
  &q_{1} &= 80.0\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
  &Q_{1} &= 720.0\ \mathrm{kN} \; 
-\\[11pt]
+\\[10pt]
 \end{aligned}
 $$
 
@@ -2582,7 +2585,7 @@ $$
 P_{\Delta} &= 11.0\ \mathrm{kN} \; 
  &q_{\Delta} &= 90.0\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
  &P_{2} &= 486.0\ \mathrm{kN} \; 
-\\[11pt]
+\\[10pt]
  q_{2} &= 169.9\ \frac{\mathrm{kN}}{\mathrm{m}} \; 
  &Q_{2} &= 1529.5\ \mathrm{kN} \;
 \end{aligned}
@@ -2656,9 +2659,8 @@ Spannlitzen mit ergänzter Ausnutzung durch die Vorspannkraft}
 Dies führt zu der Spannungs-Dehnungs-Beziehung in der
 Abbildung~\ref{fig-sigma_eps_vorspannung_t6}. Dargestellt ist lediglich
 der positive Spannungsbereich. Im negativen Spannungsbereich wird ein
-linear-elastisches Verhalten vorausgesetzt. Dies ist jedoch nur der
-Vollständigkeit halber definiert, da die Vorspannung lediglich
-Zugbeanspruchungen erfährt.
+linear-elastisches Verhalten vorausgesetzt. Dies ist jedoch nicht
+relevant, da die Vorspannung lediglich Zugbeanspruchungen erfährt.
 
 \begin{figure}[H]
 
@@ -2802,7 +2804,7 @@ Die Krümmung wird dabei ebenfalls abgeschätzt.
 $$
 \begin{aligned}
 \varepsilon_{py} &= \frac{ f_{py} }{ E_{s} } \; 
-\\[11pt]
+\\[10pt]
 \chi_{1} &= \frac{ \varepsilon_{py} - \frac{ \sigma_{P_{\infty}} }{ E_{p} } }{ d_{1} - x_{1} } \; 
 \end{aligned}
 $$
@@ -2887,6 +2889,9 @@ $$
 (3)}\label{fliessen-der-schlaffen-bewehrung---zug-im-untergurt-3}
 
 Das gleiche Vorgehen wird für positive Biegebeanspruchung angewendet.
+Die schlaffe Bewehrung fliesst. Die Vorspannung ist im Untergurt nicht
+vorhanden. Dem Beton wird das Erreichend er Druckfestigkeit
+vorausgesetzt.
 
 \begin{figure}[H]
 
@@ -3283,13 +3288,82 @@ gemäss der Vorspanngeometrie modelliert.
 }
 
 \caption{\label{fig-system_ideastat}Strukturmodell des Versuchs in
-IDEAStatiCa für den Lastfall \emph{Pressenkräfte \(1\)}}
+IDEAStatiCa für den Lastfall \emph{Pressenkräfte 1}}
 
 \end{figure}%
 
 Die Abbildung~\ref{fig-system_ideastat} zeigt das modellierte
-2-dimensionale statische System. Die Überlegungen zu den Lastfällen, wie
-die Stoffgesetze entsprechen deren dem Federmodell.
+2-dimensionale statische System. Die Überlegungen zu den Lastfällen
+entsprechen deren des Federmodells. Die Stoffegesetze sind nach
+Möglichkeit gleich deren des Federmodells gewählt. Die qualitativen
+Verläufe sind in den folgenden Abbildungen aufgezeigt. Die
+Abbildung~\ref{fig-beton_ideastat} zeigt das Verhalten des Betons. Das
+parabolische Verhalten kann in der Software nicht modelliert werden.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{../imgs/beton_ideastat.png}
+
+}
+
+\caption{\label{fig-beton_ideastat}Qualitatives Verhalten der
+modellierten Spannungs-Dehnungs-Beziehung des Betons in IDEAStatiCa}
+
+\end{figure}%
+
+In der Abbildung~\ref{fig-betonstahl_ideastat} ist die
+Spannungs-Dehnungs-Beziehung der schlaffen Bewehrung gezeigt. Die
+Zugversteifung wird auf Seiten der Spannungs-Dehnungs-Beziehung
+berücksichtigt, dargestellt in der
+Abbildung~\ref{fig-zugverst_ideastat}.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{../imgs/stahl_ideastat.png}
+
+}
+
+\caption{\label{fig-betonstahl_ideastat}Qualitatives Verhalten der
+modellierten Spannungs-Dehnungs-Beziehung der schlaffen Bewehrung in
+IDEAStatiCa}
+
+\end{figure}%
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{../imgs/zugversteifung_ideastat.png}
+
+}
+
+\caption{\label{fig-zugverst_ideastat}Qualitative Berücksichtigung der
+Zugversteifung der schlaffen Bewehrung in IDEAStatiCa}
+
+\end{figure}%
+
+Dem Spannstahl wird das Stoffgesetzt gemäss der
+Abbildung~\ref{fig-spannstahl_ideastat} hinterlegt. Die Modellierung des
+Mitwirkens der Vorspannlitzen abzüglich der Vorspannkraft ist hier nicht
+zu berücksichtigen.
+
+\begin{figure}[H]
+
+\centering{
+
+\includegraphics[width=0.7\textwidth,height=\textheight]{../imgs/spannstahl_ideastat.png}
+
+}
+
+\caption{\label{fig-spannstahl_ideastat}Qualitatives Verhalten der
+modellierten Spannungs-Dehnungs-Beziehung des Spannstahls in
+IDEAStatiCa}
+
+\end{figure}%
 
 \subsection{Modellergebnisse}\label{modellergebnisse-3}
 
@@ -3353,7 +3427,7 @@ Lastfall \emph{Pressenkräfte 2}}
 
 Das Last-Verformungs-Diagramm in der
 Abbildung~\ref{fig-q_w18_vergleich_idea} zeigt auch hier eine
-Übereinstimmung der Versuchsergebnissen mit Modellresultaten.
+Übereinstimmung der Versuchsergebnissen mit den Modellresultaten.
 
 \begin{figure}[H]
 
@@ -3370,14 +3444,17 @@ der Stelle \(18\)}
 
 \end{figure}%
 
-Abschliessend zeigt die Abbildung~\ref{fig-versagen_ideastat} die
-Spannungsverteilung innerhalb des Trägers durch die Lasten des Lastfalls
-\emph{Pressenkräfte 2}. Beim Auflager \(B\) ist lokal eine deutliche
-Überschreitung der Betondruckspannung festzustellen. Dies wird jedoch
-nicht als Versagen des Versuchskörpers gewertet. Im Feld zeigt sich eine
-Ausnutzung des Betons von 110\%. Folglich prognostiziert die CSFM
-ebenfalls ein Versagen des Querschnitts im Feld, gleich der Prognose des
-Federmodells.
+Abschliessend wird auf die prognostizierte Versagensart des Modells
+eingegangen. Die Abbildung~\ref{fig-versagen_ideastat} zeigt die
+Ausnutzung innerhalb des Trägers. Es kann lediglich 80\% der Lasten des
+Lastfalls \emph{Pressenkräfte 2} angesetzt werden bis sich eine lokale
+Überschreitung der Betonspannungen beim Auflager \(B\) einstellt und die
+Berechnung abgebrochen wird. Die Spannungskonzentrationen befinden sich
+an den Enden der Auflagerplatten. Das Modell prognostiziert ein
+Versagen, sobald sich in einem definierten Bereich
+Spannungsüberschreitungen häufen. Ob sich durch die lokale
+Überschreitung der Betonspannungen ein Versagen des Systems einstellt
+ist zu hinterfragen.
 
 \begin{figure}[H]
 
@@ -3387,11 +3464,14 @@ Federmodells.
 
 }
 
-\caption{\label{fig-versagen_ideastat}Spannungsverteilung des Modells,
-lokale Überschreitung der Druckspannungen im Auflagerbereich,
-Überschreitung der Betondruckfestigkeit im Feld}
+\caption{\label{fig-versagen_ideastat}Ausnutzung des Modells, lokale
+Überschreitung der Druckspannungen im Auflagerbereich}
 
 \end{figure}%
+
+Die Betrachtung der Versagensart ist unabhängig von den oben gezeigten
+Verformungsberechnungen. Die Verformungsberechnungen sind mit der
+gesamten Last des Lastfalls berechnet.
 
 \bookmarksetup{startatroot}
 
@@ -3401,18 +3481,20 @@ lokale Überschreitung der Druckspannungen im Auflagerbereich,
 
 In dieser Arbeit wurde das Verformungsverhalten von Stahlbetontragwerken
 untersucht. Die geforderte Verknüpfung der mechanischen Modelle aus der
-Vorarbeit mit kommerziellen FEM-Programmen konnte erfolgreich umgesetzt
+Vorarbeit mit kommerziellen FE-Programmen konnte erfolgreich umgesetzt
 werden. Das daraus entstandene Federmodell liefert eine praxistaugliche
 Modellvorstellung, um nichtlineare Verformungen von Stabtragwerken zu
-berechnen. Das Federmodell kann Verformungen in Richtung der sechs
-Freiheitsgrade im dreidimensionalen Raum für Stabtragwerke abbilden. Die
-Bestimmung der entsprechenden Steifigkeiten erweist sich als
-Hauptaufgabe bei der Modellbildung. Zudem kann das Modell bei statisch
-unbestimmten Systemen Schnittgrössen umverteilen. Die Resultate
-reagieren empfindlich auf die gewählten Abstände der Federn, die
-Inkremente bei der numerischen Ermittlung der Federsteifigkeiten und die
-Grösse der Laststufen beim Lösungsalgorithmus. Dies ist eine generelle
-Problematik bei FEM-Lösungen und stellt eine Schwäche des Modells dar.
+berechnen. Das Federmodell kann nichtlineare Verformungen in Richtung
+der sechs Freiheitsgrade im dreidimensionalen Raum für Stabtragwerke
+abbilden. Die Bestimmung der entsprechenden Steifigkeiten erweist sich
+als Hauptaufgabe bei der Modellbildung. Zudem kann das Modell bei
+statisch unbestimmten Systemen Schnittgrössen umlagern.
+
+Das Modell zeigt Schwächen bei der empfindlichen Reaktion der Resultate
+auf die gewählten Abstände der Federn, die Inkremente bei der
+numerischen Ermittlung der Federsteifigkeiten und die Grösse der
+Laststufen beim Lösungsalgorithmus. Dies ist eine generelle Problematik
+bei FE-Lösungen.
 
 Die Modellverifizierung hat zufriedenstellende Resultate geliefert.
 Speziell die Biegeverformungen unter Berücksichtigung der Zugversteifung
@@ -3429,9 +3511,16 @@ zum Verformungsverhalten zu liefern.
 Die Anwendung am vorgespannten Träger zeigte, wie das Federmodell auch
 an komplexen Stabtragwerken angewendet werden kann. Die Abstufung der
 schlaffen Bewehrung und die Berücksichtigung der Vorspannung erhöhen den
-Berechnungsaufwand drastisch. Es wird aufgezeigt, dass Systeme mit
-Vorspannung mit dem Federmodell berechnet werden können. Die CSFM
-liefert annähernd gleiche Resultate.
+Berechnungsaufwand drastisch. Die Resultate des Federmodells sind
+deckungsgleich mit den Versuchsergebnissen. Dies ist äusserst
+zufriedenstellend. Ebenso liefert die CSFM treffende Ergebnisse.
+Abweichungen zeigen sich mit beiden Modellen bei der Prognose der
+Versagensart.
+
+Die Anwendung des IDEAStatiCa-Tools ist nur oberflächlich behandelt, ein
+konsistentes Modellverständnis wird in der Arbeit nicht aufgezeigt. In
+diesem Bereich ist für eine praxistaugliche Anwendung ein vertiefteres
+Verständnis aufzubauen.
 
 \section{Ausblick}\label{ausblick}
 
@@ -3453,7 +3542,9 @@ Trägerrost, entnommen aus {[}\citeproc{ref-gitz_ansatze_2024}{1}{]}}
 
 \end{figure}%
 
-Ein wichtiger Aspekt der Arbeit wird der Vergleich der Resultate des
+Da sich das Tool der IDEAStatica als durchaus potent erwiesen hat, gilt
+es sich in die Grundlagen der Software zu vertiefen. Ein wichtiger
+Aspekt der Arbeit wird somit der Vergleich der Resultate des
 Federmodells mit den Resultaten des Plattentools der IDEAStatiCa.
 
 \newpage{}
@@ -3592,15 +3683,15 @@ Structural Engineering, Zurich}
 \addcontentsline{toc}{part}{Anhang}
 \appendix
 
-\chapter{Momenten-Krümmungs-Beziehungen vorgespannten
-Trägers}\label{momenten-kruxfcmmungs-beziehungen-vorgespannten-truxe4gers}
+\chapter{Momenten-Krümmungs-Beziehungen des vorgespannten
+Trägers}\label{momenten-kruxfcmmungs-beziehungen-des-vorgespannten-truxe4gers}
 
 \addtocontents{lof}{\protect\setcounter{tocdepth}{0}}
 
-Dieses Kapitel zeigt lediglich die einzelnen Querschnitte mit den
-entsprechenden Parametern und der resultierenden
-Momenten-Krümmungs-Beziehung. Es wird keinen Wert auf die Leserlichkeit
-in Papierformat gelegt.
+Dieses Kapitel zeigt die einzelnen Querschnitte mit den entsprechenden
+Parametern und der resultierenden Momenten-Krümmungs-Beziehung. Der
+Umfang des Anhangs wurde reduziert auf Kosten der Leserlichkeit in
+Papierformat.
 
 \begin{figure}[H]
 
