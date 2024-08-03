@@ -267,7 +267,7 @@ Eine Modellvorstellung, das Federmodell, wird aufgezeigt. Dabei werden biege- un
 
 Im Anschluss wird das Modell verifiziert. In diesem Kapitel werden die Versuche aus der Vorarbeit mit dem Federmodell nachgerechnet, um identische Ergebnisse wie bei den Handrechnungen zu erzielen. An einem Dreipunktbiegeversuch werden Schub- und Biegeverformungen basierend auf nichtlinearen Stoffgesetzen ermittelt und mit den gemessenen Versuchsresultaten verglichen. Die Ergebnisse sind zufriedenstellend. An einem Vierpunktbiegeversuch werden ebenfalls Biege- und Schubverformungen bestimmt und die Anwendung des Versatzmasses aufgezeigt. Auch hier werden die Modellresultate mit den Versuchsresultaten verglichen, wobei Abweichungen erkennbar sind, die knapp akzeptabel sind. Diese Unterschiede werden auf Unschärfen in den angewendeten Stoffgesetzen zurückgeführt. Im Vergleich mit den Handrechnungen aus der Vorarbeit zeigt das Federmodell jedoch identische Ergebnisse. Die Modellverifizierung wird abschliessend als erfolgreich betrachtet.
 
-Im Kapitel der Modellanwendung wird das Federmodell an einem vorgespannten Träger angewendet. Das Kapitel beginnt mit einer detaillierten Versuchsbeschreibung, gefolgt von der Modellbildung. Die Interpretation der Vorspannung als Einwirkung sowie der Lastfall der Pressenkräfte und das Eigengewicht werden beschrieben. Der Hauptaspekt der Analyse ist die Ermittlung der Momenten-Krümmungs-Beziehung anhand nichtlinearer Stoffgesetze. Mittels einer Querschnittssoftware werden entlang der Stabachse 136 unterschiedliche Querschnitte analysiert. Die numerischen Ergebnisse werden erfolgreich durch Handrechnungen verifiziert. Die Resultate des Modells werden mit den Versuchsmessungen verglichen, wobei ein annähernd deckungsgleicher Verlauf festgestellt wird. Lediglich im Bereich der Traglast sind Unterschiede erkennbar. Das Kapitel endet mit einem Vergleich des Federmodells mit der Compatible Stress Field Method (CSFM). Die CSFM zeigt ähnliche Resultate wie das Federmodell.
+Im Kapitel der Modellanwendung wird das Federmodell an einem vorgespannten Träger angewendet. Das Kapitel beginnt mit einer detaillierten Versuchsbeschreibung, gefolgt von der Modellbildung. Die Interpretation der Vorspannung als Einwirkung sowie der Lastfall der Pressenkräfte und das Eigengewicht werden beschrieben. Der Hauptaspekt der Analyse ist die Ermittlung der Momenten-Krümmungs-Beziehung anhand nichtlinearer Stoffgesetze. Mittels einer Querschnittsanalysesoftware werden entlang der Stabachse 136 unterschiedliche Querschnitte analysiert. Die numerischen Ergebnisse werden erfolgreich durch Handrechnungen verifiziert. Die Resultate des Modells werden mit den Versuchsmessungen verglichen, wobei ein annähernd deckungsgleicher Verlauf festgestellt wird. Lediglich im Bereich der Traglast sind Unterschiede erkennbar. Das Kapitel endet mit einem Vergleich des Federmodells mit der Compatible Stress Field Method (CSFM). Die CSFM zeigt ähnliche Resultate wie das Federmodell.
 
 \renewcommand*\contentsname{Inhaltsverzeichnis}
 {
@@ -488,7 +488,7 @@ Alternativ könnte der Kragarm biegestarr modelliert werden, da lediglich
 die Verformungen aus der Drehfeder von Belang sind. Der
 Rechteckquerschnitt, der für den gesamten Kragarm gilt, ist in
 Abbildung~\ref{fig-qs-kragarm} dargestellt. Der Querschnitt ist mit
-einem durchwegs linear-elastischem Materialverhalten versehen.
+einem durchwegs linear-elastischen Materialverhalten versehen.
 
 \begin{figure}[H]
 
@@ -690,7 +690,7 @@ $$
 
 Die analytisch ermittelten Verformungen werden nun mit der Lösung der
 Stabstatiksoftware verglichen. Das statische System, gemäss
-Abbildung~\ref{fig-kragarm-feder}, wird in der Statiksoftware AxisVM X7
+Abbildung~\ref{fig-kragarm-feder}, wird in der Statiksoftware AxisVM-X7
 modelliert. Dazu wird die Drehfeder als Federelement modelliert und in
 der \(Y\)-Dimension mit der Federcharakteristik versehen. Die
 angeschlossenen Stäbe sind mit entsprechendem Querschnitt und der
@@ -839,7 +839,7 @@ w_{1,tot,F2} = 2137.8 \text{mm}
 \end{figure}%
 
 Die Resultate der Modellierung mittels Wegfedern zeigen Differenzen zu
-denen mit der Drehfeder. Dies lässt sich auf die Diskretisierung des
+jenen mit der Drehfeder. Dies lässt sich auf die Diskretisierung des
 nichtlinearen Verlaufs der Wegfedercharakteristik zurückführen. Eine
 Approximation des Verlaufs führt zu beträchtlichen Abweichungen im
 Bereich der zweiten Laststufe. Dies ist auf die geringe Neigung, bzw.
@@ -861,7 +861,7 @@ Kapitel~\ref{sec-modellvorstellung}.
 \chapter{Modellverifizierung}\label{sec-verifizierung}
 
 Das vorangegangen Kapitel beschreibt das Konzept des Federmodells und
-liefert anhand des Einführungsbeispiel einen nachvollziehbaren
+liefert anhand des Einführungsbeispiels einen nachvollziehbaren
 Berechnungsablauf. Um sich von der Betrachtung eines fiktiven Beispiels
 zu lösen, wird in diesem Kapitel die Anwendung des Federmodells auf die
 beiden Versuche der Vertiefungsarbeit I
@@ -892,7 +892,7 @@ ausschlaggebender Faktor.
 \subsection{Versuchsbeschrieb}\label{versuchsbeschrieb}
 
 Der Versuchsaufbau ist in der Abbildung~\ref{fig-anordnung_a3v2}
-gezeigt. Der Plattenstreifen ist auf einem Punktlager horizontal und
+gezeigt. Der Plattenstreifen ist auf einer Auflagerplatte horizontal und
 vertikal unverschieblich gelagert. Das zweite Lager bildet eine Presse.
 Die Lagerung der Presse gilt als horizontal verschieblich.
 
@@ -956,7 +956,7 @@ Plattenstreifen wurde in der ersten Versuchsanordnung bereits
 vorbelastet. Nach der Vorbelastung drehte man den Träger und brachte ihn
 in die neue Anordnung. Darauf folgte die Belastung mit der Einzellast
 \(F_A\). Der Versuchskörper wurde weggesteuert bis zum Bruch gefahren.
-Die Aufzeichnung der Verformungen begann ab dem Belastungsbegin der
+Die Aufzeichnung der Verformungen begann ab dem Belastungsbeginn der
 Pressen. Die Abbildung~\ref{fig-verformungslinie_a3v2} zeigt die
 Verformung entlang der Stabachse für die entsprechenden Laststufen. Das
 Last-Verformungs-Diagramm an der Stelle der Lasteinleitung ist in der
@@ -998,7 +998,7 @@ Ziel ist es das Verhalten des Versuchskörpers mit einem simplen Modell
 abzubilden. Das statische System des Versuchs ist in
 Abbildung~\ref{fig-system_a3v2} dargestellt. Das Eigengewicht wird
 vernachlässigt, da die Verformungsmessungen nach dem Einbau des Versuchs
-beginnen.
+in den Versuchsstand beginnen.
 
 \begin{figure}[H]
 
@@ -1204,7 +1204,7 @@ $$
 Darauf folgt die Bestimmung des Querkraftwiderstands. Gemäss der
 Abbildung~\ref{fig-last_verformung_a3v2} ist ersichtlich, dass der
 Plattenstreifen bei \(320\) kN versagt. Der Querkraftwiderstand muss der
-Querkraft unter der Traglast entsprechen. Folglich ist zu kontrollieren,
+Querkraft aus der Traglast entsprechen. Folglich ist zu kontrollieren,
 ob sich mittels des gewählten Neigungswinkels \(\theta_{c3}\) der
 geforderte Querkraftwiderstand einstellt.
 
@@ -1350,12 +1350,12 @@ Vierpunktbiegeversuchs, Zeichnung entnommen aus
 Die Abbildung~\ref{fig-versuchsskizze-SV14} zeigt die Lagerung des
 Trägers, sowie die Stellen der Lasteinleitung. Zusätzlich ist das
 Bewehrungslayout dargestellt. Die Längsbewehrung ist stossfrei verlegt.
-Am Ende ist diese abgebogen. Dies dient zur Verankerung. Der
-Schubbewehrungsgehalt unterscheidet sich für die beiden Trägerhälften.
+Am Ende ist diese abgebogen. Dies dient der Verankerung. Der
+Schubbewehrungsgehalt unterscheidet sich zwischen den Trägerhälften.
 
 Die Abbildung~\ref{fig-QS-SV14} zeigt den Querschnitt mit den
 Hauptabmessungen. Die Position der Längsbewehrung ist vermasst. Sowie
-sind die Hauptabmessungen dargestellt.
+sind die Abmessungen des Betonquerschnitts dargestellt.
 
 \begin{figure}[H]
 
@@ -1743,10 +1743,11 @@ F_{sup_{3}} &= 438.7\ \mathrm{kN} \;
 $$
 
 Die Gurtkraftverläufe sind in der Abbildung~\ref{fig-gurtkraft_sv14}
-aufgezeigt. Der Zuggurtverlauf ist mit dem Anteil aus dem Biegemoment
-ergänzt. Dazu wurde der Biegemomentenverlauf durch den Hebelarm der
-inneren Kräfte dividiert. Die Differenz zwischen der gesamten
-Untergurtkraft und dem Anteil aus dem Biegemoment führt zum Versatzmass.
+aufgezeigt. Der Zuggurtverlauf ist mit der Längszugkraft aus dem
+Biegemoment ergänzt. Dazu wurde der Biegemomentenverlauf durch den
+Hebelarm der inneren Kräfte dividiert. Die Differenz zwischen der
+gesamten Untergurtkraft und dem Anteil aus dem Biegemoment führt zum
+Versatzmass.
 
 \begin{figure}[H]
 
@@ -1860,9 +1861,9 @@ Wegfedercharakteristik der Federn des Vierpunktbiegeversuches}
 
 \subsection{Modellergebnisse}\label{modellergebnisse-1}
 
-Mit den bestimmten Federcharakteristiken kann die Biegelinie des Systems
-ermittelt werden unter Berücksichtigung der Schub- und Biegeverformungen
-basierend auf nichtlinearen Stoffgesetzen. Die
+Mit den oben bestimmten Federcharakteristiken kann die Verformungslinie
+des Systems ermittelt werden unter Berücksichtigung der Schub- und
+Biegeverformungen basierend auf nichtlinearen Stoffgesetzen. Die
 Abbildung~\ref{fig-l-w-sv14} zeigt das Last-Verformungs-Diagramm des
 Systems am Punkt \(w_1\). Der Verformungsverlauf zeigt Abweichungen zu
 den gemessenen Resultaten.
@@ -1881,15 +1882,14 @@ aus dem Federmodell und aus den Versuchsmessungen}
 \end{figure}%
 
 Bis zum Erreichen des ersten Knicks im Verlauf des Federmodells ist das
-Modell etwas zu steif. Trotzdem ist dies akzeptabel. Das zu steife
-Verhalten lässt sich auf die Vernachlässigung der Stauchung der
-Druckdiagonalen und der Gurtdehnung zurückführen. In der
-Abbildung~\ref{fig-schubverf_sigrist} ist ein Modell zur Ermittlung der
-Schiebung am Fachwerk gezeigt. Dies bietet einen Ansatz zur erweiterten
-Bestimmung der Schubsteifigkeit. Der Knick resultiert aus dem Fliessen
-der Schubbewehrung. Bei den Versuchsresultaten ist bei gleicher
-Verformung ebenfalls ein Knick zu erkennen. Jedoch ist das Lastniveau
-nicht deckungsgleich.
+Modell etwas zu steif. Das zu steife Verhalten lässt sich auf die
+Vernachlässigung der Stauchung der Druckdiagonalen und der Gurtdehnung
+zurückführen. In der Abbildung~\ref{fig-schubverf_sigrist} ist ein
+Modell zur Ermittlung der Schiebung am Fachwerk gezeigt. Dies bietet
+einen Ansatz zur erweiterten Bestimmung der Schubsteifigkeit. Der Knick
+resultiert aus dem Fliessen der Schubbewehrung. Bei den
+Versuchsresultaten ist bei gleicher Verformung ebenfalls ein Knick zu
+erkennen. Jedoch ist das Lastniveau nicht deckungsgleich.
 
 \begin{figure}[H]
 
@@ -1905,13 +1905,13 @@ Gurtdehnung, nach {[}\citeproc{ref-sigrist_zum_1995}{4}{]}}
 
 \end{figure}%
 
-Das darauffolgende verfestigende Verhalten weicht deutlich von dem
+Das darauffolgende verfestigende Verhalten weicht deutlich vom
 Versuchsverhalten ab. Des Weiteren hat die Berechnung im Modell ein
 Schubversagen prognostiziert. Die Versuchsdaten beschreiben ein
 Biegeversagen im Feld. Das Modell beschreibt das Versuchsverhalten
 mangelhaft. Dies ist den Unschärfen der Stoffgesetze zuzuschreiben.
 
-Abschliessend wird der, aus dem Modell exportierte, Verdrehungsverlauf
+Abschliessend wird der aus dem Modell exportierte Verdrehungsverlauf
 aufgezeigt. Sowie wird der daraus berechnete Krümmungsverlauf
 aufgezeigt.
 
@@ -2008,7 +2008,7 @@ Versuchsträgers T6, entnommen aus
 Das Bewehrungslayout im Querschnitt zeigt die
 Abbildung~\ref{fig-bewehrung_qs_t6}. Die Bewehrungsüberdeckung beträgt
 in allen Richtungen \(20\) mm. Mit Grossbuchstaben \(A\) bis \(I\) sind
-die Bewehrungslagen in längsrichtung beschrieben. Die Schubbügel sind
+die Bewehrungslagen in Längsrichtung beschrieben. Die Schubbügel sind
 mit den Kleinbuchstaben \(i\) bis \(iii\) bezeichnet.
 
 \begin{figure}[H]
@@ -2144,7 +2144,7 @@ P_{\infty} &= 657.0\ \mathrm{kN} \;
 \end{aligned}
 $$
 
-Die Spannung im Spannglied aufgrund der Vorspannung definiert sich zu:
+Die Spannung im Spannglied aufgrund der Vorspannung definiert sich als:
 
 $$
 \begin{aligned}
@@ -2351,18 +2351,20 @@ zurückzuführen.
 
 \subsection{Lastfälle}\label{lastfuxe4lle}
 
-Die unterschiedliche Belastungsgeschwindigkeit liefert eine gewisse
-Komplexität bei der Modellierung. Sowie wird die Vorspannung als
-Einwirkung interpretiert. Abschliessend ist aufgrund der Vorspannung das
-Eigengewicht zu berücksichtigen, da dies den negativ gerichteten
-Umlenkkräften entgegenwirkt. Es wird zwischen den Lastfällen
-Eigengewicht, Vorspannung und den Pressenkräften unterschieden. Diese
-werden folgend beschrieben:
+Den Einwirkungen ist bei diesem Versuch besondere Beachtung zu schenken.
+Dies ist aufgrund der erhöhten Komplexität bei der Modellierung durch
+die unterschiedliche Belastungsgeschwindigkeit. Sowie wird die
+Vorspannung als Einwirkung interpretiert. Ebenso ist aufgrund der
+Vorspannung das Eigengewicht zu berücksichtigen, da dies den negativ
+gerichteten Umlenkkräften entgegenwirkt.
+
+Es wird zwischen den Lastfällen Eigengewicht, Vorspannung und den
+Pressenkräften unterschieden. Diese werden folgend beschrieben:
 
 \subsubsection{Eigengewicht}\label{eigengewicht}
 
 Das Eigengewicht wird als Streckenlast auf dem gesamten statischen
-System angeordnet. Ermittelt aus der Betonquerschnittsfläche und
+System angeordnet, ermittelt aus der Betonquerschnittsfläche und
 entsprechender Dichte.
 
 \begin{figure}[H]
@@ -2572,12 +2574,12 @@ P_{1} &= 475.0\ \mathrm{kN} \;
 $$
 
 Der zweite Lastfall beinhaltet die Einzellast \(P_{1}\), sowie die
-Streckenlast \(q_1\) des Lastfalls \emph{Pressenkräfte \(1\)}. Ergänzend
+Streckenlast \(q_1\) des Lastfalls \emph{Pressenkräfte 1}. Ergänzend
 wird eine Einzellast \(P_{\Delta}\) und eine Streckenlast \(q_{\Delta}\)
 an den gleichen Positionen eingeführt. Diese werden inkrementell
-gesteigert, die Lasten des Lastfalls \emph{Pressenkräfte \(1\)} bleiben
+gesteigert, die Lasten des Lastfalls \emph{Pressenkräfte 1} bleiben
 konstant. Die Lasten wurden iterativ bestimmt und entsprechen der
-Traglast des Modells. Der Lastfall wird mit \emph{Pressenkräfte \(2\)}
+Traglast des Modells. Der Lastfall wird mit \emph{Pressenkräfte 2}
 bezeichnet.
 
 $$
@@ -2890,7 +2892,7 @@ $$
 
 Das gleiche Vorgehen wird für positive Biegebeanspruchung angewendet.
 Die schlaffe Bewehrung fliesst. Die Vorspannung ist im Untergurt nicht
-vorhanden. Dem Beton wird das Erreichend er Druckfestigkeit
+vorhanden. Dem Beton wird das Erreichen der Druckfestigkeit
 vorausgesetzt.
 
 \begin{figure}[H]
@@ -3044,7 +3046,7 @@ $$
 \end{aligned}
 $$
 
-Die Analyse sämtlicher Querschnitt ist zusammenfassend in der
+Die Analyse sämtlicher Querschnitte ist zusammenfassend in der
 Abbildung~\ref{fig-m_chi_schaetzung} gezeigt. Ergänzend sind die
 händisch ermittelten Punkte dargestellt. Die Abschätzungen liefern
 annähernd identische Resultate wie die numerisch ermittelten Kurven. Die
@@ -3059,8 +3061,8 @@ Resultate sind somit plausibel.
 }
 
 \caption{\label{fig-m_chi_schaetzung}Momenten-Krümmungs-Beziehung
-numerisch gelöst mittels der Querschnittsanalyse-Software, dazu grobe
-Abschätzung der Grenzpunkte aufgezeigt}
+numerisch gelöst mittels der Querschnittsanalyse-Software, dazu
+aufgezeigt eine grobe Abschätzung der Grenzpunkte}
 
 \end{figure}%
 
@@ -3479,16 +3481,17 @@ gesamten Last des Lastfalls berechnet.
 
 \section{Rückblick}\label{ruxfcckblick}
 
-In dieser Arbeit wurde das Verformungsverhalten von Stahlbetontragwerken
-untersucht. Die geforderte Verknüpfung der mechanischen Modelle aus der
-Vorarbeit mit kommerziellen FE-Programmen konnte erfolgreich umgesetzt
-werden. Das daraus entstandene Federmodell liefert eine praxistaugliche
-Modellvorstellung, um nichtlineare Verformungen von Stabtragwerken zu
-berechnen. Das Federmodell kann nichtlineare Verformungen in Richtung
-der sechs Freiheitsgrade im dreidimensionalen Raum für Stabtragwerke
-abbilden. Die Bestimmung der entsprechenden Steifigkeiten erweist sich
-als Hauptaufgabe bei der Modellbildung. Zudem kann das Modell bei
-statisch unbestimmten Systemen Schnittgrössen umlagern.
+In dieser Arbeit wurde allgemein das Verformungsverhalten von
+Stahlbetontragwerken untersucht. Die geforderte Verknüpfung der
+mechanischen Modelle aus der Vorarbeit mit kommerziellen FE-Programmen
+konnte erfolgreich umgesetzt werden. Das daraus entstandene Federmodell
+liefert eine praxistaugliche Modellvorstellung, um nichtlineare
+Verformungen von Stabtragwerken zu berechnen. Das Federmodell kann
+nichtlineare Verformungen in Richtung der sechs Freiheitsgrade im
+dreidimensionalen Raum für Stabtragwerke abbilden. Die Bestimmung der
+entsprechenden Steifigkeiten erweist sich als Hauptaufgabe bei der
+Modellbildung. Zudem kann das Modell bei statisch unbestimmten Systemen
+Schnittgrössen umlagern.
 
 Das Modell zeigt Schwächen bei der empfindlichen Reaktion der Resultate
 auf die gewählten Abstände der Federn, die Inkremente bei der
@@ -3498,9 +3501,10 @@ bei FE-Lösungen.
 
 Die Modellverifizierung hat zufriedenstellende Resultate geliefert.
 Speziell die Biegeverformungen unter Berücksichtigung der Zugversteifung
-konnten für sämtliche Versuche präzise abgebildet werden. Die Bestimmung
-der Schubverformungen wurde vereinfacht durch die Dehnung der Schubbügel
-berücksichtigt. Um genaue Schubverformungen zu bestimmen, muss diese
+konnten für sämtliche Versuche präzise abgebildet werden. Die
+Schubverformungen wurden lediglich durch die Dehnung der Schubbügel
+berücksichtigt. Die Präzision dieser Resultate war nicht durchwegs
+zufriedenstellend. Um genaue Schubverformungen zu bestimmen, muss diese
 Modellvorstellung erweitert werden. Trotzdem zeigt dies die Möglichkeit,
 mittels dem Federmodell Schubverformungen zu berechnen. Das Versatzmass
 konnte im Federmodell auf Seiten der Einwirkung leicht implementiert
